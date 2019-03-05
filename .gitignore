@@ -1,0 +1,62 @@
+# Prerequisites
+*.d
+
+# Added by Nicolsas Lee
+# ignore folder
+GeneratedFiles/
+
+# Added by Nicolas Lee
+*.dccf
+*.aps
+*.tli
+*.tlh
+*.idb
+*.pdb
+*.ipdb
+*.pdb
+*.db
+*.suo
+*.res
+*.manifest
+*.tlog
+*.log
+*.ipch
+*.idb
+*.ilk
+*.opendb
+*.opensdf
+*.sdf
+*.exp
+*.iobj
+*.lastbuildstate
+*.unsuccessfulbuild
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+#*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+#*.lib
+
+# Executables
+*.exe
+*.out
+*.app
