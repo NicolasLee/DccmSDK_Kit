@@ -1,0 +1,163 @@
+[Thu Jul 23 16:21:32 2015][s2][In] Input image's intensity is out of range. Check exposure time or light source. [value:63][min:120][max:230]
+[Thu Jul 23 16:22:45 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.920089][min:0.960000]
+[Thu Jul 23 16:28:40 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.950907][min:0.960000]
+[Thu Jul 23 20:05:42 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.912427][min:0.960000]
+[Thu Jul 23 20:08:21 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.955794][min:0.960000]
+[Thu Jul 23 20:09:16 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.942217][min:0.960000]
+[Thu Jul 23 20:10:40 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.941026][min:0.960000]
+[Thu Jul 23 20:11:45 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.953995][min:0.960000]
+[Thu Jul 23 20:12:16 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.947678][min:0.960000]
+[Thu Jul 23 20:12:47 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.951975][min:0.960000]
+[Thu Jul 23 20:13:14 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.949641][min:0.960000]
+[Thu Jul 23 20:14:57 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.933139][min:0.960000]
+[Thu Jul 23 20:15:34 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.949488][min:0.960000]
+[Thu Jul 23 20:17:07 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.952045][min:0.960000]
+[Thu Jul 23 20:17:33 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.955221][min:0.960000]
+[Thu Jul 23 20:18:14 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.947041][min:0.960000]
+[Thu Jul 23 20:18:43 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.863027][min:0.960000]
+[Thu Jul 23 20:19:04 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.921265][min:0.960000]
+[Thu Jul 23 20:19:24 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.942885][min:0.960000]
+[Thu Jul 23 20:20:04 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.955518][min:0.960000]
+[Thu Jul 23 20:20:26 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.953024][min:0.960000]
+[Thu Jul 23 20:28:35 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.918149][min:0.960000]
+[Thu Jul 23 20:41:38 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.959229][min:0.960000]
+[Thu Jul 23 20:42:09 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.957683][min:0.960000]
+[Thu Jul 23 20:43:02 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.956167][min:0.960000]
+[Thu Jul 23 20:43:41 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.938146][min:0.960000]
+[Thu Jul 23 20:44:14 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.958414][min:0.960000]
+[Thu Jul 23 20:46:44 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.943676][min:0.960000]
+[Thu Jul 23 20:47:21 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.953385][min:0.960000]
+[Thu Jul 23 20:47:55 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.955836][min:0.960000]
+[Thu Jul 23 20:49:33 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.923760][min:0.960000]
+[Thu Jul 23 20:50:58 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.953283][min:0.960000]
+[Thu Jul 23 20:52:03 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.928263][min:0.960000]
+[Thu Jul 23 20:52:37 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.953938][min:0.960000]
+[Thu Jul 23 20:54:32 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.957436][min:0.960000]
+[Thu Jul 23 20:55:17 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.950737][min:0.960000]
+[Thu Jul 23 20:55:34 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.957068][min:0.960000]
+[Thu Jul 23 20:56:11 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.958597][min:0.960000]
+[Fri Jul 24 08:17:09 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.943689][min:0.960000]
+[Fri Jul 24 08:18:18 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.956901][min:0.960000]
+[Fri Jul 24 08:19:28 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.942264][min:0.960000]
+[Fri Jul 24 08:20:07 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.958057][min:0.960000]
+[Fri Jul 24 08:21:21 2015][s2][Output] Output PD to lens position Linearity average value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.987895][avg min:0.990000]
+[Fri Jul 24 08:22:06 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.934778][min:0.960000]
+[Fri Jul 24 08:22:43 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.921244][min:0.960000]
+[Fri Jul 24 08:27:27 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.950086][min:0.960000]
+[Fri Jul 24 09:32:18 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.367865][min:0.960000]
+[Fri Jul 24 09:32:36 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:-0.082004][min:0.960000]
+[Tue Jul 28 16:19:04 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.959165][min:0.960000]
+[Tue Jul 28 16:19:41 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.906334][min:0.960000]
+[Tue Jul 28 16:20:25 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.910473][min:0.960000]
+[Tue Jul 28 16:20:59 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.954407][min:0.960000]
+[Tue Jul 28 17:29:18 2015][Quality] defect PD verify fail. adjacent PD count, L:0, R:0. 1x10 grid count, L:1, R:0.
+[Wed Aug 12 14:23:02 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.958710][min:0.960000]
+[Wed Aug 12 14:26:41 2015][s2][Output] Output PD to lens position Linearity average value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.988950][avg min:0.990000]
+[Wed Aug 12 14:27:36 2015][s2][Output] Output PD to lens position Linearity average value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.989732][avg min:0.990000]
+[Wed Aug 12 14:28:22 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.959294][min:0.960000]
+[Wed Aug 12 14:50:41 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.951431][min:0.960000]
+[Wed Aug 12 14:51:54 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.944450][min:0.960000]
+[Wed Aug 12 14:54:41 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.953663][min:0.960000]
+[Wed Aug 12 15:10:19 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.957106][min:0.960000]
+[Wed Aug 12 15:11:13 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.944756][min:0.960000]
+[Wed Aug 12 15:13:33 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Wed Aug 12 15:14:43 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Wed Aug 12 15:18:17 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.927766][min:0.960000]
+[Wed Aug 12 15:20:21 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.918918][min:0.960000]
+[Wed Aug 12 15:21:21 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.958814][min:0.960000]
+[Wed Aug 12 15:22:37 2015][s2][Output] Output PD to lens position Linearity average value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.977420][avg min:0.990000]
+[Wed Aug 12 15:33:08 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.852550][min:0.920000]
+[Wed Aug 12 15:36:03 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.913735][min:0.920000]
+[Wed Aug 12 15:37:28 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.906791][min:0.920000]
+[Wed Aug 12 15:39:40 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.896117][min:0.920000]
+[Wed Aug 12 15:41:37 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.910051][min:0.920000]
+[Wed Aug 12 15:45:03 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.912767][min:0.920000]
+[Wed Aug 12 15:50:47 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.887412][min:0.920000]
+[Wed Aug 12 15:53:00 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.915650][min:0.920000]
+[Wed Aug 12 15:53:43 2015][s2][Output] Output disparity's dynamic range is out of range. [value:2.008770][max:2.000000]
+[Wed Aug 12 15:57:33 2015][s2][Output] Output disparity's dynamic range is out of range. [value:2.048111][max:2.000000]
+[Wed Aug 12 15:58:46 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.914973][min:0.920000]
+[Wed Aug 12 16:00:39 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.908025][min:0.920000]
+[Wed Aug 12 16:04:57 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.908648][min:0.920000]
+[Wed Aug 12 16:05:48 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.918150][min:0.920000]
+[Wed Aug 12 16:06:40 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.889493][min:0.920000]
+[Wed Aug 12 16:07:25 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.897087][min:0.920000]
+[Wed Aug 12 16:07:50 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.899759][min:0.920000]
+[Wed Aug 12 16:08:10 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.892701][min:0.920000]
+[Wed Aug 12 16:08:33 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.908035][min:0.920000]
+[Wed Aug 12 16:08:53 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.880871][min:0.920000]
+[Wed Aug 12 16:09:11 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.880182][min:0.920000]
+[Wed Aug 12 16:09:42 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.890885][min:0.920000]
+[Wed Aug 12 16:10:03 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.896117][min:0.920000]
+[Wed Aug 12 16:10:41 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.916677][min:0.920000]
+[Wed Aug 12 16:11:02 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.918196][min:0.920000]
+[Wed Aug 12 16:11:26 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.911803][min:0.920000]
+[Wed Aug 12 16:11:58 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.914677][min:0.920000]
+[Sat Oct 10 15:39:06 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:03:29 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:03:29 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:03:31 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:03:32 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:03:33 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:03:34 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:03:35 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:03:36 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:03:38 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:03:38 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:03:40 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:03:41 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:03:42 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:03:43 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:03:45 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:03:45 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:03:47 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:03:47 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:03:49 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:03:50 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:03:51 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:03:52 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:03:54 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:03:54 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:03:56 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:03:57 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:03:58 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:03:59 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:04:00 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:04:01 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:04:03 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:04:03 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:04:05 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:04:06 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:04:07 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:04:08 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:04:10 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:04:10 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:04:57 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:04:57 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:04:59 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:05:00 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:05:01 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 09:05:02 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Tue Oct 13 09:05:44 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 14:09:52 2015][s2][In] Input lens position is not in increasing order.
+[Tue Oct 13 14:11:45 2015][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:-0.449373][min:0.960000]
+[Thu Nov 17 15:29:53 2016][Quality] cross-talk verify fail. [max:7] Data: block1,7.438181,8.072042,7.621758,7.727339,8.054608,7.502315,7.271656,7.575866,
+[Thu Nov 17 15:29:53 2016][Quality] defect PD verify fail. adjacent PD count, L:38, R:66. 1x10 grid count, L:157, R:152.
+[Thu Nov 17 15:30:47 2016][Quality] cross-talk verify fail. [max:7] Data: block1,6.849352,8.026158,7.837824,6.946934,7.748433,6.774577,7.296047,6.699263,
+[Thu Nov 17 15:30:47 2016][Quality] defect PD verify fail. adjacent PD count, L:40, R:45. 1x10 grid count, L:171, R:154.
+[Thu Nov 17 20:22:13 2016][s2][In] Input lens position is not in increasing order.
+[Fri Nov 18 10:13:00 2016][s2][In] Input image [1] intensity is out of range. Check exposure time or light source. [value:119][min:120][max:230]
+[Fri Nov 18 10:50:22 2016][s2][Output] PD range is out of range. [value:5.439507][min:8.500000]
+[Fri Nov 18 18:50:23 2016][s2][In] Input image [10] intensity is out of range. Check exposure time or light source. [value:231][min:120][max:230]
+[Fri Nov 18 19:37:13 2016][s2][In] Input image [10] intensity is out of range. Check exposure time or light source. [value:231][min:120][max:230]
+[Fri Nov 18 19:49:05 2016][s2][In] Input image [10] intensity is out of range. Check exposure time or light source. [value:231][min:120][max:230]
+[Sat Nov 19 12:16:51 2016][s2][In] Input lens position is not in increasing order.
+[Mon Nov 21 20:03:13 2016][s2][In] Input image [1] intensity is out of range. Check exposure time or light source. [value:18][min:120][max:230]
+[Mon Nov 21 20:12:22 2016][s2][In] Input image [1] intensity is out of range. Check exposure time or light source. [value:18][min:120][max:230]
+[Mon Nov 21 20:14:11 2016][s2][In] Input image [1] intensity is out of range. Check exposure time or light source. [value:18][min:120][max:230]
+[Mon Nov 21 20:16:47 2016][s2][In] Input image [1] intensity is out of range. Check exposure time or light source. [value:18][min:120][max:230]
+[Tue Nov 22 11:11:40 2016][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:-1.000000][min:0.960000]
+[Tue Nov 22 11:11:40 2016][s2][Output] Output PD to lens position Linearity average value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:-1.000000][avg min:0.990000]
+[Tue Nov 22 11:11:40 2016][s2][Output] Check module parallel to calibration chart. miss alignment [value:1186.714931][min:50]
+[Tue Nov 22 11:11:40 2016][s2][Output] Output disparity is out of range. [value:0.000000][min:5][max:80]
+[Tue Nov 22 11:11:40 2016][s2][Output] Output disparity's dynamic range is out of range. [value:1.#INF00][max:2.000000]

@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OTP", "OTP\OTP.vcxproj", "{FA37F6C6-765B-4F55-8010-3A96B14F6BFA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA37F6C6-765B-4F55-8010-3A96B14F6BFA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FA37F6C6-765B-4F55-8010-3A96B14F6BFA}.Debug|Win32.Build.0 = Debug|Win32
+		{FA37F6C6-765B-4F55-8010-3A96B14F6BFA}.Release|Win32.ActiveCfg = Release|Win32
+		{FA37F6C6-765B-4F55-8010-3A96B14F6BFA}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

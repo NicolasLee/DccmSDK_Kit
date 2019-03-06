@@ -1,0 +1,492 @@
+----- DCC basic information: -----
+	context version: 4
+	chart_type: Line chart
+	dcc_stack_cnt: 8
+	dcc_fit_cnt: 6
+	dcc_search_range: 48
+	dcc_map_overlap: 0.2
+	fv_measure_channel: 1
+	dcc_val_tol(:, 0):     0.2     0.2     0.2     0.2     0.2     0.2     0.2     0.2
+	dcc_val_tol(:, 1):     0.2     0.2     0.2     0.2     0.2     0.2     0.2     0.2
+	dcc_val_tol(:, 2):     0.2     0.2     0.2     0.2     0.2     0.2     0.2     0.2
+	dcc_val_tol(:, 3):     0.2     0.2     0.2     0.2     0.2     0.2     0.2     0.2
+	dcc_val_tol(:, 4):     0.2     0.2     0.2     0.2     0.2     0.2     0.2     0.2
+	dcc_val_tol(:, 5):     0.2     0.2     0.2     0.2     0.2     0.2     0.2     0.2
+	DCC return value: 0x0
+
+
+----- Gain map information: -----
+	gain map size (17, 13)
+	Left image gain map values:
+		1477	1321	1121	945	792	680	593	534	497	480	483	501	529	572	640	719	785	
+		1401	1195	991	825	688	586	511	460	431	424	434	454	482	517	572	650	738	
+		1310	1091	893	735	606	511	444	400	378	377	388	412	441	476	522	591	685	
+		1231	1009	812	663	540	451	393	358	340	340	354	378	407	446	491	551	640	
+		1161	939	759	608	492	411	359	326	308	310	328	354	384	424	471	524	608	
+		1113	893	719	572	461	388	340	306	286	286	306	338	370	411	455	508	588	
+		1098	873	703	556	447	378	331	299	279	274	284	329	362	404	447	500	580	
+		1098	878	703	560	451	381	333	302	284	282	300	333	363	404	449	501	584	
+		1113	903	728	584	472	397	348	316	299	300	319	345	376	413	459	517	602	
+		1169	950	770	627	511	430	376	342	325	325	340	366	397	435	480	541	637	
+		1231	1022	833	683	564	476	414	378	360	358	371	398	427	464	511	580	680	
+		1300	1098	913	756	632	540	473	430	408	403	416	440	468	503	556	637	732	
+		1366	1177	997	833	712	618	545	495	467	460	469	491	521	558	622	709	781	
+	Right image gain map values:
+		732	652	576	519	486	468	460	459	472	500	547	618	719	860	1042	1250	1464	
+		683	588	517	471	441	422	408	403	409	432	473	536	627	752	928	1144	1377	
+		627	536	475	434	404	379	362	353	358	375	413	472	560	677	842	1062	1310	
+		580	498	444	404	372	345	326	316	318	335	367	422	508	625	777	991	1250	
+		549	472	422	382	348	320	300	287	289	306	335	387	469	584	735	945	1204	
+		531	457	409	368	333	306	282	265	268	286	315	366	445	556	709	913	1177	
+		522	451	402	360	327	300	273	256	259	278	302	356	432	545	700	903	1169	
+		524	452	404	362	330	303	278	263	264	282	311	358	436	554	709	908	1177	
+		538	463	413	372	341	315	293	280	280	296	326	375	457	580	738	939	1204	
+		566	485	432	391	359	333	315	305	306	322	352	405	495	620	781	997	1250	
+		606	519	460	417	387	361	343	335	340	358	394	454	545	671	837	1062	1310	
+		663	570	503	455	423	400	385	380	387	410	452	517	611	745	918	1128	1354	
+		722	642	564	506	471	449	436	436	450	476	522	593	694	837	1009	1195	1401	
+
+
+----- DCC map information: -----
+	DCC Q factor: 4
+	DCC map size (8, 6)
+	DCC map values:
+		409	621	423	414	436	386	556	450	
+		401	561	395	414	416	371	489	390	
+		466	442	404	427	413	383	465	368	
+		510	410	400	415	413	387	470	350	
+		637	422	406	400	409	387	500	374	
+		798	448	419	415	410	397	538	425	
+
+
+----- Lens Position Map Information: -----
+	                                        grid index:    (0,0)   (1,0)   (2,0)   (3,0)   (4,0)   (5,0)   (6,0)   (7,0)
+	                    estimated focus position by FV:      406     399     400     403     402     401     401     413
+	                    estimated focus position by PD:      409     391     402     400     397     402     383     430
+	                       between estimated FV and PD:        3      -8       2      -3      -5       1     -18      17
+	Normalized: difference between estimated FV and PD:    0.009  -0.024   0.006  -0.009  -0.015   0.003  -0.054   0.051
+
+
+	                                        grid index:    (0,1)   (1,1)   (2,1)   (3,1)   (4,1)   (5,1)   (6,1)   (7,1)
+	                    estimated focus position by FV:      393     382     384     400     400     387     384     402
+	                    estimated focus position by PD:      391     378     387     390     394     387     369     414
+	                       between estimated FV and PD:       -2      -4       3     -10      -6       0     -15      12
+	Normalized: difference between estimated FV and PD:   -0.006  -0.012   0.009  -0.030  -0.018   0.000  -0.045   0.036
+
+
+	                                        grid index:    (0,2)   (1,2)   (2,2)   (3,2)   (4,2)   (5,2)   (6,2)   (7,2)
+	                    estimated focus position by FV:      378     373     377     398     397     380     372     379
+	                    estimated focus position by PD:      370     371     375     383     393     375     354     396
+	                       between estimated FV and PD:       -8      -2      -2     -15      -4      -5     -18      17
+	Normalized: difference between estimated FV and PD:   -0.024  -0.006  -0.006  -0.045  -0.012  -0.015  -0.054   0.051
+
+
+	                                        grid index:    (0,3)   (1,3)   (2,3)   (3,3)   (4,3)   (5,3)   (6,3)   (7,3)
+	                    estimated focus position by FV:      373     369     373     387     386     375     368     373
+	                    estimated focus position by PD:      367     370     370     380     384     367     345     396
+	                       between estimated FV and PD:       -6       1      -3      -7      -2      -8     -23      23
+	Normalized: difference between estimated FV and PD:   -0.018   0.003  -0.009  -0.021  -0.006  -0.024  -0.069   0.069
+
+
+	                                        grid index:    (0,4)   (1,4)   (2,4)   (3,4)   (4,4)   (5,4)   (6,4)   (7,4)
+	                    estimated focus position by FV:      377     369     371     376     376     370     368     377
+	                    estimated focus position by PD:      360     372     366     373     373     363     350     397
+	                       between estimated FV and PD:      -17       3      -5      -3      -3      -7     -18      20
+	Normalized: difference between estimated FV and PD:   -0.051   0.009  -0.015  -0.009  -0.009  -0.021  -0.054   0.060
+
+
+	                                        grid index:    (0,5)   (1,5)   (2,5)   (3,5)   (4,5)   (5,5)   (6,5)   (7,5)
+	                    estimated focus position by FV:      382     371     370     370     370     368     369     383
+	                    estimated focus position by PD:      353     379     371     367     369     367     361     396
+	                       between estimated FV and PD:      -29       8       1      -3      -1      -1      -8      13
+	Normalized: difference between estimated FV and PD:   -0.087   0.024   0.003  -0.009  -0.003  -0.003  -0.024   0.039
+
+
+	**** MAX: Normalized: difference between estimated FV and PD:    0.087
+
+
+----- Stack Map Information: -----
+DCC grid cell index: (0, 0)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.199	   -3.899	   -1.468	    0.347	    1.995	    4.222	    5.301	    6.238	
+      Focus value: 	   256387	   264029	   408617	   485948	   350711	   257785	   246550	   239125	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (1, 0)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.778	   -2.263	   -0.515	    0.850	    2.054	    3.167	    3.657	    5.620	
+      Focus value: 	   221897	   225785	   428788	   477276	   295012	   233400	   217880	   208759	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (2, 0)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.922	   -2.938	   -1.498	    0.219	    1.974	    4.092	    5.932	    7.638	
+      Focus value: 	   198016	   211798	   405310	   459551	   278605	   210842	   200348	   188646	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (3, 0)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -5.767	   -2.985	   -1.141	    0.306	    1.762	    4.225	    6.284	    7.662	
+      Focus value: 	   187797	   196712	   377290	   458680	   261352	   194679	   191014	   179421	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (4, 0)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -5.811	   -2.304	   -0.963	    0.286	    1.388	    3.906	    6.386	    7.784	
+      Focus value: 	   203476	   203469	   398707	   485672	   261691	   203351	   195963	   186149	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (5, 0)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -5.451	   -3.512	   -0.928	    0.217	    1.790	    4.470	    6.576	    7.905	
+      Focus value: 	   231664	   240505	   461950	   542872	   311674	   239989	   228104	   220356	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (6, 0)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.362	   -1.593	   -0.611	    0.562	    2.311	    3.434	    5.168	    6.366	
+      Focus value: 	   263086	   274312	   496800	   575361	   346347	   279318	   267267	   257469	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (7, 0)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.616	   -3.286	   -2.540	   -1.008	    0.521	    2.784	    4.813	    5.879	
+      Focus value: 	   304557	   321062	   457104	   628963	   464128	   325925	   312189	   301604	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (0, 1)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.641	   -3.258	   -0.809	    0.878	    3.501	    5.163	    5.496	    5.925	
+      Focus value: 	   282525	   291346	   516982	   539953	   342125	   273991	   262817	   256169	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (1, 1)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.415	   -1.853	   -0.333	    1.019	    2.432	    3.701	    4.953	    8.206	
+      Focus value: 	   235780	   247952	   516204	   473146	   264951	   240326	   225224	   217103	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (2, 1)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.716	   -2.978	   -0.773	    1.184	    2.937	    5.077	    6.654	    8.747	
+      Focus value: 	   231338	   235725	   492578	   466965	   263481	   213977	   207150	   197667	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (3, 1)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -5.258	   -2.468	   -0.825	    0.515	    2.197	    4.681	    6.644	    8.067	
+      Focus value: 	   218322	   228188	   456165	   528498	   288156	   207608	   203612	   194848	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (4, 1)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -6.154	   -2.454	   -0.940	    0.320	    1.768	    4.452	    6.588	    7.937	
+      Focus value: 	   235876	   232403	   477180	   559259	   296775	   222161	   213385	   202562	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (5, 1)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.924	   -2.755	   -0.680	    0.626	    2.758	    5.572	    7.315	    8.638	
+      Focus value: 	   280620	   279332	   595058	   584307	   321776	   257290	   246767	   237509	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (6, 1)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.039	   -1.530	   -0.165	    1.124	    3.178	    4.674	    6.026	    7.936	
+      Focus value: 	   302911	   324848	   644838	   613629	   320143	   303582	   288843	   278119	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (7, 1)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.500	   -3.110	   -2.601	   -0.425	    1.735	    4.210	    5.773	    8.618	
+      Focus value: 	   366952	   384633	   653873	   778272	   449341	   365617	   350166	   338038	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (0, 2)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.522	   -2.121	   -0.227	    1.906	    4.186	    4.864	    4.986	    5.747	
+      Focus value: 	   281097	   305605	   551726	   485068	   281637	   263048	   252323	   248767	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (1, 2)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.237	   -1.560	   -0.239	    1.265	    2.957	    4.863	    7.017	    9.553	
+      Focus value: 	   232894	   262651	   531975	   402393	   231748	   222717	   208346	   199195	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (2, 2)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.730	   -2.242	   -0.380	    1.493	    3.177	    5.501	    7.098	    9.074	
+      Focus value: 	   255955	   244159	   526974	   437755	   248481	   203532	   195777	   187234	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (3, 2)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.577	   -2.057	   -0.541	    0.741	    2.335	    4.843	    6.742	    8.095	
+      Focus value: 	   233402	   239313	   477778	   535988	   287004	   198974	   198010	   188009	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (4, 2)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -6.247	   -2.713	   -0.710	    0.525	    1.887	    4.484	    6.628	    7.997	
+      Focus value: 	   247953	   241132	   509962	   568331	   296764	   217545	   212045	   197822	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (5, 2)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.716	   -1.889	   -0.341	    0.892	    3.175	    5.956	    7.590	    8.886	
+      Focus value: 	   308707	   294653	   637488	   563421	   315399	   249655	   239728	   231447	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (6, 2)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.487	   -1.116	    0.163	    1.914	    3.870	    5.359	    6.824	    9.086	
+      Focus value: 	   322222	   379616	   722039	   548470	   305749	   294534	   281579	   272300	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (7, 2)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.520	   -2.552	   -1.757	    0.180	    2.649	    4.994	    7.165	   11.536	
+      Focus value: 	   378578	   409021	   765281	   681050	   382185	   358284	   338814	   320480	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (0, 3)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.931	   -1.997	    0.048	    2.277	    3.997	    4.284	    4.481	    5.865	
+      Focus value: 	   274139	   318709	   545900	   438904	   275719	   257148	   251181	   246624	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (1, 3)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -2.970	   -1.623	   -0.391	    1.275	    3.401	    5.316	    7.439	    9.901	
+      Focus value: 	   237759	   287194	   541058	   369108	   230671	   221597	   206447	   200060	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (2, 3)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.678	   -2.110	   -0.096	    1.522	    3.759	    5.622	    7.342	    9.393	
+      Focus value: 	   260402	   266525	   522891	   401400	   244745	   203283	   194597	   187629	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (3, 3)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.426	   -2.049	   -0.552	    0.870	    2.822	    5.207	    6.865	    8.343	
+      Focus value: 	   247034	   247315	   524661	   514255	   262137	   200785	   200684	   189562	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (4, 3)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -5.447	   -2.202	   -0.462	    0.663	    2.210	    4.999	    6.893	    8.220	
+      Focus value: 	   262270	   249516	   564331	   544524	   273715	   222665	   216404	   201124	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (5, 3)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.491	   -1.489	   -0.079	    1.091	    3.666	    6.312	    7.717	    9.120	
+      Focus value: 	   315531	   319415	   645547	   519117	   304176	   254278	   242633	   234359	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (6, 3)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.493	   -0.905	    0.416	    2.450	    4.087	    5.443	    7.073	    9.463	
+      Focus value: 	   332869	   417877	   746696	   507048	   317291	   303145	   288874	   279164	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (7, 3)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.944	   -3.006	   -1.861	    0.512	    2.921	    5.290	    7.359	   12.022	
+      Focus value: 	   381979	   436313	   800111	   631623	   378899	   359232	   342192	   327742	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (0, 4)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.258	   -1.573	    0.363	    2.017	    3.200	    3.458	    3.975	    5.290	
+      Focus value: 	   287550	   327778	   551700	   481712	   309131	   276642	   266199	   260416	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (1, 4)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.484	   -2.044	   -0.430	    1.533	    3.429	    5.271	    6.795	    9.356	
+      Focus value: 	   247693	   323421	   543150	   390845	   251384	   232028	   221944	   213964	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (2, 4)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.687	   -1.791	    0.044	    1.614	    3.566	    5.798	    7.469	    9.616	
+      Focus value: 	   247171	   296121	   543245	   401466	   239370	   214861	   207198	   198539	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (3, 4)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.335	   -2.033	   -0.258	    1.289	    3.297	    5.723	    7.256	    8.660	
+      Focus value: 	   242769	   279779	   563638	   460458	   239465	   214559	   210927	   198644	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (4, 4)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.886	   -1.709	   -0.175	    1.014	    2.842	    5.629	    7.273	    8.510	
+      Focus value: 	   259613	   285448	   597795	   487788	   247569	   228220	   223415	   210002	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (5, 4)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.225	   -1.236	    0.036	    1.204	    3.933	    6.451	    7.893	    9.271	
+      Focus value: 	   303501	   356414	   663214	   472503	   288981	   265950	   253002	   244854	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (6, 4)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.556	   -0.975	    0.437	    1.992	    3.614	    4.965	    6.657	    8.924	
+      Focus value: 	   329738	   427685	   742345	   516078	   328249	   318850	   304907	   296976	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (7, 4)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.335	   -3.387	   -1.461	    0.589	    3.055	    4.905	    6.538	    9.470	
+      Focus value: 	   391015	   456803	   790749	   681757	   412049	   377172	   356181	   347257	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (0, 5)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -2.720	   -0.960	    0.277	    1.667	    2.208	    2.888	    3.907	    5.394	
+      Focus value: 	   257608	   285862	   445657	   422268	   285734	   251479	   241194	   237155	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (1, 5)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.876	   -2.234	   -0.591	    1.306	    2.995	    4.822	    6.054	    8.246	
+      Focus value: 	   221328	   290214	   456006	   361251	   236878	   212388	   203964	   196502	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (2, 5)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.825	   -1.777	   -0.178	    1.196	    3.087	    5.479	    7.117	    9.224	
+      Focus value: 	   207059	   271884	   472458	   348995	   219236	   196850	   192304	   186496	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (3, 5)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.914	   -1.522	   -0.090	    1.230	    3.434	    5.793	    7.230	    8.661	
+      Focus value: 	   206206	   273631	   496169	   360881	   216338	   197285	   193566	   184260	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (4, 5)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.602	   -1.556	   -0.131	    1.221	    3.193	    5.789	    7.371	    8.627	
+      Focus value: 	   218228	   284865	   524125	   375771	   222087	   205338	   203131	   192362	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (5, 5)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.344	   -1.362	   -0.081	    1.099	    3.464	    6.119	    7.644	    8.827	
+      Focus value: 	   247772	   334655	   578524	   404022	   257442	   238862	   229324	   220697	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (6, 5)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -3.137	   -1.167	    0.213	    1.297	    2.915	    4.348	    5.917	    7.879	
+      Focus value: 	   288061	   388194	   630347	   464125	   297981	   287883	   277093	   268992	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+
+DCC grid cell index: (7, 5)
+RAW lens position: 	      270	      318	      365	      413	      461	      509	      556	      604	
+Phrase disparity: 	   -4.524	   -2.950	   -1.033	    0.405	    2.405	    4.301	    5.978	    7.447	
+      Focus value: 	   340225	   392220	   629867	   600075	   375678	   328300	   316087	   307865	
+    PD confidence: 	     1024	     1024	     1024	     1024	     1024	     1024	     1024	     1024	
+     Return error: 	        0	        0	        0	        0	        0	        0	        0	        0	
+
+

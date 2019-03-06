@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{a1f542ec-5496-48fa-993d-1aa068a5a2b2}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{e986a874-84be-45fa-b90f-34b21d6dccd5}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="OTP">
+      <UniqueIdentifier>{bc9d2e4e-8462-4c66-91a3-3d10129c567b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\头文件">
+      <UniqueIdentifier>{1a855c0b-ff78-4119-86a9-a2b2ee404f63}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="OTP\FHB65531M">
+      <UniqueIdentifier>{1ac2e413-36c2-4e2b-b8fa-a43dc32a8fe9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OTP\PLQ8579M">
+      <UniqueIdentifier>{9f1a2de3-5415-40d5-9ed1-907a5946df2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OTP\TYD8470M&amp;HLT3L8&amp;TRJ8495">
+      <UniqueIdentifier>{06d2bdf7-10b1-44e0-a9cb-7ac4a82ba0fa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="readme.txt" />
+    <None Include="sample.txt" />
+    <None Include="OTP.def">
+      <Filter>源文件</Filter>
+    </None>
+    <None Include="res\OTP.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="OTP_Inspection.h">
+      <Filter>源文件\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionDlg.h">
+      <Filter>源文件\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>源文件\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>源文件\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OTP.h">
+      <Filter>源文件\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CTimeCount.h">
+      <Filter>源文件\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OTP\OtpBase.h">
+      <Filter>源文件\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OTP\OtpDef.h">
+      <Filter>源文件\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OTP\TYD8470M\OtpDefineS5K3L8.h">
+      <Filter>OTP\TYD8470M&amp;HLT3L8&amp;TRJ8495</Filter>
+    </ClInclude>
+    <ClInclude Include="OTP\TYD8470M\OtpS5K3L8.h">
+      <Filter>OTP\TYD8470M&amp;HLT3L8&amp;TRJ8495</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OTP\pd_cali_dll.h">
+      <Filter>源文件\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadingCalc.h">
+      <Filter>源文件\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OTP\PDAFCalibrationTools_RevJ.h">
+      <Filter>源文件\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OTP\FHB6551M\OtpDefineS5K3P3.h">
+      <Filter>OTP\FHB65531M</Filter>
+    </ClInclude>
+    <ClInclude Include="OTP\FHB6551M\OtpS5K3P3.h">
+      <Filter>OTP\FHB65531M</Filter>
+    </ClInclude>
+    <ClInclude Include="OTP\PLQ8579M\OtpDefineS5K5E8.h">
+      <Filter>OTP\PLQ8579M</Filter>
+    </ClInclude>
+    <ClInclude Include="OTP\PLQ8579M\OtpS5K5E8.h">
+      <Filter>OTP\PLQ8579M</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="OTP_Inspection.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="OTP.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeCount.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="OTP\OtpBase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="OTP\TYD8470M\OtpS5K3L8.cpp">
+      <Filter>OTP\TYD8470M&amp;HLT3L8&amp;TRJ8495</Filter>
+    </ClCompile>
+    <ClCompile Include="ShadingCalc.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="OTP\FHB6551M\OtpS5K3P3.cpp">
+      <Filter>OTP\FHB65531M</Filter>
+    </ClCompile>
+    <ClCompile Include="OTP\PLQ8579M\OtpS5K5E8.cpp">
+      <Filter>OTP\PLQ8579M</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OTP.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

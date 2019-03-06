@@ -1,0 +1,47 @@
+[Fri Apr 14 09:23:47 2017][Quality] cross-talk verify fail. [max:7] Data: block1,74.339863,74.823677,74.394266,74.397820,73.710160,74.433012,74.127342,74.449401,
+[Fri Apr 14 09:23:48 2017][Quality] defect PD verify fail. adjacent PD count, L:0, R:1. 1x10 grid count, L:1, R:2.
+[Fri Apr 14 09:29:35 2017][Quality] cross-talk verify fail. [max:7] Data: block1,66.232672,66.648258,65.954841,66.082005,66.871355,66.504301,66.331932,66.001931,
+[Fri Apr 14 09:31:27 2017][Quality] cross-talk verify fail. [max:7] Data: block1,79.680221,79.897938,78.868646,79.042129,79.747932,79.992612,78.723692,79.308206,
+[Fri Apr 14 09:50:47 2017][Quality] cross-talk verify fail. [max:7] Data: block1,78.654474,79.113076,78.118694,78.128393,78.810430,78.466346,77.789439,78.302340,
+[Fri Apr 14 09:53:00 2017][Quality] cross-talk verify fail. [max:7] Data: block1,84.282434,84.453331,83.910998,83.807553,84.455143,84.108159,83.003706,83.469999,
+[Fri Apr 14 10:03:04 2017][s2][out] Not Step2 Data
+[Fri Apr 14 16:36:26 2017][s2][In] Input image [ 4] intensity is out of range. Check exposure time or light source. [value:119][min:120][max:230]
+[Fri Apr 14 16:36:26 2017][s2][In] Input image [ 5] intensity is out of range. Check exposure time or light source. [value:118][min:120][max:230]
+[Fri Apr 14 16:36:26 2017][s2][In] Input image [ 6] intensity is out of range. Check exposure time or light source. [value:117][min:120][max:230]
+[Fri Apr 14 16:36:26 2017][s2][In] Input image [ 7] intensity is out of range. Check exposure time or light source. [value:116][min:120][max:230]
+[Fri Apr 14 16:36:26 2017][s2][In] Input image [ 8] intensity is out of range. Check exposure time or light source. [value:115][min:120][max:230]
+[Fri Apr 14 16:36:26 2017][s2][In] Input image [ 9] intensity is out of range. Check exposure time or light source. [value:114][min:120][max:230]
+[Fri Apr 14 16:36:26 2017][s2][In] Input image [10] intensity is out of range. Check exposure time or light source. [value:114][min:120][max:230]
+[Fri Apr 14 16:39:45 2017][s2][In] Input image [ 4] intensity is out of range. Check exposure time or light source. [value:119][min:120][max:230]
+[Fri Apr 14 16:39:45 2017][s2][In] Input image [ 5] intensity is out of range. Check exposure time or light source. [value:118][min:120][max:230]
+[Fri Apr 14 16:39:45 2017][s2][In] Input image [ 6] intensity is out of range. Check exposure time or light source. [value:117][min:120][max:230]
+[Fri Apr 14 16:39:45 2017][s2][In] Input image [ 7] intensity is out of range. Check exposure time or light source. [value:116][min:120][max:230]
+[Fri Apr 14 16:39:45 2017][s2][In] Input image [ 8] intensity is out of range. Check exposure time or light source. [value:115][min:120][max:230]
+[Fri Apr 14 16:39:45 2017][s2][In] Input image [ 9] intensity is out of range. Check exposure time or light source. [value:114][min:120][max:230]
+[Fri Apr 14 16:39:45 2017][s2][In] Input image [10] intensity is out of range. Check exposure time or light source. [value:114][min:120][max:230]
+[Fri Apr 14 17:29:21 2017][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Fri Apr 14 17:29:21 2017][s2][Output] Output PD to lens position Linearity average value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][avg min:0.990000]
+[Fri Apr 14 17:29:21 2017][s2][Output] Output disparity is out of range. [value:0.000000][min:5][max:80]
+[Fri Apr 14 17:29:21 2017][s2][Output] PD range is out of range. [value:0.047289][min:8.500000]
+[Fri Apr 14 17:56:15 2017][s1][In] Input image's intensity is out of range. Check exposure time or light source. [L:26][R:26][min:60][max:230][ROI(X,Y,W,H):1408,1048,1408,1040]
+[Fri Apr 14 17:56:15 2017][s1][In] Input image's intensity is out of range. Check exposure time or light source. [L:22][R:22][min:40][max:230][ROI(X,Y,W,H):0,0,1408,1040]
+[Fri Apr 14 17:56:15 2017][s1][In] Input image's intensity is out of range. Check exposure time or light source. [L:22][R:22][min:40][max:230][ROI(X,Y,W,H):0,0,1408,1040]
+[Fri Apr 14 17:58:16 2017][s1][In] Input image's intensity is out of range. Check exposure time or light source. [L:50][R:50][min:60][max:230][ROI(X,Y,W,H):1408,1048,1408,1040]
+[Fri Apr 14 17:58:16 2017][s1][In] Input image's intensity is out of range. Check exposure time or light source. [L:38][R:38][min:40][max:230][ROI(X,Y,W,H):0,0,1408,1040]
+[Fri Apr 14 17:58:16 2017][s1][In] Input image's intensity is out of range. Check exposure time or light source. [L:38][R:38][min:40][max:230][ROI(X,Y,W,H):0,0,1408,1040]
+[Fri Apr 14 17:58:52 2017][s2][out] Not Step2 Data
+[Fri Apr 14 18:06:23 2017][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Fri Apr 14 18:06:23 2017][s2][Output] Output PD to lens position Linearity average value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][avg min:0.990000]
+[Fri Apr 14 18:06:23 2017][s2][Output] Output disparity is out of range. [value:0.000000][min:5][max:80]
+[Fri Apr 14 18:06:23 2017][s2][Output] PD range is out of range. [value:0.047289][min:8.500000]
+[Fri Apr 14 18:42:56 2017][s2][out] Not Step2 Data
+[Fri Apr 14 18:53:21 2017][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:-0.933213][min:0.960000]
+[Fri Apr 14 18:53:21 2017][s2][Output] Output PD to lens position Linearity average value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:-0.933213][avg min:0.990000]
+[Fri Apr 14 18:53:21 2017][s2][Output] Check module parallel to calibration chart. miss alignment [value:183.591966][max:50]
+[Fri Apr 14 18:53:21 2017][s2][Output] Output disparity is out of range. [value:-254.316172][min:5][max:80]
+[Fri Apr 14 18:53:21 2017][s2][Output] Output disparity's dynamic range is out of range. [value:1.#INF00][max:2.000000]
+[Fri Apr 14 18:53:21 2017][s2][Output] PD range is out of range. [value:0.258723][min:8.500000]
+[Fri Apr 14 19:32:56 2017][s2][Output] Output PD to lens position Linearity value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][min:0.960000]
+[Fri Apr 14 19:32:56 2017][s2][Output] Output PD to lens position Linearity average value is under lower bound. Check VCM performance. (linearity, accuracy, stable ...etc ). [value:0.000000][avg min:0.990000]
+[Fri Apr 14 19:32:56 2017][s2][Output] Output disparity is out of range. [value:0.000000][min:5][max:80]
+[Fri Apr 14 19:32:56 2017][s2][Output] PD range is out of range. [value:0.047289][min:8.500000]

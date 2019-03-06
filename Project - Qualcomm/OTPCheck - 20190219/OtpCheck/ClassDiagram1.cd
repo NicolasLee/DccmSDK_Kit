@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="OtpCheck_TKU8341M">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Typedef Name="OtpCheck_TKU8341M::OtpPage" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OtpCheck_TKU8341M.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Struct Name="OtpCheck_TKU8341M::tagAddressFlag" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OtpCheck_TKU8341M.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="OtpCheck_TKU8341M::tagOtpSize" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OtpCheck_TKU8341M.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="OtpCheck_TKU8341M::tagOtpPage" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OtpCheck_TKU8341M.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Enum Name="OtpCheck_TKU8341M::eEepromCommandType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OtpCheck_TKU8341M.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Typedef Name="OtpCheck_TKU8341M::AddressSum" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OtpCheck_TKU8341M.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Struct Name="OtpCheck_TKU8341M::tagAddressSum" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OtpCheck_TKU8341M.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Typedef Name="OtpCheck_TKU8341M::AddressFlag" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OtpCheck_TKU8341M.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+      <Typedef Name="OtpCheck_TKU8341M::OtpSize" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OtpCheck_TKU8341M.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Typedef>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IFAAAAAAAAIARAASABAABAkQBiAASBAAAAggYA5QkAA=</HashCode>
+      <FileName>OtpCheck_TKU8341M.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>
