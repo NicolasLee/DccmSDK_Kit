@@ -39,129 +39,7 @@ OTP_Inspection::OTP_Inspection(DccmControl_Interface* pInterface, LPCTSTR lpszNa
 	m_pOtp = NULL;
 	m_pShading = NULL;
 
-	MatchProjName(pDlg->m_projName);
-	pDlg->PostMessage(WM_COMMAND, MAKEWPARAM(IDC_COMBO_PROJ_NAME, CBN_SELCHANGE), (LPARAM)pDlg->m_hWnd);
-
-	if (((CButton*)pDlg->GetDlgItem(IDC_GOLDENCHANNEL))->GetCheck())
-	{
-		UINT SENSOROB = m_pOtp->m_otpSensor.OB;
-		UINT AWB_FACTOR = m_pOtp->m_wbCtrl.factorAmplify;
-		pDlg->m_goldenrg = (UINT)(1.0 * (pDlg->m_goldenr - SENSOROB) / (pDlg->m_goldengr - SENSOROB)*AWB_FACTOR + 0.5);
-		pDlg->m_goldenbg = (UINT)(1.0 * (pDlg->m_goldenb - SENSOROB) / (pDlg->m_goldengb - SENSOROB)*AWB_FACTOR + 0.5);
-		pDlg->m_goldengg = (UINT)(1.0 * (pDlg->m_goldengb - SENSOROB) / (pDlg->m_goldengr - SENSOROB)*AWB_FACTOR + 0.5);
-		pDlg->OnBnClickedGoldenchannel();
-		pDlg->OnBnClickedGoldengain();
-	}
-	pDlg->OnBnClickedEnlsc();
-	pDlg->OnBnClickedEnaf();
-	pDlg->OnBnClickedEnawb();
-	pDlg->OnBnClickedEnpdaf();
-
-	if (((CButton*)pDlg->GetDlgItem(IDC_ENSENSORLSC))->GetCheck())
-	{
-		m_pOtp->SensorLSCSta = TRUE;
-	}
-	else
-	{
-		m_pOtp->SensorLSCSta = FALSE;
-	}
-	if (((CButton*)pDlg->GetDlgItem(IDC_CHECK_PDAF))->GetCheck())
-	{
-		pDlg->GetDlgItem(IDC_ENMTKPDAF)->EnableWindow(TRUE);
-		pDlg->GetDlgItem(IDC_ENQUALPDAF)->EnableWindow(TRUE);
-		pDlg->GetDlgItem(IDC_CHECK_QVL)->EnableWindow(TRUE);
-		pDlg->GetDlgItem(IDC_MTK_INI_NAME)->EnableWindow(TRUE);
-		pDlg->GetDlgItem(IDC_Qual_INI_NAME)->EnableWindow(TRUE);
-	}
-	else
-	{
-		pDlg->GetDlgItem(IDC_ENMTKPDAF)->EnableWindow(FALSE);
-		pDlg->GetDlgItem(IDC_ENQUALPDAF)->EnableWindow(FALSE);
-		pDlg->GetDlgItem(IDC_CHECK_QVL)->EnableWindow(FALSE);
-		pDlg->GetDlgItem(IDC_MTK_INI_NAME)->EnableWindow(FALSE);
-		pDlg->GetDlgItem(IDC_Qual_INI_NAME)->EnableWindow(FALSE);
-	}
-	//........................
-
-
-	m_pOtp->m_goldenrg = pDlg->m_goldenrg;
-	m_pOtp->m_goldenbg = pDlg->m_goldenbg;
-	m_pOtp->m_goldengg = pDlg->m_goldengg;
-
-	m_pOtp->m_awb_size = pDlg->m_awb_size;
-	m_pOtp->m_rgainh = pDlg->m_rgainh;
-	m_pOtp->m_rgainl = pDlg->m_rgainl;
-	m_pOtp->m_bgainh = pDlg->m_bgainh;
-	m_pOtp->m_bgainl = pDlg->m_bgainl;
-	m_pOtp->m_goldenr = pDlg->m_goldenr;
-	m_pOtp->m_goldenb = pDlg->m_goldenb;
-	m_pOtp->m_goldengr = pDlg->m_goldengr;
-	m_pOtp->m_goldengb = pDlg->m_goldengb;
-	m_pOtp->m_rgaindif = pDlg->m_rgaindif;
-	m_pOtp->m_bgaindif = pDlg->m_bgaindif;
-	m_pOtp->m_orgdif = pDlg->m_orgdif;
-
-	m_pOtp->m_afread = pDlg->m_afread;
-	m_pOtp->m_InfH = pDlg->m_InfH;
-	m_pOtp->m_InfL = pDlg->m_InfL;
-	m_pOtp->m_MacH = pDlg->m_MacH;
-	m_pOtp->m_MacL = pDlg->m_MacL;
-	m_pOtp->m_StcH = pDlg->m_StcH;
-	m_pOtp->m_StcL = pDlg->m_StcL;
-	m_pOtp->m_AFDif = pDlg->m_AFDif;
-	m_pOtp->m_grouplimit = pDlg->m_grouplimit;
-
-	m_pOtp->m_sleeptime = pDlg->m_sleeptime;
-	m_pOtp->m_EnBasic = pDlg->m_EnBasic;
-	m_pOtp->m_PDAFItem = pDlg->m_PDAFItem;
-	m_pOtp->m_EnQVL = pDlg->m_EnQVL;
-	m_pOtp->m_EnLSC = pDlg->m_EnLSC;
-	m_pOtp->m_LSCItem = pDlg->m_LSCItem;
-	m_pOtp->m_EnAF = pDlg->m_EnAF;
-	m_pOtp->m_EnAWB = pDlg->m_EnAWB;
-	m_pOtp->m_SaveAWB = pDlg->m_SaveAWB;
-	m_pOtp->m_EnPDAF = pDlg->m_EnPDAF;
-	m_pOtp->m_berase = pDlg->m_berase;
-	m_pOtp->m_bcheckinf = pDlg->m_bcheckinf;
-	m_pOtp->m_bcheckmac = pDlg->m_bcheckmac;
-	m_pOtp->m_bchecksta = pDlg->m_bchecksta;
-
-	m_pOtp->m_SaveMTKraw = pDlg->m_SaveMTKraw;
-	m_pOtp->m_MTKLSCVerItem = pDlg->m_MTKLSCVerItem;
-	m_pOtp->m_QUALLSCVerItem = pDlg->m_QUALLSCVerItem;
-	m_pOtp->m_dummyburn = pDlg->m_dummyburn;
-	m_pOtp->m_qualawb = pDlg->m_qualawb;
-
-	m_pOtp->m_MTKPDAFitem = pDlg->m_MTKPDAFitem;
-	m_pOtp->m_QUALPDAFitem = pDlg->m_QUALPDAFitem;
-	m_pOtp->m_MTK_INI_Name = pDlg->m_MTK_INI_Name;
-	m_pOtp->m_Qual_INI_Name = pDlg->m_Qual_INI_Name;
-	m_pOtp->m_LscTarget = pDlg->m_lscTarget;
-	m_pOtp->m_LscGroup = pDlg->m_lscGroup;
-
-	m_pOtp->PreSubclassOtp();
-
-// 	if (m_pShading == NULL)
-// 	{
-	InitShadingItem();
-	SAFE_DELETE(m_pShading);
-	m_pShading = new ShadingCalc(m_pInterface, m_pOtp->m_shadingitem);//m_shadingnum	
-//  }
-	m_pShading->InitMember();
-	m_pShading->m_shadingflag = m_shadingflag;
-	m_pShading->m_ymax = pDlg->m_ymax;
-	m_pShading->m_ymin = pDlg->m_ymin;
-	m_pShading->m_ydif = pDlg->m_ydiff;
-	m_pShading->m_rgdiff = pDlg->m_rgdiff;
-	m_pShading->m_bgdiff = pDlg->m_bgdiff;
-
-	// 	pDlg->m_ymax2 = pDlg->m_ymax;//前后shading标准一致。不一致仅用于5E8，或其他SRAM与LSC不一致的Sensor
-	// 	pDlg->m_ymin2 = pDlg->m_ymin;//前后shading标准一致。不一致仅用于5E8，或其他SRAM与LSC不一致的Sensor
-	m_pShading->m_ymax2 = pDlg->m_ymax2;
-	m_pShading->m_ymin2 = pDlg->m_ymin2;
-
-	m_pShading->m_MTKLSCVerItem = pDlg->m_MTKLSCVerItem;
-	//////////////////////////////////////////////////////////////////////////
+	
 }
 
 OTP_Inspection::~OTP_Inspection(void)
@@ -704,6 +582,130 @@ int OTP_Inspection::SaveOption()
 	WriteConfigInt(_T("GoldenRGain      "),pDlg->m_goldenrg);
 	WriteConfigInt(_T("GoldenBGain      "),pDlg->m_goldenbg);
 	WriteConfigInt(_T("GoldenGGain      "),pDlg->m_goldengg);
+
+	MatchProjName(pDlg->m_projName);
+	pDlg->PostMessage(WM_COMMAND, MAKEWPARAM(IDC_COMBO_PROJ_NAME, CBN_SELCHANGE), (LPARAM)pDlg->m_hWnd);
+
+	if (((CButton*)pDlg->GetDlgItem(IDC_GOLDENCHANNEL))->GetCheck())
+	{
+		UINT SENSOROB = m_pOtp->m_otpSensor.OB;
+		UINT AWB_FACTOR = m_pOtp->m_wbCtrl.factorAmplify;
+		pDlg->m_goldenrg = (UINT)(1.0 * (pDlg->m_goldenr - SENSOROB) / (pDlg->m_goldengr - SENSOROB)*AWB_FACTOR + 0.5);
+		pDlg->m_goldenbg = (UINT)(1.0 * (pDlg->m_goldenb - SENSOROB) / (pDlg->m_goldengb - SENSOROB)*AWB_FACTOR + 0.5);
+		pDlg->m_goldengg = (UINT)(1.0 * (pDlg->m_goldengb - SENSOROB) / (pDlg->m_goldengr - SENSOROB)*AWB_FACTOR + 0.5);
+		pDlg->OnBnClickedGoldenchannel();
+		pDlg->OnBnClickedGoldengain();
+	}
+	pDlg->OnBnClickedEnlsc();
+	pDlg->OnBnClickedEnaf();
+	pDlg->OnBnClickedEnawb();
+	pDlg->OnBnClickedEnpdaf();
+
+	if (((CButton*)pDlg->GetDlgItem(IDC_ENSENSORLSC))->GetCheck())
+	{
+		m_pOtp->SensorLSCSta = TRUE;
+	}
+	else
+	{
+		m_pOtp->SensorLSCSta = FALSE;
+	}
+	if (((CButton*)pDlg->GetDlgItem(IDC_CHECK_PDAF))->GetCheck())
+	{
+		pDlg->GetDlgItem(IDC_ENMTKPDAF)->EnableWindow(TRUE);
+		pDlg->GetDlgItem(IDC_ENQUALPDAF)->EnableWindow(TRUE);
+		pDlg->GetDlgItem(IDC_CHECK_QVL)->EnableWindow(TRUE);
+		pDlg->GetDlgItem(IDC_MTK_INI_NAME)->EnableWindow(TRUE);
+		pDlg->GetDlgItem(IDC_Qual_INI_NAME)->EnableWindow(TRUE);
+	}
+	else
+	{
+		pDlg->GetDlgItem(IDC_ENMTKPDAF)->EnableWindow(FALSE);
+		pDlg->GetDlgItem(IDC_ENQUALPDAF)->EnableWindow(FALSE);
+		pDlg->GetDlgItem(IDC_CHECK_QVL)->EnableWindow(FALSE);
+		pDlg->GetDlgItem(IDC_MTK_INI_NAME)->EnableWindow(FALSE);
+		pDlg->GetDlgItem(IDC_Qual_INI_NAME)->EnableWindow(FALSE);
+	}
+	//........................
+
+
+	m_pOtp->m_goldenrg = pDlg->m_goldenrg;
+	m_pOtp->m_goldenbg = pDlg->m_goldenbg;
+	m_pOtp->m_goldengg = pDlg->m_goldengg;
+
+	m_pOtp->m_awb_size = pDlg->m_awb_size;
+	m_pOtp->m_rgainh = pDlg->m_rgainh;
+	m_pOtp->m_rgainl = pDlg->m_rgainl;
+	m_pOtp->m_bgainh = pDlg->m_bgainh;
+	m_pOtp->m_bgainl = pDlg->m_bgainl;
+	m_pOtp->m_goldenr = pDlg->m_goldenr;
+	m_pOtp->m_goldenb = pDlg->m_goldenb;
+	m_pOtp->m_goldengr = pDlg->m_goldengr;
+	m_pOtp->m_goldengb = pDlg->m_goldengb;
+	m_pOtp->m_rgaindif = pDlg->m_rgaindif;
+	m_pOtp->m_bgaindif = pDlg->m_bgaindif;
+	m_pOtp->m_orgdif = pDlg->m_orgdif;
+
+	m_pOtp->m_afread = pDlg->m_afread;
+	m_pOtp->m_InfH = pDlg->m_InfH;
+	m_pOtp->m_InfL = pDlg->m_InfL;
+	m_pOtp->m_MacH = pDlg->m_MacH;
+	m_pOtp->m_MacL = pDlg->m_MacL;
+	m_pOtp->m_StcH = pDlg->m_StcH;
+	m_pOtp->m_StcL = pDlg->m_StcL;
+	m_pOtp->m_AFDif = pDlg->m_AFDif;
+	m_pOtp->m_grouplimit = pDlg->m_grouplimit;
+
+	m_pOtp->m_sleeptime = pDlg->m_sleeptime;
+	m_pOtp->m_EnBasic = pDlg->m_EnBasic;
+	m_pOtp->m_PDAFItem = pDlg->m_PDAFItem;
+	m_pOtp->m_EnQVL = pDlg->m_EnQVL;
+	m_pOtp->m_EnLSC = pDlg->m_EnLSC;
+	m_pOtp->m_LSCItem = pDlg->m_LSCItem;
+	m_pOtp->m_EnAF = pDlg->m_EnAF;
+	m_pOtp->m_EnAWB = pDlg->m_EnAWB;
+	m_pOtp->m_SaveAWB = pDlg->m_SaveAWB;
+	m_pOtp->m_EnPDAF = pDlg->m_EnPDAF;
+	m_pOtp->m_berase = pDlg->m_berase;
+	m_pOtp->m_bcheckinf = pDlg->m_bcheckinf;
+	m_pOtp->m_bcheckmac = pDlg->m_bcheckmac;
+	m_pOtp->m_bchecksta = pDlg->m_bchecksta;
+
+	m_pOtp->m_SaveMTKraw = pDlg->m_SaveMTKraw;
+	m_pOtp->m_MTKLSCVerItem = pDlg->m_MTKLSCVerItem;
+	m_pOtp->m_QUALLSCVerItem = pDlg->m_QUALLSCVerItem;
+	m_pOtp->m_dummyburn = pDlg->m_dummyburn;
+	m_pOtp->m_qualawb = pDlg->m_qualawb;
+
+	m_pOtp->m_MTKPDAFitem = pDlg->m_MTKPDAFitem;
+	m_pOtp->m_QUALPDAFitem = pDlg->m_QUALPDAFitem;
+	m_pOtp->m_MTK_INI_Name = pDlg->m_MTK_INI_Name;
+	m_pOtp->m_Qual_INI_Name = pDlg->m_Qual_INI_Name;
+	m_pOtp->m_LscTarget = pDlg->m_lscTarget;
+	m_pOtp->m_LscGroup = pDlg->m_lscGroup;
+
+	m_pOtp->PreSubclassOtp();
+
+	// 	if (m_pShading == NULL)
+	// 	{
+	InitShadingItem();
+	SAFE_DELETE(m_pShading);
+	m_pShading = new ShadingCalc(m_pInterface, m_pOtp->m_shadingitem);//m_shadingnum	
+	//  }
+	m_pShading->InitMember();
+	m_pShading->m_shadingflag = m_shadingflag;
+	m_pShading->m_ymax = pDlg->m_ymax;
+	m_pShading->m_ymin = pDlg->m_ymin;
+	m_pShading->m_ydif = pDlg->m_ydiff;
+	m_pShading->m_rgdiff = pDlg->m_rgdiff;
+	m_pShading->m_bgdiff = pDlg->m_bgdiff;
+
+	// 	pDlg->m_ymax2 = pDlg->m_ymax;//前后shading标准一致。不一致仅用于5E8，或其他SRAM与LSC不一致的Sensor
+	// 	pDlg->m_ymin2 = pDlg->m_ymin;//前后shading标准一致。不一致仅用于5E8，或其他SRAM与LSC不一致的Sensor
+	m_pShading->m_ymax2 = pDlg->m_ymax2;
+	m_pShading->m_ymin2 = pDlg->m_ymin2;
+
+	m_pShading->m_MTKLSCVerItem = pDlg->m_MTKLSCVerItem;
+	//////////////////////////////////////////////////////////////////////////
 	
 	return 0;
 }
