@@ -234,5 +234,7 @@ public:
 	virtual int SendMsg(int CmdID = SM_INVLID, int Ack = SM_INVLID, int Result = SM_INVLID, CString ErrInfo = SM_INVLID_STR, CString TestData = SM_INVLID_STR) = 0;
 	virtual int RecvMsg(int& CmdID, int& Status, int& Result, CString& ErrInfo, CString& TestData) = 0;
 	virtual int GetRecvMsg(int& CmdID, int& Status, int& Result, CString& ErrInfo, CString& TestData) = 0;
+
+	virtual int QueryCurrentStatus(void) = 0;
 };
 

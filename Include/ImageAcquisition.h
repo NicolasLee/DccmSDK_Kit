@@ -43,6 +43,8 @@ public:
 	virtual int OpenBoardCard(int devID);
 	virtual int CloseBoardCard();
 
+	virtual bool IsConnected(); // 测试盒是否连接上
+
 	virtual int OpenCamera();
 	virtual int CloseCamera();
 
@@ -99,7 +101,6 @@ public:
 	virtual void SetDccmControl(DccmControl_Interface* pCtrl);
 public:
 	vector<wstring> m_vDevName;		// 关闭程序之前都不更新
-	map<wstring, int> m_mapDevice;	// name, id
 	SensorTab* m_pCurSensor;
 	DWORD m_FWVer;	// 固件版本
 	HWND m_hMainWnd;
