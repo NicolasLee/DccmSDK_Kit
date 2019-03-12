@@ -59,7 +59,6 @@
     <None Include="res\OtpCheck.rc2">
       <Filter>资源文件</Filter>
     </None>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OtpCheck_Inspection.h">

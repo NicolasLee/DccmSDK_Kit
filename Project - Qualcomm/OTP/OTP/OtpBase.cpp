@@ -775,19 +775,19 @@ BOOL COtpBase::DW9767_Programming(USHORT address,unsigned char *Data,int size)//
 	return bRet;
 }
 
-BOOL COtpBase::eeprom_write(USHORT addr, USHORT reg, BYTE val)
+BOOL COtpBase::eeprom_write(BYTE addr, USHORT reg, BYTE val)
 {
 	BOOL ret = i2c_multi_write(addr, reg, m_Eeprom.addrByteSize, &val, 1);
 	msleep(m_Eeprom.msWriteTime);
 	return ret;
 }
 
-BOOL COtpBase::eeprom_read(USHORT addr, USHORT reg, BYTE *pval)
+BOOL COtpBase::eeprom_read(BYTE addr, USHORT reg, BYTE *pval)
 {
 	return i2c_multi_read(addr, reg, m_Eeprom.addrByteSize, pval, 1);
 }
 
-BOOL COtpBase::eeprom_multi_write(USHORT addr, USHORT reg, BYTE *pval, USHORT length)
+BOOL COtpBase::eeprom_multi_write(BYTE addr, USHORT reg, BYTE *pval, USHORT length)
 {
 	BOOL ret = TRUE;
 
@@ -835,7 +835,7 @@ BOOL COtpBase::eeprom_multi_write(USHORT addr, USHORT reg, BYTE *pval, USHORT le
 	return ret;
 }
 
-BOOL COtpBase::eeprom_multi_read(USHORT addr, USHORT reg, BYTE *pval, USHORT length)
+BOOL COtpBase::eeprom_multi_read(BYTE addr, USHORT reg, BYTE *pval, USHORT length)
 {
 	if (length < m_Eeprom.pageSize)
 	{
@@ -895,7 +895,7 @@ BOOL COtpBase::eeprom_multi_read(USHORT reg, BYTE *pval, USHORT length)
 {
 	return eeprom_multi_read(m_Eeprom.deviceID, reg, pval, length);
 }
-BOOL COtpBase::i2c_multi_read(USHORT addr, USHORT reg, BYTE regSize, BYTE *pval, USHORT length, BOOL noStop/*=FALSE*/)
+BOOL COtpBase::i2c_multi_read(BYTE addr, USHORT reg, BYTE regSize, BYTE *pval, USHORT length, BOOL noStop/*=FALSE*/)
 {
 	if ((pval == NULL))	return FALSE;
 
@@ -1018,7 +1018,7 @@ BOOL COtpBase::i2c_read_byte(USHORT reg, BYTE *pval)
 	return FALSE;
 }
 
-BOOL COtpBase::i2c_multi_write(USHORT reg, BYTE *pval, USHORT length)
+BOOL COtpBase::i2c_multi_write(BYTE reg, BYTE *pval, USHORT length)
 {
 	if ((pval == NULL))
 	{
@@ -1046,7 +1046,7 @@ BOOL COtpBase::i2c_multi_write(USHORT reg, BYTE *pval, USHORT length)
 	return FALSE;
 }
 
-BOOL COtpBase::i2c_multi_write(USHORT addr, USHORT reg, BYTE regSize, BYTE *pval, USHORT length)
+BOOL COtpBase::i2c_multi_write(BYTE addr, USHORT reg, BYTE regSize, BYTE *pval, USHORT length)
 {
 	if ( (pval == NULL))
 	{
@@ -1074,7 +1074,7 @@ BOOL COtpBase::i2c_multi_write(USHORT addr, USHORT reg, BYTE regSize, BYTE *pval
 	return FALSE;
 }
 
-BOOL COtpBase::i2c_multi_read(USHORT reg, BYTE *pval, USHORT length, BOOL noStop/*=FALSE*/)
+BOOL COtpBase::i2c_multi_read(BYTE reg, BYTE *pval, USHORT length, BOOL noStop/*=FALSE*/)
 {
 	if ((pval == NULL))
 	{

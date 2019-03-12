@@ -523,10 +523,10 @@ public:	//
 	EepromStruct m_Eeprom;
 	void SetEepromParams(EepromStruct *eeprom);
 
-	BOOL eeprom_write(USHORT addr, USHORT reg, BYTE val);
-	BOOL eeprom_read(USHORT addr, USHORT reg, BYTE *pval);	
-	BOOL eeprom_multi_write(USHORT addr, USHORT reg, BYTE *pval, USHORT length);
-	BOOL eeprom_multi_read(USHORT addr, USHORT reg, BYTE *pval, USHORT length);
+	BOOL eeprom_write(BYTE addr, USHORT reg, BYTE val);
+	BOOL eeprom_read(BYTE addr, USHORT reg, BYTE *pval);
+	BOOL eeprom_multi_write(BYTE addr, USHORT reg, BYTE *pval, USHORT length);
+	BOOL eeprom_multi_read(BYTE addr, USHORT reg, BYTE *pval, USHORT length);
 
 	BOOL eeprom_write(USHORT reg, BYTE val);
 	BOOL eeprom_read(USHORT reg, BYTE *pval);	
@@ -537,12 +537,12 @@ public:	//
 	BOOL i2c_read(USHORT reg, USHORT *pval);
 	BOOL i2c_write_byte(USHORT reg, BYTE val);
 	BOOL i2c_read_byte(USHORT reg, BYTE *pval);
-	BOOL i2c_multi_write(USHORT reg, BYTE *pval, USHORT length);
-	BOOL i2c_multi_read(USHORT reg, BYTE *pval, USHORT length, BOOL noStop=FALSE);
+	BOOL i2c_multi_write(BYTE reg, BYTE *pval, USHORT length);
+	BOOL i2c_multi_read(BYTE reg, BYTE *pval, USHORT length, BOOL noStop = FALSE);
 	BOOL i2c_write(USHORT addr, USHORT reg, USHORT val, BYTE mode);
 	BOOL i2c_read(USHORT addr, USHORT reg, USHORT *pval, BYTE mode);
-	BOOL i2c_multi_write(USHORT addr, USHORT reg, BYTE regSize, BYTE* pval, USHORT length);
-	BOOL i2c_multi_read(USHORT addr, USHORT reg, BYTE regSize, BYTE* pval, USHORT length, BOOL noStop=FALSE);
+	BOOL i2c_multi_write(BYTE addr, USHORT reg, BYTE regSize, BYTE* pval, USHORT length);
+	BOOL i2c_multi_read(BYTE addr, USHORT reg, BYTE regSize, BYTE* pval, USHORT length, BOOL noStop = FALSE);
 
 	CString info;
 

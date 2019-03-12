@@ -96,7 +96,6 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="OtpCheck.def" />
     <None Include="readme.txt" />
     <None Include="res\OtpCheck.rc2" />

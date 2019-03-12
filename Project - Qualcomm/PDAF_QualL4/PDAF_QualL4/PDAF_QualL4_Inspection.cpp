@@ -1133,7 +1133,7 @@ int PD_CALI_Qual_2_Inspection::EEPROM_S5K3M2(UCHAR* data, int size)
 	int i = 0;
 	for (i=0;i<32-remain;i++)
 	{
-		m_pInterface->I2C_Write(USHORT(m_Dev_Addr),USHORT(m_Reg_Addr+i),data[i],m_I2cMode);
+		m_pInterface->I2C_Write(BYTE(m_Dev_Addr),USHORT(m_Reg_Addr+i),data[i],m_I2cMode);
 		Sleep(2);
 	}
 	int quotient = (size-(32-remain))/m_PageSize;	// ил
@@ -1144,7 +1144,7 @@ int PD_CALI_Qual_2_Inspection::EEPROM_S5K3M2(UCHAR* data, int size)
 
 	while(quotient)
 	{
-		m_pInterface->I2C_MultiBytesWrite(USHORT(dev), USHORT(reg), 2, &data[j], m_PageSize);
+		m_pInterface->I2C_MultiBytesWrite(BYTE(dev), USHORT(reg), 2, &data[j], m_PageSize);
 		Sleep(10*m_SleepTime);
 		quotient -- ;
 		j += m_PageSize;
@@ -1154,7 +1154,7 @@ int PD_CALI_Qual_2_Inspection::EEPROM_S5K3M2(UCHAR* data, int size)
 
 	if (remainder != 0)
 	{
-		m_pInterface->I2C_MultiBytesWrite(USHORT(dev), USHORT(reg), 2, &data[j], remainder);	
+		m_pInterface->I2C_MultiBytesWrite(BYTE(dev), USHORT(reg), 2, &data[j], remainder);
 		Sleep(10*m_SleepTime);
 	}
 
@@ -1164,7 +1164,7 @@ int PD_CALI_Qual_2_Inspection::EEPROM_S5K3M2(UCHAR* data, int size)
 	USHORT tmp = 0;
 	for (i=0;i<32-remain;i++)
 	{
-		m_pInterface->I2C_Read(USHORT(m_Dev_Addr),USHORT(m_Reg_Addr+i),&tmp,m_I2cMode);
+		m_pInterface->I2C_Read(BYTE(m_Dev_Addr), USHORT(m_Reg_Addr + i), &tmp, m_I2cMode);
 		Rdata[i] = (UCHAR)tmp;
 		Sleep(2);
 	}
@@ -1176,7 +1176,7 @@ int PD_CALI_Qual_2_Inspection::EEPROM_S5K3M2(UCHAR* data, int size)
 	dev = m_Dev_Addr;
 	while(quotient)
 	{
-		BOOL bRet = m_pInterface->I2C_MultiBytesRead(USHORT(dev), USHORT(reg), 2, &Rdata[j], m_PageSize, TRUE);
+		BOOL bRet = m_pInterface->I2C_MultiBytesRead(BYTE(dev), USHORT(reg), 2, &Rdata[j], m_PageSize, TRUE);
 		Sleep(10*m_SleepTime);
 		quotient -- ;
 		j += m_PageSize;
@@ -1185,7 +1185,7 @@ int PD_CALI_Qual_2_Inspection::EEPROM_S5K3M2(UCHAR* data, int size)
 
 	if (remainder != 0)
 	{
-		m_pInterface->I2C_MultiBytesRead(USHORT(dev), USHORT(reg), 2, &Rdata[j], remainder, TRUE);	
+		m_pInterface->I2C_MultiBytesRead(BYTE(dev), USHORT(reg), 2, &Rdata[j], remainder, TRUE);
 		Sleep(10*m_SleepTime);
 	}
 
