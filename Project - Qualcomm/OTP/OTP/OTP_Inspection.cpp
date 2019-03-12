@@ -38,8 +38,6 @@ OTP_Inspection::OTP_Inspection(DccmControl_Interface* pInterface, LPCTSTR lpszNa
 	//.....
 	m_pOtp = NULL;
 	m_pShading = NULL;
-
-	
 }
 
 OTP_Inspection::~OTP_Inspection(void)
@@ -706,6 +704,7 @@ int OTP_Inspection::SaveOption()
 
 	m_pShading->m_MTKLSCVerItem = pDlg->m_MTKLSCVerItem;
 	//////////////////////////////////////////////////////////////////////////
+
 	
 	return 0;
 }

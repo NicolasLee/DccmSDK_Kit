@@ -2572,6 +2572,10 @@ int COtpBase::PDAF_Proc1(void)
 			{
 				return Qual_GainMapCal_L4();
 			}
+			else if (m_QUALPDAFitem == 3)//L4
+			{
+				return Qual_GainMapCal_L5();
+			}
 // 			if (!LockJVer) //先做J再做L3用的  例如7012
 // 			{
 // 				if (!Qual_GainMapCal())//Qual_GainMapCal_L3()
@@ -3996,6 +4000,7 @@ void COtpBase::InitQualParam()
 	memset(Qual_J_GainMapData,0,sizeof(Qual_J_GainMapData));       
 	memset(Qual_L3_GainMapData,0,sizeof(Qual_L3_GainMapData));
 	memset(Qual_L4_GainMapData,0,sizeof(Qual_L4_GainMapData));
+	memset(Qual_L5_GainMapData, 0, sizeof(Qual_L5_GainMapData));
 	MinPixelAvg = m_pInterface->GetConfigManager()->ReadConfigInt(L"OTP",_T("MinPixelAvg"),64);
 	MaxPixelAvg = m_pInterface->GetConfigManager()->ReadConfigInt(L"OTP",_T("MaxPixelAvg"),1024);
 	MinPDAvg = m_pInterface->GetConfigManager()->ReadConfigInt(L"OTP",_T("MinPDAvg"),64);
@@ -4597,21 +4602,37 @@ BOOL COtpBase::QualLSCDataCheck(BYTE *data)
 	{
 		for(  i = 0; i < 221; i++ )
 		{
-			tempBuf[i][0] = data[i*2]+(data[i*2+1]<<8) ;			//R
-			tempBuf[i][1] = data[i*2+442]+(data[i*2+1+442]<<8) ;	//Gr
-			tempBuf[i][2] = data[i*2+884]+(data[i*2+1+884]<<8);		//Gb
-			tempBuf[i][3] = data[i*2+1326]+(data[i*2+1+1326]<<8) ;	//B
+// 			tempBuf[i][0] = data[i*2]+(data[i*2+1]<<8) ;			//R
+// 			tempBuf[i][1] = data[i*2+442]+(data[i*2+1+442]<<8) ;	//Gr
+// 			tempBuf[i][2] = data[i*2+884]+(data[i*2+1+884]<<8);		//Gb
+// 			tempBuf[i][3] = data[i*2+1326]+(data[i*2+1+1326]<<8) ;	//B
+			tempBuf[i][0] = data[i*2+1]+(data[i*2]<<8) ;			//R  //高-低
+			tempBuf[i][1] = data[i*2+1+442]+(data[i*2+442]<<8) ;	//Gr
+			tempBuf[i][2] = data[i*2+1+884]+(data[i*2+884]<<8);		//Gb
+			tempBuf[i][3] = data[i*2+1+1326]+(data[i*2+1326]<<8) ;	//B
 		}
 		for(  i = 0; i < 221; i++ )
 		{
-			m_quallscdata[cnt++] = (tempBuf[i][0]&0xff);	
-			m_quallscdata[cnt++] = (tempBuf[i][0]>>8) & 0xff;
-			m_quallscdata[cnt++] = (tempBuf[i][1]&0xff);	
-			m_quallscdata[cnt++] = (tempBuf[i][1]>>8) & 0xff;
-			m_quallscdata[cnt++] = (tempBuf[i][2]&0xff);	
-			m_quallscdata[cnt++] = (tempBuf[i][2]>>8) & 0xff;
-			m_quallscdata[cnt++] = (tempBuf[i][3]&0xff);	
-			m_quallscdata[cnt++] = (tempBuf[i][3]>>8) & 0xff;
+// 			m_quallscdata[cnt++] = (tempBuf[i][0]&0xff);	
+// 			m_quallscdata[cnt++] = (tempBuf[i][0]>>8) & 0xff;
+// 			m_quallscdata[cnt++] = (tempBuf[i][1]&0xff);	
+// 			m_quallscdata[cnt++] = (tempBuf[i][1]>>8) & 0xff;
+// 			m_quallscdata[cnt++] = (tempBuf[i][2]&0xff);	
+// 			m_quallscdata[cnt++] = (tempBuf[i][2]>>8) & 0xff;
+// 			m_quallscdata[cnt++] = (tempBuf[i][3]&0xff);	
+// 			m_quallscdata[cnt++] = (tempBuf[i][3]>>8) & 0xff;
+			
+			m_quallscdata[cnt++] = (tempBuf[i][0] >> 8) & 0xff;
+			m_quallscdata[cnt++] = (tempBuf[i][0] & 0xff);
+			
+			m_quallscdata[cnt++] = (tempBuf[i][1] >> 8) & 0xff;
+			m_quallscdata[cnt++] = (tempBuf[i][1] & 0xff);
+			
+			m_quallscdata[cnt++] = (tempBuf[i][2] >> 8) & 0xff;
+			m_quallscdata[cnt++] = (tempBuf[i][2] & 0xff);
+			
+			m_quallscdata[cnt++] = (tempBuf[i][3] >> 8) & 0xff;
+			m_quallscdata[cnt++] = (tempBuf[i][3] & 0xff);
 		}
 
 	}
@@ -4731,21 +4752,22 @@ BOOL COtpBase::QualLSCDataCheck(BYTE *data)
 	{
 		for (i=0; i<221; i++)
 		{
-			R_Channel[i] = (m_quallscdata[i*8+1]<<8) + m_quallscdata[i*8];
-			Gr_Channel[i] = (m_quallscdata[i*8+3]<<8) + m_quallscdata[i*8+2];
-			Gb_Channel[i] = (m_quallscdata[i*8+5]<<8 )+ m_quallscdata[i*8+4];
-			B_Channel[i] = (m_quallscdata[i*8+7]<<8) + m_quallscdata[i*8+6];
+			R_Channel[i] = (m_quallscdata[i*8]<<8) + m_quallscdata[i*8+1];
+			Gr_Channel[i] = (m_quallscdata[i*8+2]<<8) + m_quallscdata[i*8+3];
+			Gb_Channel[i] = (m_quallscdata[i*8+4]<<8 )+ m_quallscdata[i*8+5];
+			B_Channel[i] = (m_quallscdata[i*8+6]<<8) + m_quallscdata[i*8+7];
 		}
 	}
 
 
-	CString LSCFileName = L"D:\\Report\\LSCReadData.xls";
-	FILE *fpn2 = NULL;
+/*	CString LSCFileName = L"D:\\Report\\LSCReadData.xls";
+/	FILE *fpn2 = NULL;
 	if(_wfreopen_s(&fpn2,LSCFileName,_T("at"),stdout))  //
 	{
 		m_pInterface->AddLog(_T("无法打开LSCReadData.xls文件!"),COLOR_RED);
 		return 0;
-	}
+	}*/
+
 	printf("R_Channel:\n");
 	for (h=0;h<13;h++)
 	{
@@ -4789,7 +4811,7 @@ BOOL COtpBase::QualLSCDataCheck(BYTE *data)
 		printf("\n");
 	}
 	printf("--------------------------------------\n");
-	fclose(fpn2);
+	/*fclose(fpn2);*/
 	/////////////////////////////////////
 	if (LSCData_R_Max>Qual_LSC_R_Max||LSCData_R_Min<Qual_LSC_R_Min||LSCData_Gr_Max>Qual_LSC_Gr_Max||LSCData_Gr_Min<Qual_LSC_Gr_Min
 		||LSCData_Gb_Max>Qual_LSC_Gb_Max||LSCData_Gb_Min<Qual_LSC_Gb_Min||LSCData_B_Max>Qual_LSC_B_Max||LSCData_B_Min<Qual_LSC_B_Min)
@@ -4967,14 +4989,14 @@ BOOL COtpBase::Qual_GetLSC_R()
 				// 				m_quallscdata[8*i + 6] = (B_Hex>>8)&0x0f;
 				// 				m_quallscdata[8*i + 7] = B_Hex&0xff;
 
-				m_quallscdata[8*i + 0] = R_Hex&0xff;
-				m_quallscdata[8*i + 1] = (R_Hex>>8)&0x0f;
-				m_quallscdata[8*i + 2] = Gr_Hex&0xff;
-				m_quallscdata[8*i + 3] = (Gr_Hex>>8)&0x0f;
-				m_quallscdata[8*i + 4] = Gb_Hex&0xff;
-				m_quallscdata[8*i + 5] = (Gb_Hex>>8)&0x0f;
-				m_quallscdata[8*i + 6] = B_Hex&0xff;
-				m_quallscdata[8*i + 7] = (B_Hex>>8)&0x0f;
+				m_quallscdata[8*i + 1] = R_Hex&0xff;//高-低
+				m_quallscdata[8*i + 0] = (R_Hex>>8)&0x0f;
+				m_quallscdata[8*i + 3] = Gr_Hex&0xff;
+				m_quallscdata[8*i + 2] = (Gr_Hex>>8)&0x0f;
+				m_quallscdata[8*i + 5] = Gb_Hex&0xff;
+				m_quallscdata[8*i + 4] = (Gb_Hex>>8)&0x0f;
+				m_quallscdata[8*i + 7] = B_Hex&0xff;
+				m_quallscdata[8*i + 6] = (B_Hex>>8)&0x0f;
 			}
 			for (i=0; i<1768; i++)
 			{
@@ -6021,20 +6043,34 @@ int32_t COtpBase::Qual_GainMapCal_L4()
 		PDAF_Cal_destroy( p ); 
 		m_pInterface->AddLog(_T("PDAF Gain Map L ver Calibration Success.\n"),COLOR_BLUE);
 
-		Qual_L4_GainMapData[0] = gain_map.cal_version&0xff;
-		Qual_L4_GainMapData[1] = gain_map.cal_version>>8;
-		Qual_L4_GainMapData[2] = gain_map.width&0xff;
-		Qual_L4_GainMapData[3] = gain_map.width>>8;
-		Qual_L4_GainMapData[4] = gain_map.height&0xff;
-		Qual_L4_GainMapData[5] = gain_map.height>>8;
+// 		Qual_L4_GainMapData[0] = gain_map.cal_version&0xff;
+// 		Qual_L4_GainMapData[1] = gain_map.cal_version>>8;
+// 		Qual_L4_GainMapData[2] = gain_map.width&0xff;
+// 		Qual_L4_GainMapData[3] = gain_map.width>>8;
+// 		Qual_L4_GainMapData[4] = gain_map.height&0xff;
+// 		Qual_L4_GainMapData[5] = gain_map.height>>8;
+
+		Qual_L4_GainMapData[1] = gain_map.cal_version & 0xff;//高-低
+		Qual_L4_GainMapData[0] = gain_map.cal_version >> 8;
+		Qual_L4_GainMapData[3] = gain_map.width & 0xff;
+		Qual_L4_GainMapData[2] = gain_map.width >> 8;
+		Qual_L4_GainMapData[5] = gain_map.height & 0xff;
+		Qual_L4_GainMapData[4] = gain_map.height >> 8;
 
 		for (int i = 0; i < gain_map.width * gain_map.height;i++)
 		{
-			Qual_L4_GainMapData[6+i*2] = gain_map.gm_l[i]&0xff;
-			Qual_L4_GainMapData[7+i*2] = gain_map.gm_l[i]>>8;
+// 			Qual_L4_GainMapData[6+i*2] = gain_map.gm_l[i]&0xff;
+// 			Qual_L4_GainMapData[7+i*2] = gain_map.gm_l[i]>>8;
+// 
+// 			Qual_L4_GainMapData[6+gain_map.width*gain_map.height*2+i*2] = gain_map.gm_r[i]&0xff;
+// 			Qual_L4_GainMapData[7+gain_map.width*gain_map.height*2+i*2] = gain_map.gm_r[i]>>8;
 
-			Qual_L4_GainMapData[6+gain_map.width*gain_map.height*2+i*2] = gain_map.gm_r[i]&0xff;
-			Qual_L4_GainMapData[7+gain_map.width*gain_map.height*2+i*2] = gain_map.gm_r[i]>>8;
+			Qual_L4_GainMapData[7 + i * 2] = gain_map.gm_l[i] & 0xff;//高-低
+			Qual_L4_GainMapData[6 + i * 2] = gain_map.gm_l[i] >> 8;
+
+			Qual_L4_GainMapData[7 + gain_map.width*gain_map.height * 2 + i * 2] = gain_map.gm_r[i] & 0xff;
+			Qual_L4_GainMapData[6 + gain_map.width*gain_map.height * 2 + i * 2] = gain_map.gm_r[i] >> 8;
+
 		}
 		return 0;
 	}
@@ -6138,6 +6174,297 @@ int32_t COtpBase::Qual_GainMapCal_L4()
 		// 		PDAF_Cal_destroy( p );
 		// 
 		// 		return rc;
+		return 0;
+	}
+	return 0;
+}
+
+int32_t COtpBase::Qual_GainMapCal_L5()
+{
+	ImageInfo imgInfo = m_pInterface->GetImage();
+	// 获取RAW BUF
+	USHORT* raw_buf = m_pInterface->GetImage().Raw_Buf;
+	int width = m_pInterface->GetImage().width;
+	int height = m_pInterface->GetImage().height;
+
+	CString FileFolderPath = GetModulePath() + "\\PDAF";
+	CreateDirectory(FileFolderPath, NULL);
+	FileFolderPath += "\\Qual";
+	CreateDirectory(FileFolderPath, NULL);
+	FileFolderPath += "\\L5";
+	CreateDirectory(FileFolderPath, NULL);
+	SetCurrentDirectory(FileFolderPath);
+	if (CaptureFrame < CaptureSize)
+	{
+		RawArray[CaptureFrame] = new USHORT[width*height];
+
+		info.Format(_T("\\Qual_L5Step1_%d.raw"), CaptureFrame + 1);
+		CString Rawfilename = FileFolderPath + info;
+		//#ifndef TestVersion 
+		if (PathFileExists(Rawfilename))
+		{
+			if (!DeleteFile(Rawfilename))
+			{
+				m_pInterface->AddLog(_T("删除原Raw图失败!"), COLOR_RED);
+				return 1;
+			}
+		}
+		SaveCurrentRaw10(Rawfilename, raw_buf, width, height);
+		//#endif
+		FILE* fp_r;
+		char CurImgFilename[MAX_PATH];
+		strcpy_s(CurImgFilename, CT2A(Rawfilename.GetBuffer(Rawfilename.GetLength())));
+		if (_wfopen_s(&fp_r, Rawfilename, _T("rb")))   //CT2A(sfilename)
+		{
+			info.Format(_T("Cannot Find raw: %s"), CA2T(CurImgFilename));
+			m_pInterface->AddLog(info, COLOR_RED);
+			return 1;
+		}
+		if (fp_r)
+		{
+			fread((void*)RawArray[CaptureFrame], 2, width*height, fp_r);//读取Raw图
+			fclose(fp_r);
+		}
+		else
+		{
+			info.Format(_T("Cannot Find FP"));
+			m_pInterface->AddLog(info, COLOR_RED);
+			return 1;
+		}
+
+		CaptureFrame++;
+		return -1;//continue
+	}
+
+	USHORT* flatfieldbuffer;
+	flatfieldbuffer = (USHORT*)calloc(width*height, sizeof(USHORT));
+	for (int i = 0; i < width*height; i++)
+	{
+		flatfieldbuffer[i] = USHORT((RawArray[0][i] + RawArray[1][i] + RawArray[2][i]) / 3.0 + 0.5);
+	}
+
+	CString Rawfilename = FileFolderPath + _T("\\Step1_Average.raw");
+	//#ifndef TestVersion
+	if (PathFileExists(Rawfilename))
+	{
+		if (!DeleteFile(Rawfilename))
+		{
+			m_pInterface->AddLog(_T("删除原Raw图失败!"), COLOR_RED);
+			return 1;
+		}
+	}
+	SaveCurrentRaw10(Rawfilename, flatfieldbuffer, width, height);
+	free(flatfieldbuffer);
+	//#endif
+
+	typedef void*(*PdafCalCreate)(dll_config_t_l5 *dll_cfg);
+	typedef int32_t(*PdafCalGetGainmap)(void *p,
+		uint16_t *img, sensor_config_t *sensor_cfg, gainmap_t *gain_map,
+		gainmap_limits_t *gm_limits);
+	typedef int32_t(*PdafCalDestroy)(void* p);
+	typedef int(*lpFun)(char *s);
+	CString WorkingPath = FileFolderPath + _T("\\PDAFCalibrationTools_RevL_Dll.dll");
+	HINSTANCE hPDAFDll = LoadLibrary(WorkingPath);
+
+	BOOL bRet = TRUE;
+
+	if (NULL == hPDAFDll)
+	{
+		info.Format(_T("找不到PDAFCalibrationTools_RevL_Dll.dll，请将此Dll放入程式目录:\n%s！"), WorkingPath);
+		m_pInterface->AddLog(info, COLOR_RED);
+		return 1;
+	}
+	lpFun GetVersion = (lpFun)GetProcAddress(hPDAFDll, "PDAF_Cal_get_lib_version");
+	if (!GetVersion)
+	{
+		m_pInterface->AddLog(_T("找不到入口函数PDAF_Cal_get_lib_version！"), COLOR_RED);
+		m_pInterface->AddLog(info, COLOR_RED);
+		return 1;
+	}
+	lpFun GetFeature = (lpFun)GetProcAddress(hPDAFDll, "PDAF_Cal_get_lib_features");
+	if (!GetFeature)
+	{
+		m_pInterface->AddLog(_T("找不到入口函数PDAF_Cal_get_lib_features！"), COLOR_RED);
+		m_pInterface->AddLog(info, COLOR_RED);
+		return 1;
+	}
+
+
+	BOOL Is2pd = FALSE;
+	if (!Is2pd)
+	{
+		void *p;
+		char dll_version_info[1024];
+		char dll_feature_info[2048];
+		char path_raw_file[MAX_PATH];
+		char path_gainmap_file[MAX_PATH];
+
+		dll_config_t_l5     dll_cfg;
+		sensor_config_t  sensor_cfg;
+		gainmap_t        gain_map;
+		gainmap_limits_t gm_limits;
+
+		uint16_t *img_raw;
+		uint16_t raw_width, raw_height;
+		int32_t  rc = 0;
+
+		// set test limits
+		// calibration DLL will still return gain map even if limits are exceeded
+		gm_limits.pd_max_limit = 950;  // Max PD pixel value after LPF must be below 950
+		gm_limits.pd_min_limit = 100;  // Min PD pixel value after LPF must exceed 100
+		gm_limits.gain_max_limit = (uint16_t)(7.999f * (1 << GAIN_MAP_Q_FMT));  // max gain of 8x
+
+		// load dll config parameters
+		get_dll_cfg_L5(&dll_cfg);
+
+		/////////////////////////////////////////////////////////////////////////
+		// INIT RUN ONLY ONCE 
+
+		// allocate scratch buffer for calibration dll
+		PdafCalCreate PDAF_Cal_create = (PdafCalCreate)GetProcAddress(hPDAFDll, "PDAF_Cal_create");
+		p = PDAF_Cal_create(&dll_cfg);
+		if (p == NULL) {
+			m_pInterface->AddLog(_T("dll memory allocation error."), COLOR_RED);
+			return 1;  // dll memory allocation error
+		}
+
+
+		// calibration DLL for version number and version description
+		GetVersion(dll_version_info);
+		info.Format(_T("%s"), CA2T(dll_version_info));
+		m_pInterface->AddLog(info);
+		GetFeature(dll_feature_info);
+		info.Format(_T("%s"), CA2T(dll_feature_info));
+		m_pInterface->AddLog(info);
+
+
+
+		// specify information about pdaf sensor
+		// 		raw_width   = sensor_cfg.image_width;
+		// 		raw_height  = sensor_cfg.image_height;
+		// 		black_lvl   = sensor_cfg.black_lvl;
+		// 		cfa         = sensor_cfg.cfa;
+		// 		img_width   = raw_width  >> 2; // tail mode pd image width=1/4 raw width
+		// 		img_height  = raw_height >> 2; // tail mode pd image height=1/4 raw height
+
+		// specify sensor gain = sensor analog gain * sensor digital gain used
+		// analog gain of dual-photodiode PD sensor must be between 2.0x and 3.0x 
+		// digital gain of dual-photodiode PD sensor must be 1x or disabled
+		// this is to prevent pixel from entering nonlinear region
+		//		sensor_gain = 1.0f;   
+
+
+		// obtain new sensor config file from sensor manufacturer
+		// add extern declaration to PDAFCalibrationTools_Dll.h and call sensor cfg here
+		//3L8
+		sensor_cfg.image_width = 4208;
+		sensor_cfg.image_height = 3120;
+		sensor_cfg.bit_depth = 10;
+		sensor_cfg.black_lvl = 64;
+		sensor_cfg.cfa = GRBG;
+		sensor_cfg.pd_block_width = 64;//65;
+		sensor_cfg.pd_block_height = 64;//48;
+		sensor_cfg.pd_block_start_x = 24;//28;
+		sensor_cfg.pd_block_start_y = 24;//31;
+		sensor_cfg.pd_block_n_pd_pairs = 16;
+		uint16_t pd_block_l_x[] =
+		{ 4, 4, 8, 8, 20, 20, 24, 24, 36, 36, 40, 40, 52, 52, 56, 56 };
+
+		uint16_t pd_block_l_y[] =
+		{ 11, 59, 23, 47, 15, 55, 27, 43, 27, 43, 15, 55, 23, 47, 11, 59 };
+
+		uint16_t pd_block_r_x[] =
+		{ 4, 4, 8, 8, 20, 20, 24, 24, 36, 36, 40, 40, 52, 52, 56, 56 };
+
+		uint16_t pd_block_r_y[] =
+		{ 7, 63, 27, 43, 11, 59, 31, 39, 31, 39, 11, 59, 27, 43, 7, 63 };
+
+		memcpy(sensor_cfg.pd_block_l_x, pd_block_l_x, 16 * sizeof(uint16_t));
+		memcpy(sensor_cfg.pd_block_l_y, pd_block_l_y, 16 * sizeof(uint16_t));
+		memcpy(sensor_cfg.pd_block_r_x, pd_block_r_x, 16 * sizeof(uint16_t));
+		memcpy(sensor_cfg.pd_block_r_y, pd_block_r_y, 16 * sizeof(uint16_t));
+
+		// allocate buffer for reading flat field image
+		// incorrect buffer size may terminate DLL with invalid memory access
+		raw_width = imgInfo.width;
+		raw_height = imgInfo.height;
+
+		img_raw = (uint16_t *)malloc(raw_width * raw_height * sizeof(uint16_t));
+
+		/////////////////////////////////////////////////////////////////////////
+		// PER MODULE CALIBRATION
+		// RECOMMEND USING SAME FLAT FIELD AS LENS SHADING CALIBRATION   
+
+		// load flat field image
+		strcpy_s(path_raw_file, CT2A(Rawfilename.GetBuffer(Rawfilename.GetLength())));//File to store gainmap
+		if (read_raw_file(path_raw_file, img_raw, raw_width, raw_height)) {
+			//if (read_bin_file(space_conc(ROOTPATH,FLATPATH), img_raw, &raw_width, &raw_height) ) {
+			info.Format(_T("cannot find raw: %s."), path_raw_file);
+			m_pInterface->AddLog(_T("info"), COLOR_RED);
+			return 1;
+		}
+
+
+		// gain map calibration using parsed left and right images
+		PdafCalGetGainmap PDAF_Cal_get_gainmap = (PdafCalGetGainmap)GetProcAddress(hPDAFDll, "PDAF_Cal_get_gainmap");
+		rc = PDAF_Cal_get_gainmap(p, img_raw, &sensor_cfg, &gain_map, &gm_limits);
+
+		// display errors
+		print_return_code_L5(rc);
+
+		// do not write NVM if return code indicates error
+		if (rc != 0) {
+			print_return_code_L5(rc);
+			return 1;
+		}
+
+		CString PatternFilename = GetModulePath() + "\\PDAF\\Qual\\L5\\gainmap.txt";
+		strcpy_s(path_gainmap_file, CT2A(PatternFilename.GetBuffer(PatternFilename.GetLength())));//File to store gainmap
+		// store gain map in OTP/NVM
+		write_gainmap_file(path_gainmap_file, &gain_map);
+
+		/////////////////////////////////////////////////////////////////////////
+		// DE-INIT
+		free(img_raw);
+		PdafCalDestroy PDAF_Cal_destroy = (PdafCalDestroy)GetProcAddress(hPDAFDll, "PDAF_Cal_destroy");
+		PDAF_Cal_destroy(p);
+		m_pInterface->AddLog(_T("PDAF Gain Map L ver Calibration Success.\n"), COLOR_BLUE);
+
+		// 		Qual_L4_GainMapData[0] = gain_map.cal_version&0xff;
+		// 		Qual_L4_GainMapData[1] = gain_map.cal_version>>8;
+		// 		Qual_L4_GainMapData[2] = gain_map.width&0xff;
+		// 		Qual_L4_GainMapData[3] = gain_map.width>>8;
+		// 		Qual_L4_GainMapData[4] = gain_map.height&0xff;
+		// 		Qual_L4_GainMapData[5] = gain_map.height>>8;
+
+		Qual_L5_GainMapData[1] = gain_map.cal_version & 0xff;//高-低
+		Qual_L5_GainMapData[0] = gain_map.cal_version >> 8;
+		Qual_L5_GainMapData[3] = gain_map.width & 0xff;
+		Qual_L5_GainMapData[2] = gain_map.width >> 8;
+		Qual_L5_GainMapData[5] = gain_map.height & 0xff;
+		Qual_L5_GainMapData[4] = gain_map.height >> 8;
+
+		for (int i = 0; i < gain_map.width * gain_map.height; i++)
+		{
+			// 			Qual_L4_GainMapData[6+i*2] = gain_map.gm_l[i]&0xff;
+			// 			Qual_L4_GainMapData[7+i*2] = gain_map.gm_l[i]>>8;
+			// 
+			// 			Qual_L4_GainMapData[6+gain_map.width*gain_map.height*2+i*2] = gain_map.gm_r[i]&0xff;
+			// 			Qual_L4_GainMapData[7+gain_map.width*gain_map.height*2+i*2] = gain_map.gm_r[i]>>8;
+
+			Qual_L5_GainMapData[7 + i * 2] = gain_map.gm_l[i] & 0xff;//高-低
+			Qual_L5_GainMapData[6 + i * 2] = gain_map.gm_l[i] >> 8;
+
+			Qual_L5_GainMapData[7 + gain_map.width*gain_map.height * 2 + i * 2] = gain_map.gm_r[i] & 0xff;
+			Qual_L5_GainMapData[6 + gain_map.width*gain_map.height * 2 + i * 2] = gain_map.gm_r[i] >> 8;
+
+		}
+		return 0;
+	}
+	else
+	{
+
+	
 		return 0;
 	}
 	return 0;
@@ -6259,6 +6586,38 @@ void COtpBase::print_return_code_L4(int32_t rc)
 		printf("\nError code 0x2000: DCC: focus peak is out of boundary.");
 }
 
+void COtpBase::print_return_code_L5(int32_t rc)
+{
+
+
+	if (rc & 0x0001)
+		printf("\nError code 0x0001: Memory allocation error.");
+	if (rc & 0x0002)
+		printf("\nError code 0x0002: Invalid sensor configuration or sensor gain.");
+	if (rc & 0x0004)
+		printf("\nError code 0x0004: Invalid pd pixel pattern within block.");
+	if (rc & 0x0008)
+		printf("\nError code 0x0008: Gain Map: pd pixel values too high for calibration.");
+	if (rc & 0x0010)
+		printf("\nError code 0x0010: Gain Map: pd pixel values too low for calibration.");
+	if (rc & 0x0020)
+		printf("\nError code 0x0020: Gain Map: gain map shows maximum value that is too high.");
+	if (rc & 0x0040)
+		printf("\nError code 0x0040: DCC: phase disparity values out of bound. invalid input image.");
+	if (rc & 0x0080)
+		printf("\nError code 0x0080: DCC: phase disparity values out of order. LEFT and RIGHT pixels may be swapped.");
+	if (rc & 0x0100)
+		printf("\nError code 0x0100: DCC: insufficient number of lens sweep prior to dcc calculation.");
+	if (rc & 0x0200)
+		printf("\nError code 0x0200: DCC: insufficient match between zero phase disparity focus peak.");
+	if (rc & 0x0400)
+		printf("\nError code 0x0400: DCC: insufficient range of pd values from INF to MACRO.");
+	if (rc & 0x1000)
+		printf("\nError code 0x1000: DCC: Please check line chart condition.");
+	if (rc & 0x2000)
+		printf("\nError code 0x2000: DCC: focus peak is out of boundary.");
+}
+
 int COtpBase::read_raw_file(char *filename, uint16_t *img, int width, int height)
 {
 	int i, j;
@@ -6329,6 +6688,32 @@ void COtpBase::get_dll_cfg_L4(dll_config_t_l4 *dll_cfg )
 	dll_cfg->dcc_map_overlap     = (float)DCC_MAP_OVERLAP_L4;
 //    dll_cfg->dcc_linearity_level_theshold = DCC_LINEARITY_LEVEL_THRESHOLD;
 	dll_cfg->dpd_pixel_unit      = DPD_PIXEL_UNIT;
+	dll_cfg->dpd_min_sensor_gain = (float)DPD_MIN_SENSOR_GAIN;
+	dll_cfg->dpd_max_sensor_gain = (float)DPD_MAX_SENSOR_GAIN;
+}
+
+void COtpBase::get_dll_cfg_L5(dll_config_t_l5 *dll_cfg)
+{
+	float dcc_fir[] = DCC_FIR;
+
+	dll_cfg->cal_version = CAL_VERSION;
+	dll_cfg->chart_type = LINECHART;
+	dll_cfg->verify_type = NORMALIZE;
+	dll_cfg->gain_map_height = GAIN_MAP_HEIGHT;
+	dll_cfg->gain_map_width = GAIN_MAP_WIDTH;
+	dll_cfg->gain_map_q_fmt = GAIN_MAP_Q_FMT;
+	dll_cfg->dcc_map_height = DCC_MAP_HEIGHT;
+	dll_cfg->dcc_map_width = DCC_MAP_WIDTH;
+	dll_cfg->dcc_map_q_fmt = DCC_MAP_Q_FMT;
+	memcpy(dll_cfg->dcc_fir, dcc_fir, sizeof(float)*DCC_FIR_SZ);
+	dll_cfg->dcc_fir_sz = DCC_FIR_SZ;
+	dll_cfg->dcc_stack_sz = DCC_STACK_SZ_L4;
+	dll_cfg->dcc_search_range = DCC_SEARCH_RANGE;
+	dll_cfg->dcc_fit_exclusion = DCC_FIT_EXCLUSION;
+	dll_cfg->dcc_min_pd_range = DCC_MIN_PD_RANGE_L4;
+	dll_cfg->dcc_map_overlap = (float)DCC_MAP_OVERLAP_L4;
+	//    dll_cfg->dcc_linearity_level_theshold = DCC_LINEARITY_LEVEL_THRESHOLD;
+	dll_cfg->dpd_pixel_unit = DPD_PIXEL_UNIT;
 	dll_cfg->dpd_min_sensor_gain = (float)DPD_MIN_SENSOR_GAIN;
 	dll_cfg->dpd_max_sensor_gain = (float)DPD_MAX_SENSOR_GAIN;
 }

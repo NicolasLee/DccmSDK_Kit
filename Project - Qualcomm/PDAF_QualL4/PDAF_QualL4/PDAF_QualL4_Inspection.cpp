@@ -45,7 +45,14 @@ PD_CALI_Qual_2_Inspection::PD_CALI_Qual_2_Inspection(DccmControl_Interface* pInt
 	CreateDirectory(FileFolderPath, NULL);
 	FileFolderPath +=   _T("Qual\\");
 	CreateDirectory(FileFolderPath, NULL);
-	FileFolderPath +=   _T("L4\\");
+	if (0 == pDlg->m_QUALPDAFitem)
+	{
+		FileFolderPath += _T("L4\\");
+	}
+	else if (1 == pDlg->m_QUALPDAFitem)
+	{
+		FileFolderPath += _T("L5\\");
+	}
 	CreateDirectory(FileFolderPath, NULL);	
 	//.....
 }
@@ -98,6 +105,13 @@ int PD_CALI_Qual_2_Inspection::Initialize()
 		InfinityCode = (AFCheckCode[0]<<8)|AFCheckCode[1];
 		MacroCode = (AFCheckCode[2]<<8)|AFCheckCode[3];
 
+// 		AFCheckCode[0] = 0;
+// 		AFCheckCode[1] = 0xac;
+// 		AFCheckCode[2] = 0x01;
+// 		AFCheckCode[3] = 0x77;
+// 		InfinityCode = (AFCheckCode[0] << 8) | AFCheckCode[1];
+// 		MacroCode = (AFCheckCode[2] << 8) | AFCheckCode[3];
+
 		if(InfinityCode>MacroCode)
 		{
 			m_pInterface->AddLog(_T("远景大于近景 !"),COLOR_RED);
@@ -108,7 +122,7 @@ int PD_CALI_Qual_2_Inspection::Initialize()
 			m_pInterface->AddLog(_T("远景Code值异常 !"),COLOR_RED);
 			return 0;
 		}
-		if(MacroCode>700 || MacroCode<350)
+		if(MacroCode>700 || MacroCode<100)
 		{
 			m_pInterface->AddLog(_T("近景Code值异常 !"),COLOR_RED);
 			return 0;
@@ -317,6 +331,7 @@ int PD_CALI_Qual_2_Inspection::LoadOption()
 
 	pDlg->m_QVLEn      = ReadConfigInt(_T("QvlEn"), 1);
 	pDlg->m_negvalue   = ReadConfigInt(_T("NegValueEn"), 0);
+	pDlg->m_QUALPDAFitem = ReadConfigInt(_T("QUALPDAFVersion"), 0);
 
 	pDlg->m_InfH    = ReadConfigInt(_T("InfH"), 1023);
 	pDlg->m_InfL    = ReadConfigInt(_T("InfL"), 0);
@@ -379,6 +394,7 @@ int PD_CALI_Qual_2_Inspection::SaveOption()
 
 	WriteConfigInt(_T("QvlEn      "),	pDlg->m_QVLEn);
 	WriteConfigInt(_T("NegValueEn      "),	pDlg->m_negvalue);
+	WriteConfigInt(_T("QUALPDAFVersion      "), pDlg->m_QUALPDAFitem);
 
 	WriteConfigInt(_T("InfH      "),pDlg->m_InfH);
 	WriteConfigInt(_T("InfL      "),pDlg->m_InfL);

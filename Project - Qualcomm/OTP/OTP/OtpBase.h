@@ -199,6 +199,30 @@ typedef struct _dll_config_t_l4 {
 	float  dpd_max_sensor_gain;
 } dll_config_t_l4;
 
+typedef struct _dll_config_t_l5 {
+	int8_t cal_version;
+	int8_t chart_type;
+	int8_t verify_type;
+	int8_t gain_map_height;
+	int8_t gain_map_width;
+	int8_t gain_map_q_fmt;
+	int8_t dcc_map_height;
+	int8_t dcc_map_width;
+	int8_t dcc_map_q_fmt;
+	float dcc_fir[31];
+	int8_t dcc_fir_sz;
+	int8_t dcc_stack_sz;
+	int8_t dcc_search_range;
+	int8_t dcc_fit_exclusion;
+	int8_t dcc_min_pd_range;
+	float  dcc_map_overlap;
+	float  dcc_tolerance_table[48];
+	float  dcc_linearity_level_theshold;
+	int8_t dpd_pixel_unit;
+	float  dpd_min_sensor_gain;
+	float  dpd_max_sensor_gain;
+} dll_config_t_l5;
+
 enum eProjectName	//ÏîÄ¿Ãû³Æ PN_
 {
 	PN_NULL = -1,
@@ -381,6 +405,10 @@ public:
 	int32_t Qual_GainMapCal_L4();
 	void get_dll_cfg_L4(dll_config_t_l4 *dll_cfg );
 	void print_return_code_L4(int32_t rc);
+
+	int32_t Qual_GainMapCal_L5();
+	void get_dll_cfg_L5(dll_config_t_l5 *dll_cfg);
+	void print_return_code_L5(int32_t rc);
 	///////////////////////////////////Normal///////////////////////////////////////
 	virtual void SaveCurrentRaw10(CString filename,USHORT *buff, int width, int height);
 	virtual void SaveCurrentRaw8(CString filename,BYTE *buff, int width, int height);
@@ -625,6 +653,7 @@ public:	//
 	BYTE Qual_J_GainMapData[SIZE_QUAL_PDAF_PROC1]; //GainMapWidth*Height*2*2+6*2
 	BYTE Qual_L3_GainMapData[SIZE_QUAL_L_PDAF_PROC1];
 	BYTE Qual_L4_GainMapData[SIZE_QUAL_L_PDAF_PROC1];
+	BYTE Qual_L5_GainMapData[SIZE_QUAL_L_PDAF_PROC1];
 
 	int ZC533_Erase_lock;
 	int ZC533_LastPage;

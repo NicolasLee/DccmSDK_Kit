@@ -34,6 +34,7 @@ void OptionDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_CHECK_EXPOSURE, m_ExposureEn);
 	DDX_Check(pDX, IDC_QVL, m_QVLEn);
 	DDX_Check(pDX, IDC_INVALIDNEGVALUE, m_negvalue);
+	DDX_Control(pDX, IDC_QUALPDAFVERSION, m_comboQualPdafVerList);
 
 	DDX_Text(pDX, IDC_DEV_ADDR, m_szDEV_ADDR);
 	DDV_MaxChars(pDX, m_szDEV_ADDR, 2);
@@ -82,7 +83,9 @@ void OptionDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(OptionDlg, CDialog)
 	ON_MESSAGE(WM_UPDATE_INSPECITON_OPTION, &OptionDlg::OnUpdateData)
 	ON_MESSAGE(WM_INSPCETIONDLL_KEY_CTRLNUM, &OptionDlg::OnCtrlKeyNum)
+	ON_CBN_SELCHANGE(IDC_QUALPDAFVERSION, &OptionDlg::OnCbnSelchangeQualpdafversion)
 	ON_MESSAGE(WM_CAMERA_STOP, &OptionDlg::OnCameraStop)
+	ON_CBN_SELCHANGE(IDC_QUALPDAFVERSION, &OptionDlg::OnCbnSelchangeQualpdafversion)
 END_MESSAGE_MAP()
 
 
@@ -122,6 +125,8 @@ LRESULT OptionDlg::OnCtrlKeyNum(WPARAM wParam, LPARAM lParam)
 	return 1;
 }
 
+
+
 //响应模组关闭消息
 LRESULT OptionDlg::OnCameraStop(WPARAM wParam, LPARAM lParam)
 {
@@ -132,9 +137,21 @@ LRESULT OptionDlg::OnCameraStop(WPARAM wParam, LPARAM lParam)
 BOOL OptionDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
+	m_comboQualPdafVerList.ResetContent();
+	m_comboQualPdafVerList.Clear();
+	m_comboQualPdafVerList.InsertString(0, _T("L4"));
+	m_comboQualPdafVerList.InsertString(1, _T("L5"));
+	m_comboQualPdafVerList.SetCurSel(m_QUALPDAFitem);
 
 	// TODO:  在此添加额外的初始化
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常: OCX 属性页应返回 FALSE
+}
+
+
+void OptionDlg::OnCbnSelchangeQualpdafversion()
+{
+	// TODO:  在此添加控件通知处理程序代码
+	m_QUALPDAFitem = m_comboQualPdafVerList.GetCurSel();
 }

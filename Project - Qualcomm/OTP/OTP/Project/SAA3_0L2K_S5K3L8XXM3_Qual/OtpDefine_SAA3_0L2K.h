@@ -81,7 +81,7 @@ public:
 	{
 		REG_BASIC_FLAG = 0x0000,
 		REG_BASIC_CHECKSUM = 0x0008,
-		REG_WB_FLAG = 0x0019,
+		REG_WB_FLAG = 0x0017,
 		REG_WB_CHECKSUM = 0x0026,
 		REG_LSC_FLAG = 0x0027,
 		REG_LSC_CHECKSUM = 0x0710,
@@ -147,7 +147,7 @@ public:
 			// basic
 			union
 			{
-				BYTE data_Basic[SIZE_BASIC_GROUP+1];//+1ΪFlag
+				BYTE data_Basic[SIZE_BASIC_GROUP+4];//+1ΪFlag
 				struct
 				{
 					BYTE basic_flag;
@@ -190,7 +190,7 @@ public:
 			// awb
 			union
 			{
-				BYTE data_WB[SIZE_WB_GROUP+1];
+				BYTE data_WB[SIZE_WB_GROUP+3];
 				struct
 				{
 					BYTE wb_flag;

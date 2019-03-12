@@ -149,7 +149,7 @@ void OtpCheck_SAA30L2K::SaveOTPData()//点亮后读取模组内的OTP数据
 {
 	m_pInterface->AddLog(_T("Read OTP Start!"));
 	///////////////////////////////Read OTP////////////////////////////////////
-	int valSize = 2804;
+	int valSize = 2805;
 	BYTE* pVal = new BYTE[valSize];
 	Read(0000, pVal, valSize);
 

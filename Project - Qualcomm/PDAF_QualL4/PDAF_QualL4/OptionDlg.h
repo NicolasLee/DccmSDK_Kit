@@ -34,6 +34,8 @@ public:
 	BOOL	m_ExposureEn;
 	BOOL  m_QVLEn;
 	BOOL  m_negvalue;
+	int m_QUALPDAFitem;
+	CComboBox m_comboQualPdafVerList;
 
 	CString m_szDEV_ADDR;
 
@@ -57,4 +59,5 @@ public:
 
 	BOOL	m_bSaveRaw;
 	BOOL  m_berase;
+	afx_msg void OnCbnSelchangeQualpdafversion();
 };

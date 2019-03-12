@@ -456,49 +456,96 @@ void COtpSAA3_0L2K::CreateBurningData(void)
 	int i = 0;
 	//////////////////////////////////Basic//////////////////////////////////////
 	Data_Write.data_Basic[0] = FLAG_VALID;
+	
 	for (i = 0; i < SIZE_BASIC_GROUP; i++)
 	{
 		Data_Write.data_Basic[i+1] = OTP_Data_Write.BaseInfo[i];
 	}
-	//////////////////////////////////AWB//////////////////////////////////////
-	Data_Write.data_WB[0] = FLAG_VALID;
-	for (i = 0; i < SIZE_WB_GROUP; i++)
+	for (i = 0; i < 3;i++)
 	{
-		Data_Write.data_WB[i + 1] = OTP_Data_Write.AWBInfo[i];//cnw = 0x22; 
+		Data_Write.data_Basic[i + 9] = 0x00;
 	}
-	//////////////////////////////////LSC//////////////////////////////////////
-	Data_Write.data_Lenc[0] = FLAG_VALID;
-	if (m_LSCItem == 0)
+	//////////////////////////////////AWB//////////////////////////////////////
+	if (m_EnAWB)
 	{
-		for (i = 0; i < SIZE_LSC_GROUP; i++)
+		Data_Write.data_WB[0] = 0;
+		Data_Write.data_WB[1] = 0;
+		Data_Write.data_WB[2] = FLAG_VALID;
+		for (i = 0; i < SIZE_WB_GROUP; i++)
 		{
-			Data_Write.data_Lenc[i+1] =  OTP_Data_Write.LSCInfo[i] = m_mtklscdata[i];
+			Data_Write.data_WB[i + 3] = OTP_Data_Write.AWBInfo[i];//cnw = 0x22; 
 		}
 	}
-	if (m_LSCItem==1)
+	//////////////////////////////////LSC//////////////////////////////////////
+	if (m_EnLSC)
 	{
-		for (i=0; i<SIZE_LSC_GROUP-1;i++)
+		Data_Write.data_Lenc[0] = FLAG_VALID;
+		if (m_LSCItem == 0)
 		{
-			Data_Write.data_Lenc[i + 1] = OTP_Data_Write.LSCInfo[i] = m_quallscdata[i];//0x33;//cnw 
+			for (i = 0; i < SIZE_LSC_GROUP; i++)
+			{
+				Data_Write.data_Lenc[i + 1] = OTP_Data_Write.LSCInfo[i] = m_mtklscdata[i];
+			}
+		}
+		if (m_LSCItem == 1)
+		{
+			for (i = 0; i < SIZE_LSC_GROUP - 1; i++)
+			{
+				Data_Write.data_Lenc[i + 1] = OTP_Data_Write.LSCInfo[i] = m_quallscdata[i];//0x33;//cnw 
+			}
 		}
 	}
 	//Sensor LSC读取文件烧录，不在此处
 	///////////////////////////////////AF/////////////////////////////////////
-	Data_Write.data_AF[0] = FLAG_VALID;
-	for (i = 0; i < SIZE_AF_GROUP; i++)
+	if (m_EnAF)
 	{
-		Data_Write.data_AF[i+1] = OTP_Data_Write.AFInfo[i];
+
+		Data_Write.data_AF[0] = FLAG_VALID;
+		for (i = 0; i < SIZE_AF_GROUP; i++)
+		{
+			Data_Write.data_AF[i + 1] = OTP_Data_Write.AFInfo[i];
+		}
 	}
 	//////////////////////////////////PDAF////////////////////////////////////
 	if (m_EnPDAF)
 	{
 		Data_Write.data_PDAF[0] = FLAG_VALID;
-		for (i = 0; i < SIZE_PDAF_GROUP1; i++)
+		//Data_Write.data_PDAF[1] = OTP_Data_Write.PDAF1[0] = 0;
+		if (m_QUALPDAFitem == 0)//J
 		{
-			Data_Write.data_PDAF[i + 1] = OTP_Data_Write.PDAF1[i];//= 0x44;//cnw
+			for (i = 0; i < SIZE_PDAF_GROUP1; i++)
+			{
+				Data_Write.data_PDAF[i + 1] = OTP_Data_Write.PDAF1[i] = Qual_J_GainMapData[i];
+				//Data_Write.data_PDAF[i + 1] = OTP_Data_Write.PDAF1[i];//= 0x44;//cnw
+			}
 		}
-
-		Data_Write.data_PDAF[2] = OTP_Data_Write.PDAF1[1] = 0x0B;
+		else if (m_QUALPDAFitem == 1)//L3
+		{
+			for (i = 0; i < SIZE_PDAF_GROUP1; i++)
+			{
+				Data_Write.data_PDAF[i + 1] = OTP_Data_Write.PDAF1[i] = Qual_L3_GainMapData[i];
+				//Data_Write.data_PDAF[i + 1] = OTP_Data_Write.PDAF1[i];//= 0x44;//cnw
+			}
+		}
+		else if (m_QUALPDAFitem == 2)//L4
+		{
+			for (i = 0; i < SIZE_PDAF_GROUP1; i++)
+			{
+				Data_Write.data_PDAF[i + 1] = OTP_Data_Write.PDAF1[i] = Qual_L4_GainMapData[i];
+				//Data_Write.data_PDAF[i + 1] = OTP_Data_Write.PDAF1[i];//= 0x44;//cnw
+			}
+			Data_Write.data_PDAF[2] = OTP_Data_Write.PDAF1[1] = 0x0B;
+		}
+		else if (m_QUALPDAFitem == 3)//L5
+		{
+			for (i = 0; i < SIZE_PDAF_GROUP1; i++)
+			{
+				Data_Write.data_PDAF[i + 1] = OTP_Data_Write.PDAF1[i] = Qual_L5_GainMapData[i];
+				//Data_Write.data_PDAF[i + 1] = OTP_Data_Write.PDAF1[i];//= 0x44;//cnw
+			}
+			Data_Write.data_PDAF[2] = OTP_Data_Write.PDAF1[1] = 0x0B;
+		}
+				
 	}
 	//////////////////////////////////////////////////////////////////////////
 	SAA3_0L2K_CalcAllCheckSum();
@@ -568,11 +615,15 @@ BOOL COtpSAA3_0L2K::SAA3_0L2K_GetAWBData(SAA3_0L2K_OTPDataSpec &awbdata)
 	awbdata.AWBInfo[1] = m_wbCurrent.rg&0xff;
 	awbdata.AWBInfo[2] = (m_wbCurrent.bg>>8)&0x0f;
 	awbdata.AWBInfo[3] = m_wbCurrent.bg&0xff;
+	awbdata.AWBInfo[4] = (m_wbCurrent.gb_gr >> 8) & 0x0f;
+	awbdata.AWBInfo[5] = m_wbCurrent.gb_gr & 0xff;
 
-	awbdata.AWBInfo[4] = (m_goldenrg>>8)&0x0f;
-	awbdata.AWBInfo[5] = m_goldenrg&0xff;
-	awbdata.AWBInfo[6] = (m_goldenbg>>8)&0x0f;
-	awbdata.AWBInfo[7] = m_goldenbg&0xff;
+	awbdata.AWBInfo[6] = (m_goldenrg>>8)&0x0f;
+	awbdata.AWBInfo[7] = m_goldenrg&0xff;
+	awbdata.AWBInfo[8] = (m_goldenbg>>8)&0x0f;
+	awbdata.AWBInfo[9] = m_goldenbg&0xff;
+	awbdata.AWBInfo[10] = (m_goldengg >> 8) & 0x0f;
+	awbdata.AWBInfo[11] = m_goldengg & 0xff;
 
 	m_pInterface ->AddLog(_T("Get AWB Data End"));
 	S5K3L8_ApplyAWB(m_wbCurrent, m_goldenrg, m_goldenbg);
@@ -828,7 +879,7 @@ void COtpSAA3_0L2K::SAA3_0L2K_GetAFData(void)
 	OTP_Data_Write.AFInfo[i++] = m_stcCode & 0xff;
 	OTP_Data_Write.AFInfo[i++] = 0x00;
 	OTP_Data_Write.AFInfo[i++] = 0x00;
-	m_pInterface ->AddLog(_T("Get AF Data"));
+	m_pInterface ->AddLog(_T("Get AF Data."));
 	return;
 }
 void COtpSAA3_0L2K::SAA3_0L2K_CalcAllCheckSum(void)
@@ -847,7 +898,7 @@ void COtpSAA3_0L2K::SAA3_0L2K_CalcAllCheckSum(void)
 
 	//AWB
 	sum = SumCalc(OTP_Data_Write.AWBInfo, SIZE_WB_GROUP - 1, 255, add);
-	Data_Write.data_WB[SIZE_WB_GROUP] = sum;
+	Data_Write.data_WB[SIZE_WB_GROUP + 2] = sum;
 
 	//Basic
 	sum = SumCalc(OTP_Data_Write.BaseInfo, SIZE_BASIC_GROUP - 1, 255, add);
@@ -1731,8 +1782,8 @@ BOOL COtpSAA3_0L2K::GetOTPRGBG()
 {
 	if (!m_sensorotpisempty)
 	{
-		m_wbCurrent.rg = Data_Write.data_WB[0]<<8|Data_Write.data_WB[1];
-		m_wbCurrent.bg = Data_Write.data_WB[2]<<8|Data_Write.data_WB[3];
+		m_wbCurrent.rg = Data_Write.data_WB[3]<<8|Data_Write.data_WB[4];
+		m_wbCurrent.bg = Data_Write.data_WB[5]<<8|Data_Write.data_WB[6];
 	}
 	else
 	{
