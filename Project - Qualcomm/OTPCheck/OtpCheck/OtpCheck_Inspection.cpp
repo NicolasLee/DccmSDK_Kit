@@ -137,7 +137,7 @@ int OtpCheck_Inspection::LoadOption()
 	pDlg->m_stcLower			= ReadConfigInt(L"m_stcLower", 0);
 	pDlg->m_stcUpper			= ReadConfigInt(L"m_stcUpper", 300);
 	pDlg->m_infLower			= ReadConfigInt(L"m_infLower", 200);
-	pDlg->m_infUpper			= ReadConfigInt(L"m_infUpper", 600);
+	pDlg->m_infUpper = ReadConfigInt(L"m_infUpper", 600);
 	pDlg->m_macLower		= ReadConfigInt(L"m_macLower", 400);
 	pDlg->m_macUpper		= ReadConfigInt(L"m_macUpper", 800);
 	pDlg->m_midLower		= ReadConfigInt(L"m_midLower", 400);

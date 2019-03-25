@@ -299,8 +299,8 @@ enum COLOR_GAIN
 #define DS_BREAK 2 //测试时模组异常中断
 
 // 20160606
-#define MainCaption						_T("NL")			// 公司名
-#define MainBackground					_T("NL")			// 公司名作背景
+#define MainCaption						_T("HTHC")			// 公司名
+#define MainBackground					_T("HTHC")			// 公司名作背景
 #define DEFAULT_LOCAL_REPORT_PATH		_T("C:\\DccmReport")// 
 #define DEFAULT_NETWORK_REPORT_PATH		_T("\\\\111.111.111.100\\DccmReport")
 #define DEFAULT_PATH_FILE_LOG			_T("D:\\DccmLog")
@@ -322,4 +322,10 @@ enum eSaveImageType
 	SIT_AssistWnd,			// 6 AssistWnd(*.jpg)|*.jpg|
 	SIT_DisplayWnd,			// 7 DisplayWnd(*.jpg)|*.jpg|
 	SIT_BmpGray,			// 8 BmpGray(*.bmp)|*.bmp||
+};
+
+enum LOGIN_MODE
+{
+	LOGIN_MODE_ENGNEER,
+	LOGIN_MODE_OPERATOR
 };
