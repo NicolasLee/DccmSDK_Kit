@@ -301,11 +301,11 @@ enum COLOR_GAIN
 // 20160606
 #define MainCaption						_T("HTHC")			// 公司名
 #define MainBackground					_T("HTHC")			// 公司名作背景
-#define DEFAULT_LOCAL_REPORT_PATH		_T("C:\\DccmReport")// 
+#define DEFAULT_LOCAL_REPORT_PATH		_T("D:\\DccmReport")// 
 #define DEFAULT_NETWORK_REPORT_PATH		_T("\\\\111.111.111.100\\DccmReport")
 #define DEFAULT_PATH_FILE_LOG			_T("D:\\DccmLog")
 #define DEFAULT_NAME_FILE_LOG			_T("DccmLog")
-#define FONT_FACE_NAME					_T("微软雅黑")
+#define FONT_FACE_NAME					_T("Consolas")
 
 #define FONT_SIZE_TINY			80
 #define FONT_SIZE_SMALL			120
