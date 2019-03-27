@@ -52,6 +52,9 @@
     <Filter Include="Project\SAA3_0L2K_S5K3L8XXM3_Qual">
       <UniqueIdentifier>{45396da8-97f4-4e5f-99cf-95584f990f58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Project\CB801C_S5K4H7">
+      <UniqueIdentifier>{9eb4e12a-c02f-4d16-be05-87af54080020}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.txt" />
@@ -166,6 +169,33 @@
     <ClInclude Include="Project\SAA3_0L2K_S5K3L8XXM3_Qual\OtpDefine_SAA3_0L2K.h">
       <Filter>Project\SAA3_0L2K_S5K3L8XXM3_Qual</Filter>
     </ClInclude>
+    <ClInclude Include="Page1.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Page2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Page3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Page4.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Page5.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Page6.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Page7.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\CB801C_S5K4H7\Otp_CB801C.h">
+      <Filter>Project\CB801C_S5K4H7</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\CB801C_S5K4H7\OtpDefine_CB801C.h">
+      <Filter>Project\CB801C_S5K4H7</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OTP_Inspection.cpp">
@@ -224,6 +254,30 @@
     </ClCompile>
     <ClCompile Include="Project\SAA3_0L2K_S5K3L8XXM3_Qual\Otp_SAA3_0L2K.cpp">
       <Filter>Project\SAA3_0L2K_S5K3L8XXM3_Qual</Filter>
+    </ClCompile>
+    <ClCompile Include="Page1.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Page2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Page3.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Page4.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Page5.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Page6.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Page7.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\CB801C_S5K4H7\Otp_CB801C.cpp">
+      <Filter>Project\CB801C_S5K4H7</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

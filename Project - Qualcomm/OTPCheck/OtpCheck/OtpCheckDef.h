@@ -39,8 +39,11 @@ typedef struct tagValidGroup
 
 typedef struct tagAddressFlag
 {// FlagµÄAddress
+	int basicpage;
 	USHORT basic;
+	int lscpage;
 	USHORT lsc;
+	int awbpage;
 	USHORT awb;
 	USHORT af;
 	USHORT pdaf1;
@@ -50,9 +53,21 @@ typedef struct tagAddressFlag
 typedef struct tagAddressSum
 {// CheckSumµÄAddress
 	USHORT basic;
+	USHORT basicGroup1;
+	USHORT basicGroup2;
+
 	USHORT awb;
+	USHORT awbGroup1;
+	USHORT awbGroup2;
+
 	USHORT lsc;
+	USHORT lscGroup1;
+	USHORT lscGroup2;
+
 	USHORT af;
+	USHORT afGroup1;
+	USHORT afGroup2;
+
 	USHORT pdaf1;
 	USHORT pdaf2;
 }AddressSum;

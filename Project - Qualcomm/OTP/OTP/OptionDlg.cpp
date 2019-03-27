@@ -1,4 +1,4 @@
-// OptionDlg.cpp : ÊµÏÖÎÄ¼þ
+ï»¿// OptionDlg.cpp : å®žçŽ°æ–‡ä»¶
 //
 
 #include "stdafx.h"
@@ -7,7 +7,8 @@
 #include "afxdialogex.h"
 #include "OTP_Inspection.h"
 
-// OptionDlg ¶Ô»°¿ò
+
+// OptionDlg å¯¹è¯æ¡†
 #define  MaxGroup 3
 IMPLEMENT_DYNAMIC(OptionDlg, CDialog)
 
@@ -21,6 +22,7 @@ OptionDlg::OptionDlg(CWnd* pParent, OTP_Inspection* pInspection)
 	m_PDAFItem = 0;
 	m_afread = 0;
 	m_pInspection = pInspection;
+	m_Brunto = 0;
 }
 
 OptionDlg::~OptionDlg()
@@ -147,6 +149,19 @@ void OptionDlg::DoDataExchange(CDataExchange* pDX)
 
 	DDX_Control(pDX, IDC_COMBO_PROJ_NAME, m_comboProjName);
 
+	DDX_Check(pDX, IDC_CHECK_General, m_General);
+	DDX_Radio(pDX, IDC_ENEEPROM, m_Brunto);
+	
+	CString s;
+	s.Format(_T("%x"), m_SlaveID);
+	DDX_Text(pDX, IDC_SlaveID, s);
+	
+	DDX_Check(pDX, IDC_CHECK_Page, m_spage);
+	DDX_Text(pDX, IDC_OTPGroup, m_totalgroup);
+	DDV_MinMaxUInt(pDX, m_totalgroup, 0, 5);
+	DDX_Control(pDX, IDC_TAB1, m_tab);
+
+
 }
 
 
@@ -180,23 +195,27 @@ BEGIN_MESSAGE_MAP(OptionDlg, CDialog)
 	ON_CBN_SELCHANGE(IDC_QUALLSCVERSION, &OptionDlg::OnCbnSelchangeQuallscversion)
 	ON_CBN_SELCHANGE(IDC_MTKLSCVERSION, &OptionDlg::OnCbnSelchangeMtklscversion)
 	ON_BN_CLICKED(IDC_ENMTKPDAF, &OptionDlg::OnBnClickedEnmtkpdaf)
+	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB1, &OptionDlg::OnTcnSelchangeTab1)
+	ON_BN_CLICKED(IDC_CHECK_General, &OptionDlg::OnBnClickedCheckGeneral)
+	ON_BN_CLICKED(IDC_ENEEPROM, &OptionDlg::OnBnClickedEneeprom)
+	ON_BN_CLICKED(IDC_ENSensor, &OptionDlg::OnBnClickedEneeprom)
 END_MESSAGE_MAP()
 
 
-// OptionDlg ÏûÏ¢´¦Àí³ÌÐò
+// OptionDlg æ¶ˆæ¯å¤„ç†ç¨‹åº
 void OptionDlg::PostNcDestroy()
 {
-	// TODO: ÔÚ´ËÌí¼Ó×¨ÓÃ´úÂëºÍ/»òµ÷ÓÃ»ùÀà
+	// TODO: åœ¨æ­¤æ·»åŠ ä¸“ç”¨ä»£ç å’Œ/æˆ–è°ƒç”¨åŸºç±»
 	delete this;
 
 	CDialog::PostNcDestroy();
 }
 
-// ¶Ô»°¿ò´°¿ÚÊý¾Ý¸üÐÂµÄÏìÓ¦º¯Êý
+// å¯¹è¯æ¡†çª—å£æ•°æ®æ›´æ–°çš„å“åº”å‡½æ•°
 LRESULT OptionDlg::OnUpdateData(WPARAM wParam, LPARAM lParam)
 {
-	//TURE ¿Ø¼þµÄÖµ¡ª>±äÁ¿    
-	//FALSE ±äÁ¿¡ª>¿Ø¼þµÄÖµ
+	//TURE æŽ§ä»¶çš„å€¼â€”>å˜é‡    
+	//FALSE å˜é‡â€”>æŽ§ä»¶çš„å€¼
 	BOOL	bSaveAndValidate = (BOOL) wParam; 
 
 	int ret = UpdateData(bSaveAndValidate);
@@ -212,14 +231,14 @@ LRESULT OptionDlg::OnUpdateData(WPARAM wParam, LPARAM lParam)
 	return ret;
 }
 
-// Ö÷³ÌÐò°´ÏÂctrl+Êý×Ö¼üµÄÏìÓ¦ÏûÏ¢£¬Í¨¹ý´ËÏûÏ¢½ÓÊÜÍâ½çÖ¸Áî¡£
+// ä¸»ç¨‹åºæŒ‰ä¸‹ctrl+æ•°å­—é”®çš„å“åº”æ¶ˆæ¯ï¼Œé€šè¿‡æ­¤æ¶ˆæ¯æŽ¥å—å¤–ç•ŒæŒ‡ä»¤ã€‚
 LRESULT OptionDlg::OnCtrlKeyNum(WPARAM wParam, LPARAM lParam)
 {
 
 	return 0;
 }
 
-// ÏìÓ¦Ä£×é¹Ø±ÕÏûÏ¢
+// å“åº”æ¨¡ç»„å…³é—­æ¶ˆæ¯
 LRESULT OptionDlg::OnCameraStop(WPARAM wParam, LPARAM lParam)
 {
 
@@ -230,7 +249,7 @@ BOOL OptionDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ÔÚ´ËÌí¼Ó¶îÍâµÄ³õÊ¼»¯
+	// TODO:  åœ¨æ­¤æ·»åŠ é¢å¤–çš„åˆå§‹åŒ–
 	///////////////////////////Project///////////////////////////////////////////////
 	m_comboProjName.InsertString(0, L"FHB6551M");
 	m_comboProjName.InsertString(1, L"PLQ8579M");
@@ -243,7 +262,8 @@ BOOL OptionDlg::OnInitDialog()
 	m_comboProjName.InsertString(8, L"HLT7014");
 	m_comboProjName.InsertString(9, L"HLT7109");
 	m_comboProjName.InsertString(10, L"HLT7025");
-	m_comboProjName.InsertString(11, L"SAA3_0L2K"); // »ªÌì»Û´´
+	m_comboProjName.InsertString(11, L"SAA3_0L2K"); // åŽå¤©æ…§åˆ›
+	m_comboProjName.InsertString(11, L"CB801C"); // åŽå¤©æ…§åˆ›
 	m_comboProjName.SetCurSel(m_projName);
 
 	/////////////////////////////////shading////////////////////////////////////
@@ -254,6 +274,14 @@ BOOL OptionDlg::OnInitDialog()
 	m_comboShadingList.InsertString(2, _T("Shading49"));
 	m_comboShadingList.SetCurSel(m_shadingitem);
 
+// 	m_page1.steplist[0].ResetContent();
+// 	m_page1.steplist[0].Clear();
+// 	m_page1.steplist[0].InsertString(0, _T("Shading5"));
+// 	m_page1.steplist[0].InsertString(1, _T("Shading14"));
+// 	m_page1.steplist[0].InsertString(2, _T("Shading49"));
+// 	m_page1.steplist[0].SetCurSel(m_shadingitem);
+
+
 	///////////////////////////////sensor////////////////////////////////////////
 	m_comboSensorList.ResetContent();
 	m_comboSensorList.Clear();
@@ -261,6 +289,7 @@ BOOL OptionDlg::OnInitDialog()
 	m_comboSensorList.InsertString(1, _T("S5K5E8"));
 	m_comboSensorList.InsertString(2, _T("S5K4H8"));
 	m_comboSensorList.InsertString(3, _T("HI1332"));
+	m_comboSensorList.InsertString(4, _T("S5K4H7"));
 	m_comboSensorList.SetCurSel(m_sensoritem);
 
 	/////////////////////////////////////MTK LSC/////////////////////////////////////
@@ -318,15 +347,16 @@ BOOL OptionDlg::OnInitDialog()
 	m_comboQualPdafVerList.InsertString(2, _T("L4"));
 	m_comboQualPdafVerList.InsertString(3, _T("L5"));
 	m_comboQualPdafVerList.InsertString(4, _T("L6"));
-	m_comboQualPdafVerList.SetCurSel(m_QUALPDAFitem);
-
+	m_comboQualPdafVerList.SetCurSel(m_QUALPDAFitem);	
+	
+	OnInittab();
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// Òì³£: OCX ÊôÐÔÒ³Ó¦·µ»Ø FALSE
+	// å¼‚å¸¸: OCX å±žæ€§é¡µåº”è¿”å›ž FALSE
 }
 
 void OptionDlg::OnEnChangeGoldengr()
 {
-	// TODO:  ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO:  åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	UpdateData(TRUE);
 	UINT AWB_FACTOR = 1024;
 	m_goldenrg		= (UINT)(1.0 * (m_goldenr) / (m_goldengr)*AWB_FACTOR + 0.5); 
@@ -337,12 +367,12 @@ void OptionDlg::OnEnChangeGoldengr()
 
 void OptionDlg::OnEnChangeGoldenr()
 {
-	// TODO:  Èç¹û¸Ã¿Ø¼þÊÇ RICHEDIT ¿Ø¼þ£¬Ëü½«²»
-	// ·¢ËÍ´ËÍ¨Öª£¬³ý·ÇÖØÐ´ CDialog::OnInitDialog()
-	// º¯Êý²¢µ÷ÓÃ CRichEditCtrl().SetEventMask()£¬
-	// Í¬Ê±½« ENM_CHANGE ±êÖ¾¡°»ò¡±ÔËËãµ½ÑÚÂëÖÐ¡£
+	// TODO:  å¦‚æžœè¯¥æŽ§ä»¶æ˜¯ RICHEDIT æŽ§ä»¶ï¼Œå®ƒå°†ä¸
+	// å‘é€æ­¤é€šçŸ¥ï¼Œé™¤éžé‡å†™ CDialog::OnInitDialog()
+	// å‡½æ•°å¹¶è°ƒç”¨ CRichEditCtrl().SetEventMask()ï¼Œ
+	// åŒæ—¶å°† ENM_CHANGE æ ‡å¿—â€œæˆ–â€è¿ç®—åˆ°æŽ©ç ä¸­ã€‚
 
-	// TODO:  ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO:  åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	UpdateData(TRUE);
 	UINT AWB_FACTOR = 1024;
 	m_goldenrg		= (UINT)(1.0 * (m_goldenr) / (m_goldengr)*AWB_FACTOR + 0.5); 
@@ -353,12 +383,12 @@ void OptionDlg::OnEnChangeGoldenr()
 
 void OptionDlg::OnEnChangeGoldenb()
 {
-	// TODO:  Èç¹û¸Ã¿Ø¼þÊÇ RICHEDIT ¿Ø¼þ£¬Ëü½«²»
-	// ·¢ËÍ´ËÍ¨Öª£¬³ý·ÇÖØÐ´ CDialog::OnInitDialog()
-	// º¯Êý²¢µ÷ÓÃ CRichEditCtrl().SetEventMask()£¬
-	// Í¬Ê±½« ENM_CHANGE ±êÖ¾¡°»ò¡±ÔËËãµ½ÑÚÂëÖÐ¡£
+	// TODO:  å¦‚æžœè¯¥æŽ§ä»¶æ˜¯ RICHEDIT æŽ§ä»¶ï¼Œå®ƒå°†ä¸
+	// å‘é€æ­¤é€šçŸ¥ï¼Œé™¤éžé‡å†™ CDialog::OnInitDialog()
+	// å‡½æ•°å¹¶è°ƒç”¨ CRichEditCtrl().SetEventMask()ï¼Œ
+	// åŒæ—¶å°† ENM_CHANGE æ ‡å¿—â€œæˆ–â€è¿ç®—åˆ°æŽ©ç ä¸­ã€‚
 
-	// TODO:  ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO:  åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	UpdateData(TRUE);
 	UINT AWB_FACTOR = 1024;
 	m_goldenrg		= (UINT)(1.0 * (m_goldenr) / (m_goldengr)*AWB_FACTOR + 0.5); 
@@ -369,12 +399,12 @@ void OptionDlg::OnEnChangeGoldenb()
 
 void OptionDlg::OnEnChangeGoldengb()
 {
-	// TODO:  Èç¹û¸Ã¿Ø¼þÊÇ RICHEDIT ¿Ø¼þ£¬Ëü½«²»
-	// ·¢ËÍ´ËÍ¨Öª£¬³ý·ÇÖØÐ´ CDialog::OnInitDialog()
-	// º¯Êý²¢µ÷ÓÃ CRichEditCtrl().SetEventMask()£¬
-	// Í¬Ê±½« ENM_CHANGE ±êÖ¾¡°»ò¡±ÔËËãµ½ÑÚÂëÖÐ¡£
+	// TODO:  å¦‚æžœè¯¥æŽ§ä»¶æ˜¯ RICHEDIT æŽ§ä»¶ï¼Œå®ƒå°†ä¸
+	// å‘é€æ­¤é€šçŸ¥ï¼Œé™¤éžé‡å†™ CDialog::OnInitDialog()
+	// å‡½æ•°å¹¶è°ƒç”¨ CRichEditCtrl().SetEventMask()ï¼Œ
+	// åŒæ—¶å°† ENM_CHANGE æ ‡å¿—â€œæˆ–â€è¿ç®—åˆ°æŽ©ç ä¸­ã€‚
 
-	// TODO:  ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO:  åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	UpdateData(TRUE);
 	UINT AWB_FACTOR = 1024;
 	m_goldenrg		= (UINT)(1.0 * (m_goldenr) / (m_goldengr)*AWB_FACTOR + 0.5); 
@@ -386,13 +416,13 @@ void OptionDlg::OnEnChangeGoldengb()
 
 void OptionDlg::OnCbnSelchangeShadingItem()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	m_shadingitem = m_comboShadingList.GetCurSel();
 }
 
 void OptionDlg::OnBnClickedGoldenchannel()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	int buttonstatus = ((CButton*)GetDlgItem(IDC_GOLDENCHANNEL))->GetCheck();
 	if (buttonstatus)
 	{
@@ -410,7 +440,7 @@ void OptionDlg::OnBnClickedGoldenchannel()
 
 void OptionDlg::OnBnClickedGoldengain()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	int buttonstatus = ((CButton*)GetDlgItem(IDC_GOLDENGAIN))->GetCheck();
 	if (buttonstatus)
 	{
@@ -427,7 +457,7 @@ void OptionDlg::OnBnClickedGoldengain()
 
 void OptionDlg::OnBnClickedEnlsc()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	int buttonstatus = ((CButton*)GetDlgItem(IDC_CHECK_LSC))->GetCheck();
 	if (!buttonstatus)
 	{
@@ -462,7 +492,7 @@ void OptionDlg::OnBnClickedEnlsc()
 
 void OptionDlg::OnBnClickedEnawb()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	int buttonstatus = ((CButton*)GetDlgItem(IDC_CHECK_AWB))->GetCheck();
 	if (!buttonstatus)
 	{
@@ -530,7 +560,7 @@ void OptionDlg::OnBnClickedEnawb()
 
 void OptionDlg::OnBnClickedEnaf()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	int buttonstatus = ((CButton*)GetDlgItem(IDC_CHECK_AF))->GetCheck();
 	if (!buttonstatus)
 	{
@@ -567,7 +597,7 @@ void OptionDlg::OnBnClickedEnaf()
 
 void OptionDlg::OnBnClickedEnpdaf()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	int buttonstatus = ((CButton*)GetDlgItem(IDC_CHECK_PDAF))->GetCheck();
 	if (!buttonstatus)
 	{
@@ -593,7 +623,7 @@ void OptionDlg::OnBnClickedEnpdaf()
 
 void OptionDlg::OnBnClickedEnmtklsc()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	UpdateData(TRUE);
 	switch(m_LSCItem)
 	{
@@ -644,27 +674,27 @@ void OptionDlg::OnBnClickedEnmtklsc()
 
 void OptionDlg::OnCbnSelchangeSensorlscitem()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	m_sensoritem = m_comboSensorList.GetCurSel();
 }
 
 
 void OptionDlg::OnCbnSelchangeCfaitem()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	m_cfaitem = m_comboCfaList.GetCurSel();
 }
 
 
 void OptionDlg::OnCbnSelchangeQuallscmode()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	m_quallscitem = m_comboQualLscList.GetCurSel();
 }
 
 void OptionDlg::OnCbnSelchangeComboProjName()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	m_projName = (eProjectName)m_comboProjName.GetCurSel();
 	switch(m_projName)
 	{
@@ -697,34 +727,34 @@ void OptionDlg::OnCbnSelchangeComboProjName()
 
 void OptionDlg::OnCbnSelchangeMtkpdafversion()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	m_MTKPDAFitem = m_comboMtkPdafVerList.GetCurSel();
 }
 
 
 void OptionDlg::OnCbnSelchangeQualpdafversion()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	m_QUALPDAFitem = m_comboQualPdafVerList.GetCurSel();
 }
 
 
 void OptionDlg::OnCbnSelchangeQuallscversion()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	m_QUALLSCVerItem = m_comboQualLscVerList.GetCurSel();
 }
 
 
 void OptionDlg::OnCbnSelchangeMtklscversion()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	m_MTKLSCVerItem = m_comboMtkLscVerList.GetCurSel();
 }
 
 void OptionDlg::OnBnClickedEnmtkpdaf()
 {
-	// TODO:  ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO:  åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	UpdateData(TRUE);
 	switch (m_PDAFItem)
 	{
@@ -757,6 +787,113 @@ void OptionDlg::OnBnClickedEnmtkpdaf()
 		GetDlgItem(IDC_Qual_INI_NAME)->EnableWindow(FALSE);
 
 		GetDlgItem(IDC_SensorPDAFItem)->EnableWindow(TRUE);
+		break;
+	default:
+
+		break;
+	}
+}
+
+
+void OptionDlg::OnInittab()
+{
+	m_tab.InsertItem(0, _T("Sensorè¯»"));
+	m_tab.InsertItem(1, _T("Sensorå†™"));
+	m_tab.InsertItem(2, _T("ID"));
+	m_tab.InsertItem(3, _T("WB"));
+	m_tab.InsertItem(4, _T("LSC"));
+	m_tab.InsertItem(5, _T("AF"));
+	m_tab.InsertItem(6, _T("PDAF"));
+
+	m_page1.Create(IDD_DIALOG_SensorR, &m_tab);
+	m_page2.Create(IDD_DIALOG_SensorW, &m_tab);
+	m_page3.Create(IDD_DIALOG_ID, &m_tab);
+	m_page4.Create(IDD_DIALOG_AWB, &m_tab);
+	m_page5.Create(IDD_DIALOG_LSC, &m_tab);
+	m_page6.Create(IDD_DIALOG_AF, &m_tab);
+	m_page7.Create(IDD_DIALOG_PDAF1, &m_tab);
+	CRect rc;
+	m_tab.GetClientRect(rc);
+	rc.top += 20;
+	rc.bottom -= 0;
+	rc.left += 0;
+	rc.right -= 0;
+	m_page1.MoveWindow(&rc);
+	m_page2.MoveWindow(&rc);
+	m_page3.MoveWindow(&rc);
+	m_page4.MoveWindow(&rc);
+	m_page5.MoveWindow(&rc);
+	m_page6.MoveWindow(&rc);
+	m_page7.MoveWindow(&rc);
+	pDialog[0] = &m_page1;
+	pDialog[1] = &m_page2;
+	pDialog[2] = &m_page3;
+	pDialog[3] = &m_page4;
+	pDialog[4] = &m_page5;
+	pDialog[5] = &m_page6;
+	pDialog[6] = &m_page7;
+	pDialog[0]->ShowWindow(SW_SHOW);
+	pDialog[1]->ShowWindow(SW_HIDE);
+	pDialog[2]->ShowWindow(SW_HIDE);
+	pDialog[3]->ShowWindow(SW_HIDE);
+	pDialog[4]->ShowWindow(SW_HIDE);
+	pDialog[5]->ShowWindow(SW_HIDE);
+	pDialog[6]->ShowWindow(SW_HIDE);
+	m_CurSelTab = 0;
+}
+
+void OptionDlg::OnTcnSelchangeTab1(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	// TODO:  åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
+	pDialog[m_CurSelTab]->ShowWindow(SW_HIDE);	
+	m_CurSelTab = m_tab.GetCurSel();	
+	pDialog[m_CurSelTab]->ShowWindow(SW_SHOW);	
+	*pResult = 0;
+}
+
+
+
+void OptionDlg::OnBnClickedCheckGeneral()
+{
+	// TODO:  åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
+	int buttonstatus = ((CButton*)GetDlgItem(IDC_CHECK_General))->GetCheck();
+	if (!buttonstatus)
+	{
+		GetDlgItem(IDC_ENEEPROM)->EnableWindow(FALSE);
+		GetDlgItem(IDC_ENSensor)->EnableWindow(FALSE);
+		GetDlgItem(IDC_SlaveID)->EnableWindow(FALSE);
+		GetDlgItem(IDC_CHECK_Page)->EnableWindow(FALSE);
+		GetDlgItem(IDC_OTPGroup)->EnableWindow(FALSE);
+		GetDlgItem(IDC_TAB1)->EnableWindow(FALSE);
+	}
+	else
+	{
+		GetDlgItem(IDC_ENEEPROM)->EnableWindow(TRUE);
+		GetDlgItem(IDC_ENSensor)->EnableWindow(TRUE);
+		GetDlgItem(IDC_SlaveID)->EnableWindow(TRUE);
+		GetDlgItem(IDC_CHECK_Page)->EnableWindow(TRUE);
+		GetDlgItem(IDC_OTPGroup)->EnableWindow(TRUE);
+		GetDlgItem(IDC_TAB1)->EnableWindow(TRUE);
+	}
+}
+
+
+void OptionDlg::OnBnClickedEneeprom()
+{
+	// TODO:  åœ¨æ­¤æ·»åŠ æŽ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
+	UpdateData(TRUE);
+	switch (m_Brunto)
+	{
+	case 0:
+		GetDlgItem(IDC_CHECK_Page)->EnableWindow(FALSE);
+		GetDlgItem(IDC_OTPGroup)->EnableWindow(FALSE);
+	
+		
+		break;
+	case 1:
+		GetDlgItem(IDC_CHECK_Page)->EnableWindow(TRUE);
+		GetDlgItem(IDC_OTPGroup)->EnableWindow(TRUE);
+
 		break;
 	default:
 

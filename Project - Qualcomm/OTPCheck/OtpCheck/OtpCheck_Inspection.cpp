@@ -137,7 +137,7 @@ int OtpCheck_Inspection::LoadOption()
 	pDlg->m_stcLower			= ReadConfigInt(L"m_stcLower", 0);
 	pDlg->m_stcUpper			= ReadConfigInt(L"m_stcUpper", 300);
 	pDlg->m_infLower			= ReadConfigInt(L"m_infLower", 200);
-	pDlg->m_infUpper = ReadConfigInt(L"m_infUpper", 600);
+	pDlg->m_infUpper			= ReadConfigInt(L"m_infUpper", 600);
 	pDlg->m_macLower		= ReadConfigInt(L"m_macLower", 400);
 	pDlg->m_macUpper		= ReadConfigInt(L"m_macUpper", 800);
 	pDlg->m_midLower		= ReadConfigInt(L"m_midLower", 400);
@@ -487,6 +487,10 @@ void OtpCheck_Inspection::MatchProjName(eProjectName projName)
 		m_pOtpCheck = new OtpCheck_SAA30L2K;
 		szName = L"SAA30L2K";
 		break;
+	case PN_CB801C:
+		m_pOtpCheck = new OtpCheck_CB801C;
+		szName = L"CMK8440M";
+		break;
 	default:
 		m_pInterface->AddLog(L"未知项目名称");
 		m_pOtpCheck = new OtpCheckBase;
@@ -501,42 +505,87 @@ int OtpCheck_Inspection::OtpCheck_Test()
 	if (pDlg->m_bCheckFlag_ModuleInfo || pDlg->m_bCheckSum_ModuleInfo)
 	{
 		m_pInterface->AddLog(L"Check_ModuleInfo ...", COLOR_BLUE);
-		if (m_pOtpCheck->Check_ModuleInfo())
+		if (11 == pDlg->m_projName)
 		{
-			m_pInterface->AddLog(L"Check_ModuleInfo NG", COLOR_RED);
-			return FUNCTION_FAIL;
+			if (m_pOtpCheck->Check_S5K4H7ModuleInfo())
+			{
+				m_pInterface->AddLog(L"Check_ModuleInfo NG", COLOR_RED);
+				return FUNCTION_FAIL;
+			}
+			else
+			{
+				m_pInterface->AddLog(L"Check_ModuleInfo OK", COLOR_GREEN);
+			}
 		}
 		else
 		{
-			m_pInterface->AddLog(L"Check_ModuleInfo OK", COLOR_GREEN);
+			if (m_pOtpCheck->Check_ModuleInfo())
+			{
+				m_pInterface->AddLog(L"Check_ModuleInfo NG", COLOR_RED);
+				return FUNCTION_FAIL;
+			}
+			else
+			{
+				m_pInterface->AddLog(L"Check_ModuleInfo OK", COLOR_GREEN);
+			}
 		}
 	}
 
 	if (pDlg->m_bCheckFlag_AWB || pDlg->m_bCheckSum_AWB||pDlg->m_bCheckGoldR||pDlg->m_bCheckGoldGr||pDlg->m_bCheckGoldGb||pDlg->m_bCheckGoldB||pDlg->m_bCheckGoldRG||pDlg->m_bCheckGoldBG||pDlg->m_bCheckGoldGG||pDlg->m_bCheckRG||pDlg->m_bCheckBG||pDlg->m_bCheckGG||pDlg->m_bCheckR||pDlg->m_bCheckGr||pDlg->m_bCheckGb||pDlg->m_bCheckB)
 	{
  		m_pInterface->AddLog(L"Check_AWB ...", COLOR_BLUE);
-		if (m_pOtpCheck->Check_AWB())
+		if (11 == pDlg->m_projName)
 		{
-			m_pInterface->AddLog(L"Check_AWB NG", COLOR_RED);
-			return FUNCTION_FAIL;
+			if (m_pOtpCheck->Check_S5K4H7AWB())
+			{
+				m_pInterface->AddLog(L"Check_AWB NG", COLOR_RED);
+				return FUNCTION_FAIL;
+			}
+			else
+			{
+				m_pInterface->AddLog(L"Check_AWB OK", COLOR_GREEN);
+			}
 		}
 		else
 		{
-			m_pInterface->AddLog(L"Check_AWB OK", COLOR_GREEN);
+			if (m_pOtpCheck->Check_AWB())
+			{
+				m_pInterface->AddLog(L"Check_AWB NG", COLOR_RED);
+				return FUNCTION_FAIL;
+			}
+			else
+			{
+				m_pInterface->AddLog(L"Check_AWB OK", COLOR_GREEN);
+			}
 		}
 	}
 
 	if (pDlg->m_bCheckFlag_LSC || pDlg->m_bCheckSum_LSC)
 	{
 		m_pInterface->AddLog(L"Check_LSC ...", COLOR_BLUE);
-		if (m_pOtpCheck->Check_LSC())
+		if (11 == pDlg->m_projName)
 		{
-			m_pInterface->AddLog(L"Check_LSC NG", COLOR_RED);
-			return FUNCTION_FAIL;
+			if (m_pOtpCheck->Check_S5K4H7LSC())
+			{
+				m_pInterface->AddLog(L"Check_LSC NG", COLOR_RED);
+				return FUNCTION_FAIL;
+			}
+			else
+			{
+				m_pInterface->AddLog(L"Check_LSC OK", COLOR_GREEN);
+			}
 		}
 		else
 		{
-			m_pInterface->AddLog(L"Check_LSC OK", COLOR_GREEN);
+			if (m_pOtpCheck->Check_LSC())
+			{
+				m_pInterface->AddLog(L"Check_LSC NG", COLOR_RED);
+				return FUNCTION_FAIL;
+			}
+			else
+			{
+				m_pInterface->AddLog(L"Check_LSC OK", COLOR_GREEN);
+			}
 		}
 	}
 

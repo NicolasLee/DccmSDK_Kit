@@ -208,6 +208,7 @@ BOOL OptionDlg::OnInitDialog()
 	m_comboProjName.InsertString(8,L"FYD8853M");	
 	m_comboProjName.InsertString(9,L"CMK8440M");
 	m_comboProjName.InsertString(10, L"SAA30L2");
+	m_comboProjName.InsertString(11, L"CB801C");
 	m_comboProjName.SetCurSel(m_projName);
 
 	CComboBox* pComboSetType = (CComboBox*)GetDlgItem(IDC_COMBO_SET_TYPE);
@@ -249,6 +250,8 @@ void OptionDlg::OnCbnSelchangeComboProjName()
 	case PN_BYD_CMK8440M:
 		break;
 	case PN_SAA30L2:
+		break;
+	case PN_CB801C:
 		break;
 	default:
 		break;

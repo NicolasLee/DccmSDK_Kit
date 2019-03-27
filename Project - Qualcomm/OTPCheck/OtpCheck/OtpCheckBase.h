@@ -16,6 +16,7 @@ enum eProjectName	//项目名称 PN_ 新项目在此增加
 	PN_BYD_FYD8853M,
 	PN_BYD_CMK8440M,
 	PN_SAA30L2,
+	PN_CB801C,
 };
 
 class OtpCheckBase //OtpCheckBase里的文件除非必要，尽量不做改动。需要改动可以在具体的派生子类案子里做修改
@@ -28,6 +29,11 @@ public:
 	//Main接口
 	int PauseGrabFrame();
 	int ResumeGrabFrame();
+
+	//4h7
+	BOOL S5K4H7ReadOTPByte(UINT Page, USHORT startAddr, BYTE *data, int length);
+	BOOL S5K4H7WriteMultiByte(UINT Page, USHORT startAddr, BYTE *data, int nstart, int length);
+	BOOL S5K4H7WriteSingleByte(UINT Page, USHORT startAddr, BYTE data);
 	//ImageSensor接口
 	int Read_OTP_Multi_BYTE(USHORT addr, BYTE* data, int Length, int PageNo = 0);
 	int Read_OTP_BYTE(USHORT addr, BYTE* data, int PageNo = 0);
@@ -54,6 +60,13 @@ public:
 	virtual int InitProject();//少数Sensor比如Hi1332在OTP操作前需初始化
 	virtual int EndProject();//少数Sensor比如Hi1332在OTP操作后需释放
 
+	int Check_S5K4H7ModuleInfo();
+	int Check_S5K4H7AWB();
+	int Check_S5K4H7AWBValue();
+	virtual int Check_S5K4H7LSC();
+	
+	
+
 	int Check_ModuleInfo();
 	int Check_AWB();
 	int Check_AWBValue();
@@ -75,6 +88,9 @@ public:
 	virtual BOOL i2c_read_byte(USHORT reg, BYTE *pval);
 
 private:
+
+	int S5K4H7CheckFlag(int page,BOOL flag, int addr, CString str, int *validgroup);		// Check Flag
+	
 
 	int CheckFlag(BOOL flag,int addr, CString str, int *validgroup);		// Check Flag
 	virtual  int CheckGroup(BYTE flag);

@@ -57,6 +57,86 @@ int OtpCheckBase::ReleaseOTP()
 	return m_pInterface->GetImageSensor()->ReleaseOTP();
 }
 
+
+BOOL OtpCheckBase::S5K4H7ReadOTPByte(UINT Page, USHORT startAddr, BYTE *data, int length)
+{
+	BOOL bResult = TRUE;
+	BYTE bPage = Page & 0xff;
+
+	bResult &= i2c_write_byte(0x0A02, bPage); //page 21
+	bResult &= i2c_write_byte(0x0A00, 0x01);//read enable
+	Sleep(50);
+	for (int i = 0; i < length; i++)
+	{
+		bResult &= i2c_read_byte(startAddr + i, &data[i]);
+	}
+	bResult &= i2c_write_byte(0x0A00, 0x00);
+
+	return bResult;
+}
+
+BOOL OtpCheckBase::S5K4H7WriteMultiByte(UINT Page, USHORT startAddr, BYTE *data, int nstart, int length)
+{
+	BOOL bResult = TRUE;
+	BYTE ErrFlag;
+	BYTE bPage = Page & 0xff;
+
+	bResult &= i2c_write_byte(0x3B3F, 0x00);   //OTP write disable
+	bResult &= i2c_write_byte(0x0A02, bPage);    //write page 21
+	bResult &= i2c_write_byte(0x0A00, 0x03);   //write command
+
+	for (int i = 0; i < length; i++)
+	{
+		bResult &= i2c_write_byte(startAddr + i, data[nstart + i]);
+	}
+	Sleep(100);
+	bResult &= i2c_read_byte(0x0A01, &ErrFlag);
+	if (((ErrFlag >> 1) & 0x01) == 1)
+	{
+		bResult &= i2c_write_byte(0x0A00, 0x00);
+	}
+	else if (((ErrFlag >> 3) & 0x01) == 1)
+	{
+		bResult &= FALSE;
+	}
+	else
+		Sleep(100);
+	bResult &= i2c_write_byte(0x0A00, 0x00);
+
+	return bResult;
+
+}
+
+BOOL OtpCheckBase::S5K4H7WriteSingleByte(UINT Page, USHORT startAddr, BYTE data)
+{
+	BOOL bResult = TRUE;
+	BYTE ErrFlag;
+	BYTE bPage = Page & 0xff;
+
+	bResult &= i2c_write_byte(0x3B3F, 0x00);   //OTP write disable
+	bResult &= i2c_write_byte(0x0A02, bPage);    //write page 21
+	bResult &= i2c_write_byte(0x0A00, 0x03);   //write command
+
+	bResult &= i2c_write_byte(startAddr, data);
+	Sleep(100);
+	bResult &= i2c_read_byte(0x0A01, &ErrFlag);
+	if (((ErrFlag >> 1) & 0x01) == 1)
+	{
+		bResult &= i2c_write_byte(0x0A00, 0x00);
+	}
+	else if (((ErrFlag >> 3) & 0x01) == 1)
+	{
+		bResult &= FALSE;
+	}
+	else
+		Sleep(100);
+	bResult &= i2c_write_byte(0x0A00, 0x00);
+
+	return bResult;
+
+}
+
+
 int OtpCheckBase::Read_OTP_BYTE(USHORT addr, BYTE* data, int PageNo/* = 0 */)
 {
 	return m_pInterface->GetImageSensor()->Read_OTP_BYTE(addr,data,PageNo);
@@ -289,6 +369,77 @@ BOOL OtpCheckBase::i2c_read_byte(USHORT reg, BYTE *pval)
 
 	return FALSE;
 }
+
+
+int OtpCheckBase::Check_S5K4H7ModuleInfo()
+{
+	int bRet = FUNCTION_PASS;
+	bRet |= S5K4H7CheckFlag(m_addrFlag.basicpage,m_bCheckFlag_ModuleInfo, m_addrFlag.basic, _T("Basic"), &m_group.basic);
+	bRet |= CheckSum(m_bCheckSum_ModuleInfo, m_addrFlag.basic, m_addrSum.basic, m_otpSize.basic, m_gapsize.basic, _T("Basic"), m_group.basic);
+
+	return bRet;
+}
+
+int OtpCheckBase::Check_S5K4H7AWB()
+{
+	int bRet = FUNCTION_PASS;
+	bRet |= S5K4H7CheckFlag(m_addrFlag.awbpage, m_bCheckFlag_AWB, m_addrFlag.awb, _T("AWB"), &m_group.awb);
+	bRet |= Check_AWBValue();
+	bRet |= CheckSum(m_bCheckSum_AWB, m_addrFlag.awb, m_addrSum.awb, m_otpSize.awb, m_gapsize.awb, _T("AWB"), m_group.awb);
+
+	return bRet;
+}
+
+int OtpCheckBase::Check_S5K4H7LSC()
+{
+	int bRet = FUNCTION_PASS;
+	bRet |= S5K4H7CheckFlag(m_addrFlag.lscpage, m_bCheckFlag_LSC, m_addrFlag.lsc, _T("LSC"), &m_group.lsc);
+	bRet |= CheckSum(m_bCheckSum_LSC, m_addrFlag.lsc, m_addrSum.lsc, m_otpSize.lsc, m_gapsize.lsc, _T("LSC"), m_group.lsc);
+
+	return bRet;
+}
+
+int OtpCheckBase::S5K4H7CheckFlag(int page,BOOL flag, int addr, CString str, int *validgroup)//检查模块Flag
+{
+	if (!flag) return FUNCTION_PASS;
+
+	// Read flag
+	BYTE readVal = { 0 };
+	WORD reg = addr;
+	
+	S5K4H7ReadOTPByte(page, reg, &readVal, 1);
+	if (0x11 == readVal)
+	{
+		readVal |= 0x02;
+	}
+
+	*validgroup = CheckGroup(readVal);
+	int bRet = FUNCTION_PASS;
+	do
+	{
+		if (*validgroup == m_group.empty)
+		{
+			m_szInfo.Format(L"模组%s未烧录!", str);
+			m_pInterface->AddLog(m_szInfo, COLOR_RED);
+			bRet = FUNCTION_FAIL;
+			break;
+		}
+		else if (*validgroup == m_group.invalid)
+		{
+			m_szInfo.Format(L"%s Flag标志位无效!", str);
+			m_pInterface->AddLog(m_szInfo, COLOR_RED);
+			bRet = FUNCTION_FAIL;
+			break;
+		}
+
+		m_szInfo.Format(L"%s Flag第%d组有效!", str, *validgroup);
+		m_pInterface->AddLog(m_szInfo, COLOR_BLUE);
+	} while (0);
+
+	return bRet;
+}
+
+
 
 int OtpCheckBase::Check_ModuleInfo()
 {

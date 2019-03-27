@@ -17,6 +17,7 @@
 #include "Project\HLT7109_OV13855\Otp_HLT7109.h"
 #include "Project\HLT7025_S5K3L8_MTK_NOPD\Otp_HLT7025.h"
 #include "Project\SAA3_0L2K_S5K3L8XXM3_Qual\Otp_SAA3_0L2K.h"
+#include "Project\CB801C_S5K4H7\Otp_CB801C.h"
 
 class OTP_Inspection :public Inspection
 {

@@ -20,7 +20,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v120_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -96,6 +96,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="OtpCheck.def" />
     <None Include="readme.txt" />
     <None Include="res\OtpCheck.rc2" />
@@ -106,6 +107,7 @@
     <ClInclude Include="OptionDlg.h" />
     <ClInclude Include="OtpCheck.h" />
     <ClInclude Include="OtpCheckDef.h" />
+    <ClInclude Include="OtpCheck_CB801C.h" />
     <ClInclude Include="OtpCheck_CMK8440.h" />
     <ClInclude Include="OtpCheck_FYD8853M.h" />
     <ClInclude Include="OtpCheck_HLT7014.h" />
@@ -126,6 +128,7 @@
     <ClCompile Include="OtpCheckBase.cpp" />
     <ClCompile Include="OptionDlg.cpp" />
     <ClCompile Include="OtpCheck.cpp" />
+    <ClCompile Include="OtpCheck_CB801C.cpp" />
     <ClCompile Include="OtpCheck_CMK8440.cpp" />
     <ClCompile Include="OtpCheck_FYD8853M.cpp" />
     <ClCompile Include="OtpCheck_HLT7014.cpp" />

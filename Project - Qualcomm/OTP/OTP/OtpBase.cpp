@@ -23,11 +23,14 @@ MTKPDAFStruct COtpBase::m_mtkpdaf;
 COtpBase::COtpBase()
 {
 	m_OTPType = L"";
+	m_vecLSCOTP.clear();
+	m_vecLSCSram.clear();
 }
 
 COtpBase::~COtpBase()
 {
-
+	m_vecLSCOTP.clear();
+	m_vecLSCSram.clear();
 }
 
 CString COtpBase::SetOtpName(CString otpName)
@@ -775,19 +778,19 @@ BOOL COtpBase::DW9767_Programming(USHORT address,unsigned char *Data,int size)//
 	return bRet;
 }
 
-BOOL COtpBase::eeprom_write(BYTE addr, USHORT reg, BYTE val)
+BOOL COtpBase::eeprom_write(USHORT addr, USHORT reg, BYTE val)
 {
 	BOOL ret = i2c_multi_write(addr, reg, m_Eeprom.addrByteSize, &val, 1);
 	msleep(m_Eeprom.msWriteTime);
 	return ret;
 }
 
-BOOL COtpBase::eeprom_read(BYTE addr, USHORT reg, BYTE *pval)
+BOOL COtpBase::eeprom_read(USHORT addr, USHORT reg, BYTE *pval)
 {
 	return i2c_multi_read(addr, reg, m_Eeprom.addrByteSize, pval, 1);
 }
 
-BOOL COtpBase::eeprom_multi_write(BYTE addr, USHORT reg, BYTE *pval, USHORT length)
+BOOL COtpBase::eeprom_multi_write(USHORT addr, USHORT reg, BYTE *pval, USHORT length)
 {
 	BOOL ret = TRUE;
 
@@ -835,7 +838,7 @@ BOOL COtpBase::eeprom_multi_write(BYTE addr, USHORT reg, BYTE *pval, USHORT leng
 	return ret;
 }
 
-BOOL COtpBase::eeprom_multi_read(BYTE addr, USHORT reg, BYTE *pval, USHORT length)
+BOOL COtpBase::eeprom_multi_read(USHORT addr, USHORT reg, BYTE *pval, USHORT length)
 {
 	if (length < m_Eeprom.pageSize)
 	{
@@ -895,7 +898,7 @@ BOOL COtpBase::eeprom_multi_read(USHORT reg, BYTE *pval, USHORT length)
 {
 	return eeprom_multi_read(m_Eeprom.deviceID, reg, pval, length);
 }
-BOOL COtpBase::i2c_multi_read(BYTE addr, USHORT reg, BYTE regSize, BYTE *pval, USHORT length, BOOL noStop/*=FALSE*/)
+BOOL COtpBase::i2c_multi_read(USHORT addr, USHORT reg, BYTE regSize, BYTE *pval, USHORT length, BOOL noStop/*=FALSE*/)
 {
 	if ((pval == NULL))	return FALSE;
 
@@ -1018,7 +1021,7 @@ BOOL COtpBase::i2c_read_byte(USHORT reg, BYTE *pval)
 	return FALSE;
 }
 
-BOOL COtpBase::i2c_multi_write(BYTE reg, BYTE *pval, USHORT length)
+BOOL COtpBase::i2c_multi_write(USHORT reg, BYTE *pval, USHORT length)
 {
 	if ((pval == NULL))
 	{
@@ -1046,7 +1049,7 @@ BOOL COtpBase::i2c_multi_write(BYTE reg, BYTE *pval, USHORT length)
 	return FALSE;
 }
 
-BOOL COtpBase::i2c_multi_write(BYTE addr, USHORT reg, BYTE regSize, BYTE *pval, USHORT length)
+BOOL COtpBase::i2c_multi_write(USHORT addr, USHORT reg, BYTE regSize, BYTE *pval, USHORT length)
 {
 	if ( (pval == NULL))
 	{
@@ -1074,7 +1077,7 @@ BOOL COtpBase::i2c_multi_write(BYTE addr, USHORT reg, BYTE regSize, BYTE *pval, 
 	return FALSE;
 }
 
-BOOL COtpBase::i2c_multi_read(BYTE reg, BYTE *pval, USHORT length, BOOL noStop/*=FALSE*/)
+BOOL COtpBase::i2c_multi_read(USHORT reg, BYTE *pval, USHORT length, BOOL noStop/*=FALSE*/)
 {
 	if ((pval == NULL))
 	{
@@ -2651,6 +2654,10 @@ BOOL COtpBase::GetLSC(void)
 			else if (m_sensoritem == 3)//Hi1332
 			{
 				if (!HI1332_GetLSC())	return FALSE;
+			}
+			else if (m_sensoritem == 4)//4H7
+			{
+				if (!S5K4H7_GetLSC())	return FALSE;
 			}
 		}
 	}
@@ -7938,6 +7945,572 @@ void COtpBase::S5K4H8_SetDefaultAwb()
 	return;
 }
 
+/////////////////////////////////////4H7/////////////////////////////////////
+
+BOOL COtpBase::S5K4H7ReadOTPpage(int pageidx, BYTE *pdata)
+{
+	BOOL bResult = true;
+	WORD addr;
+	addr = 0x0A04;
+	unsigned char data;
+
+	bResult &= i2c_write_byte(0x0A02, pageidx);//set the page
+	bResult &= i2c_write_byte(0x0A00, 0x01);// read enble
+	Sleep(50);
+	for (int i = 0; i < 64; i++)
+	{
+		bResult &= i2c_read_byte(addr, &pdata[i]);
+		addr++;
+	}
+	bResult &= i2c_write_byte(0x0A00, 0x00);	//Initial command
+
+	return (BOOL)bResult;
+}
+
+BOOL COtpBase::S5K4H7ReadOTPByte(UINT Page, USHORT startAddr, BYTE *data, int length)
+{
+	BOOL bResult = TRUE;
+	BYTE bPage = Page & 0xff;
+
+	bResult &= i2c_write_byte(0x0A02, bPage); //page 21
+	bResult &= i2c_write_byte(0x0A00, 0x01);//read enable
+	Sleep(50);
+	for (int i = 0; i < length; i++)
+	{
+		bResult &= i2c_read_byte(startAddr + i, &data[i]);
+	}
+	bResult &= i2c_write_byte(0x0A00, 0x00);
+
+	return bResult;
+}
+
+BOOL COtpBase::S5K4H7WriteMultiByte(UINT Page, USHORT startAddr, BYTE *data, int nstart, int length)
+{
+	BOOL bResult = TRUE;
+	BYTE ErrFlag;
+	BYTE bPage = Page & 0xff;
+
+	bResult &= i2c_write_byte(0x3B3F, 0x00);   //OTP write disable
+	bResult &= i2c_write_byte(0x0A02, bPage);    //write page 21
+	bResult &= i2c_write_byte(0x0A00, 0x03);   //write command
+
+	for (int i = 0; i < length; i++)
+	{
+		bResult &= i2c_write_byte(startAddr + i, data[nstart + i]);
+	}
+	Sleep(100);
+	bResult &= i2c_read_byte(0x0A01, &ErrFlag);
+	if (((ErrFlag >> 1) & 0x01) == 1)
+	{
+		bResult &= i2c_write_byte(0x0A00, 0x00);
+	}
+	else if (((ErrFlag >> 3) & 0x01) == 1)
+	{
+		bResult &= FALSE;
+	}
+	else
+		Sleep(100);
+	bResult &= i2c_write_byte(0x0A00, 0x00);
+
+	return bResult;
+
+}
+
+BOOL COtpBase::S5K4H7WriteSingleByte(UINT Page, USHORT startAddr, BYTE data)
+{
+	BOOL bResult = TRUE;
+	BYTE ErrFlag;
+	BYTE bPage = Page & 0xff;
+
+	bResult &= i2c_write_byte(0x3B3F, 0x00);   //OTP write disable
+	bResult &= i2c_write_byte(0x0A02, bPage);    //write page 21
+	bResult &= i2c_write_byte(0x0A00, 0x03);   //write command
+
+	bResult &= i2c_write_byte(startAddr, data);
+	Sleep(100);
+	bResult &= i2c_read_byte(0x0A01, &ErrFlag);
+	if (((ErrFlag >> 1) & 0x01) == 1)
+	{
+		bResult &= i2c_write_byte(0x0A00, 0x00);
+	}
+	else if (((ErrFlag >> 3) & 0x01) == 1)
+	{
+		bResult &= FALSE;
+	}
+	else
+		Sleep(100);
+	bResult &= i2c_write_byte(0x0A00, 0x00);
+
+	return bResult;
+
+}
+
+BOOL COtpBase::S5K4H7_GetLSC()
+{
+	m_pInterface->AddLog(_T("Get 4H7 Sensor LSC start..."));
+	CString Path;
+	Path = GetModulePath() + _T("\\LSC\\Sensor\\4H7");
+	SetCurrentDirectory(Path);
+
+	const char *pResult;
+	const char *pSramData;
+	const char *pOtpData;
+	char szBayerSetting[MAX_PATH] = { 0 };
+	char szBinaryData[MAX_PATH] = { 0 };
+	char szRawImage[MAX_PATH] = { 0 };
+	char szOtpFile[MAX_PATH] = { 0 };
+
+	CString filename = Path + _T("\\bayer_setting.xml");
+	int iSize = WideCharToMultiByte(CP_ACP, 0, filename, -1, NULL, 0, NULL, NULL);
+	WideCharToMultiByte(CP_ACP, 0, filename, -1, szBayerSetting, iSize, 0, 0);
+	
+	filename = Path + _T("\\binary.dat");
+	iSize = WideCharToMultiByte(CP_ACP, 0, filename, -1, NULL, 0, NULL, NULL);
+	WideCharToMultiByte(CP_ACP, 0, filename, -1, szBinaryData, iSize, 0, 0);
+	
+	filename = Path + _T("\\4h7_3280x2464.raw");
+	iSize = WideCharToMultiByte(CP_ACP, 0, filename, -1, NULL, 0, NULL, NULL);
+	WideCharToMultiByte(CP_ACP, 0, filename, -1, szRawImage, iSize, 0, 0);
+	
+	CString OtpFileName = Path + _T("\\4h7_otp.txt");
+	iSize = WideCharToMultiByte(CP_ACP, 0, OtpFileName, -1, NULL, 0, NULL, NULL);
+	WideCharToMultiByte(CP_ACP, 0, OtpFileName, -1, szOtpFile, iSize, 0, 0);
+	if (PathFileExists(filename))
+	{
+		if (!DeleteFile(filename))
+		{
+			m_pInterface->AddLog(_T("无法删除旧4h7_3280x2464.raw文件!"), COLOR_RED);
+			return FALSE;
+		}
+		m_pInterface->AddLog(_T("删除旧4h7_3280x2464.raw文件!"), COLOR_BLUE);
+	}
+	if (PathFileExists(OtpFileName))
+	{
+		if (!DeleteFile(OtpFileName))
+		{
+			m_pInterface->AddLog(_T("无法删除旧4h7_otp.txt文件!"), COLOR_RED);
+			return FALSE;
+		}
+		m_pInterface->AddLog(_T("删除旧4h7_otp.txt文件!"), COLOR_BLUE);
+	}
+
+	ImageInfo imgInfo = m_pInterface->GetImage();
+	int width = imgInfo.width;
+	int height = imgInfo.height;
+	unsigned short *pImgBuffer[1];
+	pImgBuffer[0] = imgInfo.Raw_Buf;
+	SaveCurrentRaw10(filename, imgInfo.Raw_Buf, width, height);
+
+	CString DLLPath = Path + "\\GLSCv10_LIB_v140.dll";
+	HINSTANCE h4H7LSCDll = LoadLibrary(DLLPath);
+/*
+#if defined(LSCDLL_EXPORTS)
+#define DLLFUNC extern "C" __declspec(dllexport)
+#elif defined(__cplusplus)
+#define DLLFUNC extern "C" __declspec(dllimport)
+#else
+#define DLLFUNC __declspec(dllimport)
+#endif
+*/
+	typedef char* (*fuc0)(_In_ int,
+		_In_ void*, _In_ int,
+		_In_ void*, _In_ int,
+		_In_ void*, _In_ int,
+		_In_ void*, _In_ int, 
+		_In_ void*, _In_ int, 
+		_In_ void*, _In_ int, 
+		_In_ void*, _In_ int, 
+		_In_ void*, _In_ int, 
+		_In_ char*,
+		_Out_ char*, _Out_ char*, _Out_ char*);
+	typedef char* (*fuc1)(_In_ char*, _In_ char*, _In_ char*, _In_ char*);
+	typedef char* (*fuc2)(_In_ void*);
+	typedef char* (*fuc3)(_Out_ const char*&, _In_ int);
+	typedef char* (*fuc4)(_Out_ const char*& , _In_ int, _In_ int);
+
+
+	fuc0 Master = (fuc0)GetProcAddress(h4H7LSCDll, "RunMaster");
+	fuc1 Init = (fuc1)GetProcAddress(h4H7LSCDll, "Initialize");
+	fuc2 run = (fuc2)GetProcAddress(h4H7LSCDll, "Run");
+	fuc3 GetFormat = (fuc3)GetProcAddress(h4H7LSCDll, "GetOutSetFileFormat");
+	fuc4 GetWrite = (fuc4)GetProcAddress(h4H7LSCDll, "GetOutNVMWrite");
+	
+
+// 	typedef void(*SetParam)(int nPedestal, int nWidth, int nHeight,
+// 		int nGr, int nR, int nB, int nGb, double dbAlpha, double dbSeed, BOOL bLensModeling, BOOL bScooby);
+// 	typedef void(*SetLensRI)(double RI_1, double RI_2, double RI_3, double RI_4,
+// 		double RI_5, double RI_6, double RI_7, double RI_8,
+// 		double RI_9, double RI_10, double RI_11);
+// 	typedef BOOL(*RunFunc)(BYTE *pRawBuffer, BYTE *pTrgBuffer, BOOL bSimulatedResults, CString strWorkDir, BOOL b2ndSet, BOOL *is_SINGULAR, BOOL *bSEED_overflow);
+// 	typedef BOOL(*SaveOTPfile)(char *szFile);
+// 	typedef BOOL(*SaveSRAMfile)(char *szFile);
+
+	if (NULL == h4H7LSCDll)
+	{
+		info.Format(_T("找不到LSCDLL_4H7.dll，请将此Dll放入程式目录:\n%s！"), DLLPath);
+		m_pInterface->AddLog(info, COLOR_RED);
+		return FALSE;
+	}
+
+	
+
+//	pResult = Master(30, 0, 0, 0, 0, 0, 0, 0, 0, (void**)pImgBuffer, 1, 0, 0, 0, 0, 0, 0, szBayerSetting,NULL,0,szBinaryData);
+// 	if (pResult == 0)
+// 	{
+// 		m_pInterface->AddLog(_T("RunMaster结果失败！"), COLOR_RED);
+// 		return FALSE;
+// 	}
+	BOOL SetGroup = 0;
+	if (m_LscGroup == 1)
+	{
+		SetGroup = FALSE;
+	}
+	else if (m_LscGroup == 2)
+	{
+		SetGroup = TRUE;
+	}
+	pResult = Init(NULL, szBayerSetting, 0, szBinaryData);
+	if (pResult == 0)
+		pResult = run(pImgBuffer[0]);
+	if (pResult == 0)
+		pResult = GetFormat(pSramData, 1);
+	if (pResult == 0)
+	{
+		BYTE lscFlag;
+		S5K4H7ReadOTPByte(0, 0x0A3D, &lscFlag, 1);
+		if (lscFlag == 0x00)
+		{
+			pResult = GetWrite(pOtpData, 1, 1);
+		}
+		else
+		{
+			pResult = GetWrite(pOtpData, 2, 1);
+		}
+	}
+	if (pResult == 0)
+	{
+		FILE *fpOut;
+		fpOut = fopen(szOtpFile, "wt");
+		fprintf(fpOut, "%s", pOtpData);
+		fclose(fpOut);
+	}
+	if (pResult != 0)
+	{
+		info.Format(_T("Fail to run 4H7 LSC!"), Path);
+		m_pInterface->AddLog(info, COLOR_RED);
+		return FALSE;
+	}
+	ParseLSCOTP(pOtpData, m_vecLSCOTP);
+	ParseLSCSram(pSramData);
+	S5K4H7_ApplySRAM();
+	Sleep(50);
+
+	m_vecLSCSram.clear();
+
+	m_pInterface->AddLog(_T("Get 4H8 Sensor LSC pass!"), COLOR_BLUE);
+	return TRUE;
+}
+
+BOOL COtpBase::ParseLSCOTP(const char *pOtpData, vector<REG> &vecLSCOTP)
+{
+	CString s, strOTP;
+	unsigned int i;
+	int pos, pos1;
+	CString strSram;
+	CString strEnter = _T("\n");
+	BYTE data;
+	unsigned long int sum = 0;
+	LscWriteChecksum = 0;
+	memset(&WriteLencData, 0, sizeof(WriteLencData));
+	vector<REG> vecReg;
+	int pageidx = 0;
+	vecLSCOTP.clear();
+
+	BYTE lscFlag;
+	S5K4H7ReadOTPByte(0, 0x0A3D, &lscFlag, 1);
+	//parse
+	unsigned int j = 0;
+	strOTP = pOtpData;
+	while (!strOTP.IsEmpty())
+	{
+		pos = strOTP.Find(strEnter, 0);
+		if (pos >= 0)
+		{
+			s = strOTP.Left(pos);
+
+			pos1 = s.Find(_T("p40"), 0);
+			if (pos1 >= 0)
+				s = s.Left(pos1);        // 去除注释字段
+
+			s.TrimLeft();
+			s.TrimRight();
+			if (s == "")
+			{
+				strOTP = strOTP.Mid(pos + 1);
+				strOTP.TrimLeft();
+				strOTP.TrimRight();
+				continue;       // 空字符串
+			}
+			ParseRegisters(s, vecReg);
+			if (vecReg[0].addr == 0x0A02) //page select 
+			{
+				pageidx = vecReg[0].value;
+			}
+			for (i = 0; i < vecReg.size(); i++)
+			{
+				vecLSCOTP.push_back(vecReg[i]);
+				if (j < LSCLEN && (pageidx>0) && (vecReg[i].addr >= 0x0A04) && (vecReg[i].addr <= 0x0A43))
+				{
+					data = (BYTE)(vecReg[i].value);
+					if (lscFlag == 0x00)
+					{
+						WriteLencData[j] = data;
+						j++;
+					}
+					else
+					{
+						if (pageidx == 6 && (vecReg[i].addr >= 0x0A2C))
+						{
+							WriteLencData[j] = data;
+							j++;
+						}
+						else if (pageidx > 6)
+						{
+							WriteLencData[j] = data;
+							j++;
+						}
+
+					}
+					sum += data;
+				}
+			}
+			vecReg.clear();
+
+			strOTP = strOTP.Mid(pos + 1);
+			strOTP.TrimLeft();
+			strOTP.TrimRight();
+		}
+		else
+			break;
+	}
+	//Write LscCheckSum
+	LscWriteChecksum =  sum % 0xff;
+	return true;
+}
+
+BOOL COtpBase::ParseLSCSram(const char *pSramData)
+{
+	unsigned int i;
+	int pos, pos1;
+	CString s;
+	REG regset;
+	vector<REG> vecReg;
+
+	m_vecLSCSram.clear();
+
+	CString strSram;
+	CString strEnter = _T("\n");
+	strSram = pSramData;
+	int count = 0;
+	while (!strSram.IsEmpty())
+	{
+		pos = strSram.Find(strEnter, 0);
+
+		if (pos == -1)
+		{
+			pos = 7;
+		}
+		if (pos >= 0)
+		{
+			s = strSram.Left(pos);
+
+			pos1 = s.Find(_T("//"), 0);
+			if (pos1 >= 0)
+				s = s.Left(pos1);        // 去除注释字段
+
+			s.TrimLeft();
+			s.TrimRight();
+			if (s == "")
+			{
+				strSram = strSram.Mid(pos + 1);
+				strSram.TrimLeft();
+				strSram.TrimRight();
+				continue;       // 空字符串
+			}
+
+			if (count < 0) //skip first line
+			{
+				count++;
+				strSram = strSram.Mid(pos + 1);
+				strSram.TrimLeft();
+				strSram.TrimRight();
+				continue;
+			}
+			count++;
+
+			ParseRegisters(s, vecReg);
+			for (i = 0; i < vecReg.size(); i++)
+			{
+				m_vecLSCSram.push_back(vecReg[i]);
+			}
+			vecReg.clear();
+
+			strSram = strSram.Mid(pos + 1);
+			strSram.TrimLeft();
+			strSram.TrimRight();
+		}
+		else
+			break;
+	}
+
+	return true;
+}
+
+BOOL COtpBase::ParseRegisters(CString s, vector<REG> &vecReg)
+{
+	int pos;//, reg, val;	
+	REG regset;
+	int addr;
+	int value;
+	int bits;
+
+	CString strReg, strMultiReg, strPause;
+	CString strAddr, strValue;
+	strReg = "s";
+	strMultiReg = "m";
+	strPause = "p";
+
+	vecReg.clear();
+	//find regsiter
+	pos = s.Find(strReg, 0);
+	if (pos >= 0)
+	{
+		s = s.Mid(pos + 1);
+
+		if (s.GetLength() < 10)
+		{
+			strAddr = s.Left(4);
+			strValue = s.Mid(4);
+
+			_stscanf(strAddr, _T("%x"), &addr);
+			_stscanf(strValue, _T("%x"), &value);
+
+			if (strValue.GetLength() > 2)
+			{
+				bits = 16;
+			}
+			else
+			{
+				bits = 8;
+			}
+
+			regset.addr = addr;
+			regset.value = value;
+			regset.bits = bits;
+			vecReg.push_back(regset);
+		}
+		else
+		{
+			strAddr = s.Left(4);
+			_stscanf(strAddr, _T("%x"), &addr);
+			regset.addr = addr;
+
+			s = s.Mid(4);
+
+			while (!s.IsEmpty())
+			{
+				strValue = s.Left(2);
+				_stscanf(strValue, _T("%x"), &value);
+				regset.value = value;
+
+				vecReg.push_back(regset);
+				regset.addr++;
+
+				s = s.Mid(2);
+			}
+
+
+		}
+
+		//return vecReg;
+	}
+
+	//find multi registers
+	pos = s.Find(strMultiReg, 0);
+	if (pos >= 0)
+	{
+		s = s.Mid(pos + 1);
+		strAddr = s.Left(4);
+		_stscanf(strAddr, _T("%x"), &addr);
+		regset.addr = addr;
+
+		s = s.Mid(4);
+		//pos1 = s.Find(strPause);
+		//s = s.Left(pos1);        
+		while (!s.IsEmpty())
+		{
+			strValue = s.Left(2);
+			_stscanf(strValue, _T("%x"), &value);
+			regset.value = value;
+
+			vecReg.push_back(regset);
+			regset.addr++;
+			//
+			s = s.Mid(2);
+		}
+	}
+
+	pos = s.Find(strPause, 0);
+	if (pos >= 0)
+	{
+		regset.addr = 0xffff;
+		regset.value = 100;
+		vecReg.push_back(regset);
+	}
+
+	return true;
+	//return vecReg;
+}
+
+BOOL COtpBase::S5K4H7_ApplySRAM()
+{
+	BOOL bResult = true;
+	for (int i = 0; i < m_vecLSCSram.size(); i++)
+	{
+		if (m_vecLSCSram[i].bits == 8)
+		{
+			bResult &= i2c_write_byte(m_vecLSCSram[i].addr, (BYTE)m_vecLSCSram[i].value);
+		}
+		else
+		{
+			bResult &= i2c_write(m_vecLSCSram[i].addr, (m_vecLSCSram[i].value));
+		}
+		Sleep(3); // must delay
+	}
+	Sleep(500);
+	bResult &= i2c_write_byte(0x3400, 0x00);
+	bResult &= i2c_write_byte(0x0B00, 0x01);
+	bResult &= i2c_write_byte(0x0100, 0x01);
+
+	return bResult;
+}
+
+void COtpBase::S5K4H7_SetDefaultAwb()
+{
+	USHORT defaultgain = m_wbGainReg.dataDefaultGain;
+
+	i2c_write_byte(0x3c0f, 0x00);
+
+	i2c_write(m_wbGainReg.addrGr, defaultgain);
+	i2c_write(m_wbGainReg.addrR, defaultgain);
+	i2c_write(m_wbGainReg.addrB, defaultgain);
+	i2c_write(m_wbGainReg.addrGb, defaultgain);
+
+	return;
+}
+
+
+
 void COtpBase::S5K4H8_ApplyAWB(tagAwbRatio wb,int GoldRG, int GoldBG)
 {
 	USHORT r_ratio, b_ratio;
@@ -8003,6 +8576,79 @@ void COtpBase::S5K4H8_ApplyAWB(tagAwbRatio wb,int GoldRG, int GoldBG)
 	i2c_write(0x6028,0x4000);
 	i2c_write(0x602a,0x3058);
 	i2c_write_byte(0x6f12,0x01);
+
+	i2c_write(0x0210, R_GAIN);
+	i2c_write(0x0212, B_GAIN);
+	i2c_write(0x020e, G_GAIN);
+	i2c_write(0x0214, G_GAIN);
+	msleep(500);
+
+	return;
+}
+
+void COtpBase::S5K4H7_ApplyAWB(tagAwbRatio wb, int GoldRG, int GoldBG)
+{
+	USHORT r_ratio, b_ratio;
+
+	r_ratio = 512 * (m_goldenrg) / (wb.rg);
+	b_ratio = 512 * (m_goldenbg) / (wb.bg);
+
+	if (!r_ratio || !b_ratio)
+	{
+		m_pInterface->AddLog(_T("请先Get AWB!"), COLOR_RED);
+		return;
+	}
+	USHORT R_GAIN;
+	USHORT B_GAIN;
+	USHORT Gr_GAIN;
+	USHORT Gb_GAIN;
+	USHORT G_GAIN;
+
+	USHORT GAIN_DEFAULT_VAL = 0x0100;
+	if (r_ratio >= 512)
+	{
+		if (b_ratio >= 512)
+		{
+			R_GAIN = (USHORT)(GAIN_DEFAULT_VAL * r_ratio / 512);
+			G_GAIN = GAIN_DEFAULT_VAL;
+			B_GAIN = (USHORT)(GAIN_DEFAULT_VAL * b_ratio / 512);
+		}
+		else
+		{
+			R_GAIN = (USHORT)(GAIN_DEFAULT_VAL * r_ratio / b_ratio);
+			G_GAIN = (USHORT)(GAIN_DEFAULT_VAL * 512 / b_ratio);
+			B_GAIN = GAIN_DEFAULT_VAL;
+		}
+	}
+	else
+	{
+		if (b_ratio >= 512)
+		{
+			R_GAIN = GAIN_DEFAULT_VAL;
+			G_GAIN = (USHORT)(GAIN_DEFAULT_VAL * 512 / r_ratio);
+			B_GAIN = (USHORT)(GAIN_DEFAULT_VAL *  b_ratio / r_ratio);
+
+		}
+		else
+		{
+			Gr_GAIN = (USHORT)(GAIN_DEFAULT_VAL * 512 / r_ratio);
+			Gb_GAIN = (USHORT)(GAIN_DEFAULT_VAL * 512 / b_ratio);
+
+			if (Gr_GAIN >= Gb_GAIN)
+			{
+				R_GAIN = GAIN_DEFAULT_VAL;
+				G_GAIN = (USHORT)(GAIN_DEFAULT_VAL * 512 / r_ratio);
+				B_GAIN = (USHORT)(GAIN_DEFAULT_VAL * b_ratio / r_ratio);
+			}
+			else
+			{
+				R_GAIN = (USHORT)(GAIN_DEFAULT_VAL * r_ratio / b_ratio);
+				G_GAIN = (USHORT)(GAIN_DEFAULT_VAL * 512 / b_ratio);
+				B_GAIN = GAIN_DEFAULT_VAL;
+			}
+		}
+	}
+	i2c_write_byte(0x3c0f, 0x00);
 
 	i2c_write(0x0210, R_GAIN);
 	i2c_write(0x0212, B_GAIN);
@@ -8196,6 +8842,9 @@ void COtpBase::OV13855_SetDefaultAwb()
 
 	return;
 }
+
+
+
 
 ////////////////////////////////////Hi1332//////////////////////////////////////
 void COtpBase::HI1332InitOTP()

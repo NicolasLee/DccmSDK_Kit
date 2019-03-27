@@ -16,6 +16,7 @@
 #include "OtpCheck_FYD8853M.h"
 #include "OtpCheck_CMK8440.h"
 #include "OtpCheck_SAA30L2K.h"
+#include "OtpCheck_CB801C.h"
 
 class OtpCheck_Inspection :public Inspection //OtpCheck_Inspection里的文件除非必要，尽量不做改动。
 {

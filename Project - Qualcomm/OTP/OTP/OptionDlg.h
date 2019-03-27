@@ -4,7 +4,18 @@
 // OptionDlg 对话框
 #include "resource.h"
 #include "OtpBase.h"
+#include "Page1.h"
+#include "Page2.h"
+#include "Page3.h"
+#include "Page4.h"
+#include "Page5.h"
+#include "Page6.h"
+#include "Page7.h"
+
+
 class OTP_Inspection;
+
+
 
 class OptionDlg : public CDialog
 {
@@ -53,6 +64,24 @@ public:
 
 public:
 	OTP_Inspection* m_pInspection;
+
+	//通用烧录
+	CTabCtrl m_tab;
+	BOOL m_General;
+	int m_Brunto;
+	BYTE m_SlaveID;
+	BOOL m_spage;
+	int m_totalgroup;
+	CPage1 m_page1;
+	CPage2 m_page2;
+	CPage3 m_page3;
+	CPage4 m_page4;
+	CPage5 m_page5;
+	CPage6 m_page6;
+	CPage7 m_page7;
+	CDialog* pDialog[7];
+	int m_CurSelTab;
+	void OnInittab();
 
 	UINT m_sleeptime;
 	BOOL m_ExposureEn;	
@@ -145,4 +174,12 @@ public:
 
 	CComboBox m_comboProjName;
 	eProjectName m_projName;
+	afx_msg void OnTcnSelchangeTab1(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnBnClickedCheckGeneral();
+	afx_msg void OnBnClickedEneeprom();
+
+	CString GetFile();
+	CString GetSensorConfigString(CString strSection, CString strKey, CString strFile, CString strDefault);
+	int SetSensorConfigInt(CString strSection, CString strKey, int data, CString strFile);
+	int SetSensorConfigString(CString strSection, CString strKey, CString strData, CString strFile);
 };

@@ -488,6 +488,13 @@ int OTP_Inspection::LoadOption()
 	pDlg->m_QUALPDAFitem = ReadConfigInt(_T("QUALPDAFVersion"), 0);
 	pDlg->m_MTK_INI_Name = ReadConfigString(_T("MTK_INI_NAME"), _T(".ini")); 
 	pDlg->m_Qual_INI_Name = ReadConfigString(_T("Qual_INI_NAME"), _T(".txt")); 
+
+	pDlg->m_General = ReadConfigInt(_T("General"), 0);
+	pDlg->m_Brunto = ReadConfigInt(_T("ENEEPROM"), 0);
+	CString s = ReadConfigString(_T("SlaveID"), 0);
+	_stscanf(s, _T("%x"), &pDlg->m_SlaveID);	
+	pDlg->m_totalgroup = ReadConfigInt(_T("totalgroup"), 0);
+	pDlg->m_spage = ReadConfigInt(_T("spage"), 0);
 	//.......................
 	return Inspection::LoadOption();
 }
@@ -580,6 +587,14 @@ int OTP_Inspection::SaveOption()
 	WriteConfigInt(_T("GoldenRGain      "),pDlg->m_goldenrg);
 	WriteConfigInt(_T("GoldenBGain      "),pDlg->m_goldenbg);
 	WriteConfigInt(_T("GoldenGGain      "),pDlg->m_goldengg);
+
+	WriteConfigInt(_T("General      "), pDlg->m_General);
+	WriteConfigInt(_T("ENEEPROM      "), pDlg->m_Brunto);
+	CString s;
+	s.Format(_T("%x"), pDlg->m_SlaveID);
+	WriteConfigString(_T("SlaveID      "), s);
+	WriteConfigInt(_T("totalgroup     "), pDlg->m_totalgroup);
+	WriteConfigInt(_T("spage     "), pDlg->m_spage);
 
 	MatchProjName(pDlg->m_projName);
 	pDlg->PostMessage(WM_COMMAND, MAKEWPARAM(IDC_COMBO_PROJ_NAME, CBN_SELCHANGE), (LPARAM)pDlg->m_hWnd);
@@ -680,6 +695,12 @@ int OTP_Inspection::SaveOption()
 	m_pOtp->m_Qual_INI_Name = pDlg->m_Qual_INI_Name;
 	m_pOtp->m_LscTarget = pDlg->m_lscTarget;
 	m_pOtp->m_LscGroup = pDlg->m_lscGroup;
+
+	m_pOtp->m_General = pDlg->m_General;
+	m_pOtp->m_Brunto = pDlg->m_Brunto;
+	m_pOtp->m_SlaveID = pDlg->m_SlaveID;
+	m_pOtp->m_spage = pDlg->m_spage;
+	m_pOtp->m_totalgroup = pDlg->m_totalgroup;
 
 	m_pOtp->PreSubclassOtp();
 
@@ -931,6 +952,10 @@ void OTP_Inspection::MatchProjName(eProjectName projName)
 	case PN_SAA3_0L2K:
 		m_pOtp = new COtpSAA3_0L2K;
 		szName = L"SAA3_0L2K"; // 华天项目
+		break;
+	case PN_CB801C:
+		m_pOtp = new COtpCB801C;
+		szName = L"CB801C"; // 华天项目
 		break;
 	default:
 		m_pInterface->AddLog(L"未知项目名称，请先选择项目名!");

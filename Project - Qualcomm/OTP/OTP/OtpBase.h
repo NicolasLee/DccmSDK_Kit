@@ -65,6 +65,8 @@
 
 #define DCC_LINEARITY_LEVEL_THRESHOLD 0.1
 
+#define LSCLEN 360
+
 //////////////////////////////////////////////
 // DCC VALIDATION TOLERANCE 
 #define DCC_VAL_TOL_SPARSE \
@@ -223,6 +225,193 @@ typedef struct _dll_config_t_l5 {
 	float  dpd_max_sensor_gain;
 } dll_config_t_l5;
 
+typedef struct
+{
+	unsigned short addr;
+	unsigned short value;
+	unsigned short bits; //new
+}REG;
+
+typedef struct _sensor_R {
+	int8_t cal_version;
+	int8_t chart_type;
+	int8_t verify_type;
+	int8_t gain_map_height;
+	int8_t gain_map_width;
+	int8_t gain_map_q_fmt;
+	int8_t dcc_map_height;
+	int8_t dcc_map_width;
+	int8_t dcc_map_q_fmt;
+	float dcc_fir[31];
+	int8_t dcc_fir_sz;
+	int8_t dcc_stack_sz;
+	int8_t dcc_search_range;
+	int8_t dcc_fit_exclusion;
+	int8_t dcc_min_pd_range;
+	float  dcc_map_overlap;
+	float  dcc_tolerance_table[48];
+	float  dcc_linearity_level_theshold;
+	int8_t dpd_pixel_unit;
+	float  dpd_min_sensor_gain;
+	float  dpd_max_sensor_gain;
+} sensor_R;
+
+typedef struct _sensor_W {
+	int8_t cal_version;
+	int8_t chart_type;
+	int8_t verify_type;
+	int8_t gain_map_height;
+	int8_t gain_map_width;
+	int8_t gain_map_q_fmt;
+	int8_t dcc_map_height;
+	int8_t dcc_map_width;
+	int8_t dcc_map_q_fmt;
+	float dcc_fir[31];
+	int8_t dcc_fir_sz;
+	int8_t dcc_stack_sz;
+	int8_t dcc_search_range;
+	int8_t dcc_fit_exclusion;
+	int8_t dcc_min_pd_range;
+	float  dcc_map_overlap;
+	float  dcc_tolerance_table[48];
+	float  dcc_linearity_level_theshold;
+	int8_t dpd_pixel_unit;
+	float  dpd_min_sensor_gain;
+	float  dpd_max_sensor_gain;
+} sensor_W;
+
+typedef struct _ID_addr {
+	int8_t cal_version;
+	int8_t chart_type;
+	int8_t verify_type;
+	int8_t gain_map_height;
+	int8_t gain_map_width;
+	int8_t gain_map_q_fmt;
+	int8_t dcc_map_height;
+	int8_t dcc_map_width;
+	int8_t dcc_map_q_fmt;
+	float dcc_fir[31];
+	int8_t dcc_fir_sz;
+	int8_t dcc_stack_sz;
+	int8_t dcc_search_range;
+	int8_t dcc_fit_exclusion;
+	int8_t dcc_min_pd_range;
+	float  dcc_map_overlap;
+	float  dcc_tolerance_table[48];
+	float  dcc_linearity_level_theshold;
+	int8_t dpd_pixel_unit;
+	float  dpd_min_sensor_gain;
+	float  dpd_max_sensor_gain;
+} ID_addr;
+
+typedef struct _AWB_addr {
+	int8_t cal_version;
+	int8_t chart_type;
+	int8_t verify_type;
+	int8_t gain_map_height;
+	int8_t gain_map_width;
+	int8_t gain_map_q_fmt;
+	int8_t dcc_map_height;
+	int8_t dcc_map_width;
+	int8_t dcc_map_q_fmt;
+	float dcc_fir[31];
+	int8_t dcc_fir_sz;
+	int8_t dcc_stack_sz;
+	int8_t dcc_search_range;
+	int8_t dcc_fit_exclusion;
+	int8_t dcc_min_pd_range;
+	float  dcc_map_overlap;
+	float  dcc_tolerance_table[48];
+	float  dcc_linearity_level_theshold;
+	int8_t dpd_pixel_unit;
+	float  dpd_min_sensor_gain;
+	float  dpd_max_sensor_gain;
+} AWB_addr;
+
+typedef struct _LSC_addr {
+	int8_t cal_version;
+	int8_t chart_type;
+	int8_t verify_type;
+	int8_t gain_map_height;
+	int8_t gain_map_width;
+	int8_t gain_map_q_fmt;
+	int8_t dcc_map_height;
+	int8_t dcc_map_width;
+	int8_t dcc_map_q_fmt;
+	float dcc_fir[31];
+	int8_t dcc_fir_sz;
+	int8_t dcc_stack_sz;
+	int8_t dcc_search_range;
+	int8_t dcc_fit_exclusion;
+	int8_t dcc_min_pd_range;
+	float  dcc_map_overlap;
+	float  dcc_tolerance_table[48];
+	float  dcc_linearity_level_theshold;
+	int8_t dpd_pixel_unit;
+	float  dpd_min_sensor_gain;
+	float  dpd_max_sensor_gain;
+} LSC_addr;
+
+typedef struct _AF_addr {
+	int8_t cal_version;
+	int8_t chart_type;
+	int8_t verify_type;
+	int8_t gain_map_height;
+	int8_t gain_map_width;
+	int8_t gain_map_q_fmt;
+	int8_t dcc_map_height;
+	int8_t dcc_map_width;
+	int8_t dcc_map_q_fmt;
+	float dcc_fir[31];
+	int8_t dcc_fir_sz;
+	int8_t dcc_stack_sz;
+	int8_t dcc_search_range;
+	int8_t dcc_fit_exclusion;
+	int8_t dcc_min_pd_range;
+	float  dcc_map_overlap;
+	float  dcc_tolerance_table[48];
+	float  dcc_linearity_level_theshold;
+	int8_t dpd_pixel_unit;
+	float  dpd_min_sensor_gain;
+	float  dpd_max_sensor_gain;
+} AF_addr;
+
+typedef struct _PDAF1_addr {
+	int8_t cal_version;
+	int8_t chart_type;
+	int8_t verify_type;
+	int8_t gain_map_height;
+	int8_t gain_map_width;
+	int8_t gain_map_q_fmt;
+	int8_t dcc_map_height;
+	int8_t dcc_map_width;
+	int8_t dcc_map_q_fmt;
+	float dcc_fir[31];
+	int8_t dcc_fir_sz;
+	int8_t dcc_stack_sz;
+	int8_t dcc_search_range;
+	int8_t dcc_fit_exclusion;
+	int8_t dcc_min_pd_range;
+	float  dcc_map_overlap;
+	float  dcc_tolerance_table[48];
+	float  dcc_linearity_level_theshold;
+	int8_t dpd_pixel_unit;
+	float  dpd_min_sensor_gain;
+	float  dpd_max_sensor_gain;
+} PDAF1_addr;
+
+typedef struct _OTP_General {	
+	_sensor_R sensorR;
+	_sensor_W sensorW;
+	_ID_addr IDaddr;
+	_AWB_addr AWBaddr;
+	_LSC_addr LSCaddr;
+	_AF_addr AFaddr;
+	_PDAF1_addr PDAF1addr;
+} OTP_General;
+
+
+
 enum eProjectName	//项目名称 PN_
 {
 	PN_NULL = -1,
@@ -238,6 +427,7 @@ enum eProjectName	//项目名称 PN_
 	PN_HLT7109,
 	PN_HLT7025,
 	PN_SAA3_0L2K,
+	PN_CB801C,
 };
 
 enum PDAF_SIZE	
@@ -295,6 +485,15 @@ public:
 	DccmControl_Interface* m_pInterface;
 	CString m_szStr;
 
+
+	vector<REG> m_vecLSCSram;
+	vector<REG> m_vecLSCOTP;
+	BYTE WriteLencData[LSCLEN];
+	BYTE ReadLencData[LSCLEN];
+	BYTE LscWriteChecksum;
+	BYTE LscReadChecksum;
+	BYTE LscChecksum[2]; //读出累加CheckSum
+
 	void SetRoi(CRect &roi, UINT width, UINT height, BYTE roiCalcMode, UINT x=0, UINT y=0, UINT roiWidth=0, UINT roiHeight=0);
 	void FormatRoiRect(CRect &rt, UINT width, UINT height);
 	BOOL CheckEqual(BYTE *data1, BYTE *data2, int num);
@@ -335,6 +534,7 @@ public:
 	void S5K5E8_ApplyAWB(tagAwbRatio wb,int GoldRG, int GoldBG);
 	void S5K3L8_ApplyAWB(tagAwbRatio wb,int GoldRG, int GoldBG);
 	void S5K4H8_ApplyAWB(tagAwbRatio wb,int GoldRG, int GoldBG);
+	void S5K4H7_ApplyAWB(tagAwbRatio wb, int GoldRG, int GoldBG);
 	void OV13855_ApplyAWB(tagAwbRatio wb,int GoldRG, int GoldBG);
 	void HI1332_ApplyAWB(tagAwbRatio wb,int GoldRG, int GoldBG);
 	///////////////////////////////LSC/////////////////////////////////////////
@@ -366,6 +566,13 @@ public:
 	//S5K4H8
 	BOOL S5K4H8_GetLSC(void);
 	BOOL S5K4H8_ApplySRAM(void);
+
+	//S5K4H7
+	BOOL S5K4H7_GetLSC(void);
+	BOOL S5K4H7_ApplySRAM(void);
+	BOOL ParseLSCOTP(const char *pOtpData, vector<REG> &vecLSCOTP);
+	BOOL ParseLSCSram(const char *pSramData);
+	BOOL ParseRegisters(CString s, vector<REG> &vecReg);
 
 	//HI1332
 	BOOL HI1332_GetLSC(void);
@@ -451,6 +658,14 @@ public:
 	BOOL S5K4H8WriteOTPpage(int Page, USHORT address,BYTE *Data, int length);
 	void S5K4H8_SetDefaultAwb(void);
 
+
+	//////////////////////////////////4H7/////////////////////////////////////
+	BOOL S5K4H7ReadOTPpage(int pageidx, BYTE *pdata);
+	BOOL S5K4H7ReadOTPByte(UINT Page, USHORT startAddr, BYTE *data, int length);
+	BOOL S5K4H7WriteMultiByte(UINT Page, USHORT startAddr, BYTE *data, int nstart, int length);
+	BOOL S5K4H7WriteSingleByte(UINT Page, USHORT startAddr, BYTE data);
+	void S5K4H7_SetDefaultAwb(void);
+
 	///////////////////////////////OV13855///////////////////////////////////////////
 	void OV13855_SetDefaultAwb(void);
 
@@ -523,10 +738,10 @@ public:	//
 	EepromStruct m_Eeprom;
 	void SetEepromParams(EepromStruct *eeprom);
 
-	BOOL eeprom_write(BYTE addr, USHORT reg, BYTE val);
-	BOOL eeprom_read(BYTE addr, USHORT reg, BYTE *pval);
-	BOOL eeprom_multi_write(BYTE addr, USHORT reg, BYTE *pval, USHORT length);
-	BOOL eeprom_multi_read(BYTE addr, USHORT reg, BYTE *pval, USHORT length);
+	BOOL eeprom_write(USHORT addr, USHORT reg, BYTE val);
+	BOOL eeprom_read(USHORT addr, USHORT reg, BYTE *pval);	
+	BOOL eeprom_multi_write(USHORT addr, USHORT reg, BYTE *pval, USHORT length);
+	BOOL eeprom_multi_read(USHORT addr, USHORT reg, BYTE *pval, USHORT length);
 
 	BOOL eeprom_write(USHORT reg, BYTE val);
 	BOOL eeprom_read(USHORT reg, BYTE *pval);	
@@ -537,12 +752,12 @@ public:	//
 	BOOL i2c_read(USHORT reg, USHORT *pval);
 	BOOL i2c_write_byte(USHORT reg, BYTE val);
 	BOOL i2c_read_byte(USHORT reg, BYTE *pval);
-	BOOL i2c_multi_write(BYTE reg, BYTE *pval, USHORT length);
-	BOOL i2c_multi_read(BYTE reg, BYTE *pval, USHORT length, BOOL noStop = FALSE);
+	BOOL i2c_multi_write(USHORT reg, BYTE *pval, USHORT length);
+	BOOL i2c_multi_read(USHORT reg, BYTE *pval, USHORT length, BOOL noStop=FALSE);
 	BOOL i2c_write(USHORT addr, USHORT reg, USHORT val, BYTE mode);
 	BOOL i2c_read(USHORT addr, USHORT reg, USHORT *pval, BYTE mode);
-	BOOL i2c_multi_write(BYTE addr, USHORT reg, BYTE regSize, BYTE* pval, USHORT length);
-	BOOL i2c_multi_read(BYTE addr, USHORT reg, BYTE regSize, BYTE* pval, USHORT length, BOOL noStop = FALSE);
+	BOOL i2c_multi_write(USHORT addr, USHORT reg, BYTE regSize, BYTE* pval, USHORT length);
+	BOOL i2c_multi_read(USHORT addr, USHORT reg, BYTE regSize, BYTE* pval, USHORT length, BOOL noStop=FALSE);
 
 	CString info;
 
@@ -672,7 +887,17 @@ public:	//
 	//Hi1332
 	BYTE Hi1332_LSCData[867];
 
+	//4H7
+	BYTE S5K4H7_LSCData[360];
+
 	//数据保存
 	int Applyawbdata[7];
 	CString m_OTPType;
+
+	//通用烧录
+	BOOL m_General;
+	int m_Brunto;
+	BYTE m_SlaveID;
+	BOOL m_spage;
+	int m_totalgroup;
 };
