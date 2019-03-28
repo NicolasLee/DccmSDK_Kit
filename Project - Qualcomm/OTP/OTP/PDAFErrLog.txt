@@ -1,4 +1,0 @@
-[Tue Mar 14 14:20:38 2017][s1][In] Input image's intensity is out of range. Check exposure time or light source. [L:25][R:24][min:60][max:230][ROI(X,Y,W,H):1420,1055,1376,1024]
-[Tue Mar 14 14:20:38 2017][s1][In] Input image's intensity is out of range. Check exposure time or light source. [L:20][R:19][min:40][max:230][ROI(X,Y,W,H):28,31,1376,1024]
-[Tue Mar 14 14:20:38 2017][s1][In] Input image's intensity is out of range. Check exposure time or light source. [L:20][R:19][min:40][max:230][ROI(X,Y,W,H):28,31,1376,1024]
-[Tue Mar 14 14:30:18 2017][s2][out] Not Step2 Data
