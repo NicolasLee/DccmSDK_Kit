@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<root>
+  <width>3280</width>
+  <height>2464</height>
+  <bits>16</bits>
+  <mask>1023</mask>
+  <pedestal>64</pedestal>
+  <bayerOrder>grbg</bayerOrder>
+</root>

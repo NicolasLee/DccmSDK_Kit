@@ -1,0 +1,11 @@
+version=2;
+size== 1556480,width=1024,height= 760,type=GRBG,depth=12;
+size==24224512,width=4016,height=3016,type=GRBG,depth=10;
+size==10077696,width=2592,height=1944,type=RCCB,depth=10;
+size==15980544,width=3264,height=2448,type=CRBC,depth=10;
+size==24000000,width=4000,height=3000,type=CRBC,depth=10;
+size==26257920,width=4208,height=3120,type=GRBG,depth=10;
+size==8087472,width=2316,height=1746,type=GRBG,depth=10;
+size==32349888,width=4632,height=3492,type=GRBG,depth=10;
+size==4935680,width=1280,height=964,type=GRBG,depth=20;
+

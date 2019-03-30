@@ -4,6 +4,7 @@
 # Added by Nicolsas Lee
 # ignore folder
 GeneratedFiles/
+.svn/
 
 # Added by Nicolas Lee
 *.aps

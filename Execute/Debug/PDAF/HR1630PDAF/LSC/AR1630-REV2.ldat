@@ -1,0 +1,2737 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="sensor_desc.xsl"?>
+<!--
+****************************************************************************************************
+*   If you are reading this, you are not taking advantage of the XML Stylesheet                    *
+*                                                                                                  *
+*   Instructions for viewing XML LDAT file can be found in:                                        *
+*   C:\Aptina Imaging [Dev]\sensor_data\!DevWare XML-formatted SDAT User Guide.exe                 *
+****************************************************************************************************
+-->
+<sensor name="AR1630" version="2" part_number="AR1630" version_name="REV2">
+	<registers>
+	<reg name="MODE_SELECT">
+		<long_desc>This bit is an alias of R0x301A-B[2].</long_desc>
+	</reg>
+	<reg name="IMAGE_ORIENTATION">
+		<bitfield name="IMAGE_ORIENTATION_HORIZ_MIRROR">
+			<long_desc>This register field is an alias of R0x3040[14]</long_desc>
+		</bitfield>
+		<bitfield name="IMAGE_ORIENTATION_VERT_FLIP">
+			<long_desc>This register field is an alias of R0x3040[15]</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="SOFTWARE_RESET">
+		<long_desc>This register field is an alias of R0x301A-B[0].</long_desc>
+	</reg>
+	<reg name="GROUPED_PARAMETER_HOLD">
+		<long_desc>This register field is an alias of R0x301A-B[15].</long_desc>
+	</reg>
+	<reg name="CCP_DATA_FORMAT">
+		<bitfield name="COMPRESSED_DATA_FORMAT">
+			<long_desc>The bit-width of the compressed pixel data Legal values:  [0, 15].</long_desc>
+		</bitfield>
+		<bitfield name="RAW_DATA_FORMAT">
+			<long_desc>The bit-width of the uncompressed pixel data Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="COARSE_INTEGRATION_TIME">
+		<long_desc>Integration time programmed in units of line_length_pck. This register is an alias of R0x3012-3. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="VT_PIX_CLK_DIV">
+		<long_desc>pixel clock divider P2 Legal values:  [0:31].</long_desc>
+	</reg>
+	<reg name="VT_SYS_CLK_DIV">
+		<bitfield name="VT_SYS_CLK_DIV_1">
+			<long_desc>pixel clock divider P1 Legal values:  [0:31].</long_desc>
+		</bitfield>
+		<bitfield name="VT_SYS_CLK_DIV_2">
+			<long_desc>esc clock divider P5 Legal values:  [1:16].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PRE_PLL_CLK_DIV">
+		<bitfield name="PRE_PLL_CLK_DIV_1">
+			<long_desc>pre pll clock divider for clk pixel N Legal values:  [0:63].</long_desc>
+		</bitfield>
+		<bitfield name="PRE_PLL_CLK_DIV_2">
+			<long_desc>pre pll clock divider for clk op N Legal values:  [0:63].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PLL_MULTIPLIER">
+		<bitfield name="PLL_MULTIPLIER_1">
+			<long_desc>pll multiplier for clk pixel M Legal values:  [0:255].</long_desc>
+		</bitfield>
+		<bitfield name="PLL_MULTIPLIER_2">
+			<long_desc>pll multiplier for clk op M Legal values:  [0:255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="OP_PIX_CLK_DIV">
+		<long_desc>op clock divider P4 Legal values:  [0:31].</long_desc>
+	</reg>
+	<reg name="OP_SYS_CLK_DIV">
+		<long_desc>op clock divider P3 Legal values:  [0:31].</long_desc>
+	</reg>
+	<reg name="MIPI_INT_PHY_PLL">
+		<bitfield name="PHY_PLL_CM">
+			<long_desc>Control M divider of the Phy PLL (must be the encoded value) Legal values:  [0:255].</long_desc>
+		</bitfield>
+		<bitfield name="PHY_PLL_CN">
+			<long_desc>Control N divider of the Phy PLL (must be the encoded value) Legal values:  [0:31].</long_desc>
+		</bitfield>
+		<bitfield name="PD_TX_PLL">
+			<long_desc>pd_tx_pll</long_desc>
+		</bitfield>
+		<bitfield name="PHY_PLL_CO">
+			<long_desc>Control O divider of the Phy PLL (must be the encoded value) Legal values:  [0:3].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PLL_CTRL">
+		<bitfield name="PHY_PLL_RSEL">
+			<long_desc>Loop filter resistance selection Legal values:  [0:3].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="FRAME_LENGTH_LINES">
+		<long_desc>The number of complete lines (rows) in the output frame. This includes visible lines and vertical blanking lines. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="LINE_LENGTH_PCK">
+		<long_desc>The number of pixel clock periods in one line (row) time. This includes visible pixels and horizontal blanking time. Need to set twice value of the number of pixel clock in one line row time. Legal values:  [0, 65520].</long_desc>
+	</reg>
+	<reg name="X_ADDR_START">
+		<long_desc>The first column of visible pixels to be read out (not counting any dark columns that may be read). To move the image window, set this register to the starting X value. Legal values:  [0, 4646].</long_desc>
+	</reg>
+	<reg name="Y_ADDR_START">
+		<long_desc>The first row of visible pixels to be read out (not counting any dark rows that may be read). To move the image window, set this register to the starting Y value. Legal values:  [0, 3506].</long_desc>
+	</reg>
+	<reg name="X_ADDR_END">
+		<long_desc>The last column of visible pixels to read out. Legal values:  [1, 4647].</long_desc>
+	</reg>
+	<reg name="Y_ADDR_END">
+		<long_desc>The last row of visible pixels to be read out. Legal values:  [1, 3507].</long_desc>
+	</reg>
+	<reg name="X_OUTPUT_SIZE">
+		<long_desc>Set X output size of displayed image. Bit[0] is read-only 0. The default value of this register is set to be consistent with the default values of x_addr_end and x_addr_start. Legal values:  [0, 4648].</long_desc>
+	</reg>
+	<reg name="Y_OUTPUT_SIZE">
+		<long_desc>Set Y output size of the displayed image. The default value of this register is set to be consistent with the default values of y_addr_end and y_addr_start. Legal values:  [0, 3508].</long_desc>
+	</reg>
+	<reg name="X_ODD_INC">
+		<long_desc>This register field is an alias of R0x3040[9:6] Legal values:  [1, 3].</long_desc>
+	</reg>
+	<reg name="Y_ODD_INC">
+		<long_desc>This register field is an alias of R0x3040[5:0] Legal values:  [1, 15].</long_desc>
+	</reg>
+	<reg name="SCALING_MODE">
+		<long_desc>0: Disable scaler 1: Enable horizontal scaling 2: Enable horizontal and vertical scaling 3: Reserved Legal values:  [0, 2].</long_desc>
+	</reg>
+	<reg name="SPATIAL_SAMPLING">
+		<long_desc>0: Bayer sampling 1: Co-sited sampling</long_desc>
+	</reg>
+	<reg name="SCALE_M">
+		<long_desc>scale factor M(horizontal scale factor) Legal values:  [16, 128].</long_desc>
+	</reg>
+	<reg name="SECOND_RESIDUAL">
+		<long_desc>SECOND_RESIDUAL</long_desc>
+		<bitfield name="SECOND_RESIDUAL_O">
+			<long_desc>Second slice residual for odd channel Legal values:  [0, 127].</long_desc>
+		</bitfield>
+		<bitfield name="SECOND_RESIDUAL_E">
+			<long_desc>Second slice residual for even channel Legal values:  [0, 127].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="SECOND_CROP">
+		<long_desc>SECOND_CROP</long_desc>
+		<bitfield name="SECOND_CROP_O">
+			<long_desc>Second slice crop for odd channel Legal values:  [0, 63].</long_desc>
+		</bitfield>
+		<bitfield name="SECOND_CROP_E">
+			<long_desc>Second slice crop for even channel Legal values:  [0, 63].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="CHIP_VERSION_REG">
+		<long_desc>This register is an alias of R0x3000-1. Read-only. Can be made read/write by clearing R0x301A-B[3]. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="Y_ADDR_START_">
+		<long_desc>The first row of visible pixels to be read out (not counting any dark rows that may be read). To move the image window, set this register to the starting Y value. Writes are synchronized to frame boundaries.  Causes a Bad Frame if written.  Legal values:  [0, 3506].</long_desc>
+	</reg>
+	<reg name="X_ADDR_START_">
+		<long_desc>The first column of visible pixels to be read out (not counting any dark columns that may be read). To move the image window, set this register to the starting X value. Writes are synchronized to frame boundaries.  Causes a Bad Frame if written.  Legal values:  [0, 4646].</long_desc>
+	</reg>
+	<reg name="Y_ADDR_END_">
+		<long_desc>The last row of visible pixels to be read out. Writes are synchronized to frame boundaries.  Causes a Bad Frame if written.  Legal values:  [1, 3507].</long_desc>
+	</reg>
+	<reg name="X_ADDR_END_">
+		<long_desc>The last column of visible pixels to read out. Writes are synchronized to frame boundaries.  Causes a Bad Frame if written.  Legal values:  [1, 4647].</long_desc>
+	</reg>
+	<reg name="FRAME_LENGTH_LINE_">
+		<long_desc>The number of complete lines (rows) in the output frame. This includes visible lines and vertical blanking lines. Writes are synchronized to frame boundaries.  Causes a Bad Frame if written.  Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="LINE_LENGTH_PCK_">
+		<long_desc>The number of pixel clock periods in one line (row) time. This includes visible pixels and horizontal blanking time. Writes are synchronized to frame boundaries.  Causes a Bad Frame if written.  Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="COARSE_INTEGRATION_TIME_">
+		<long_desc>Integration time 1 specified in multiples of line_length_pck_. Writes are synchronized to frame boundaries.  Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="EXTRA_DELAY">
+		<long_desc>extra delay Extra blanking inserted between frames. A programmed value of N increases the vertical blanking time by N pixel clock periods. Can be used to get a more exact frame rate. May affect the integration times of parts of the image when the integration time is less than 1 frame Writes are synchronized to frame boundaries.  Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="RESET_REGISTER">
+		<bitfield name="RESET">
+			<long_desc>This bit always reads as 0. Setting this bit initiates a reset sequence: the frame being generated will be truncated.</long_desc>
+		</bitfield>
+		<bitfield name="RESTART">
+			<long_desc>This bit always reads as 0. Setting this bit causes the sensor to truncate the current frame at the end of the current row and start resetting (integrating) the first row. The delay before the first valid frame is read out is equal to the integration time.</long_desc>
+		</bitfield>
+		<bitfield name="STREAM">
+			<long_desc>Setting this bit places the sensor in streaming mode. Clearing this bit places the sensor in a low power mode. The result of clearing this bit depends upon the operating mode of the sensor. Entry and exit from streaming mode can also be controlled from the signal interface.</long_desc>
+		</bitfield>
+		<bitfield name="LOCK_REG">
+			<long_desc>Many SMIA registers that are specified as read-only are actually implemented as read/write registers. Clearing this bit allows such registers to be written.</long_desc>
+		</bitfield>
+		<bitfield name="RESET_LPF_ENABLE">
+			<long_desc>to prevent reset from POR glitch, enable digital low pass filter</long_desc>
+		</bitfield>
+		<bitfield name="GPI_EN">
+			<long_desc>0: the primary input buffers associated with the GPI0, GPI1, GPI2, GPI3 inputs are powered down and the GPI cannot be used. 1: the input buffers are enabled and can be read through R0x3026-7.</long_desc>
+		</bitfield>
+		<bitfield name="MASK_BAD">
+			<long_desc>0: The sensor will produce bad (corrupted) frames as a result of some register changes. 1: Bad (corrupted) frames are masked within the sensor by extending the vertical blanking time for the duration of the bad frame.</long_desc>
+		</bitfield>
+		<bitfield name="RESTART_BAD">
+			<long_desc>Restart at bad frame 1: A restart is forced any time a bad frame is detected. This can shorten the delay when waiting for a good frame, since the delay for masking out a bad frame will be the integration time rather than the full-frame time.</long_desc>
+		</bitfield>
+		<bitfield name="PLL_ALWAYS_ON">
+			<long_desc>set to 1, to make PLL always on to shorten the state transaction from standby to streaming it is used in 3D support mode</long_desc>
+		</bitfield>
+		<bitfield name="SMIA_DIS">
+			<long_desc>This bit disables the SMIA high-speed serializer and differential output buffers.</long_desc>
+		</bitfield>
+		<bitfield name="FAST_INTEGRATION_TIME_UPDATE">
+			<long_desc>1= integration time could be updated right next frame 0= integration time update is done conventionally</long_desc>
+		</bitfield>
+		<bitfield name="GAIN_UPDATE_ALL_FRAME">
+			<long_desc>with this bit set, gain is updated at next frame regardless integration time update. With this bit reset, gain is synced with integration time update.</long_desc>
+		</bitfield>
+		<bitfield name="GROUPED_PARAMETER_HOLD_CTL">
+			<long_desc>Group parameter hold 0: insert of many of the registers is synchronized to frame start. 1: Inhibit register inserts; register changes will remain pending until this bit is returned to 0. When this bit is returned to 0, all pending register inserts will be made on the next frame start.</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="MODE_SELECT_">
+		<long_desc>This bit is an alias of R0x301A-B[2].</long_desc>
+	</reg>
+	<reg name="IMAGE_ORIENTATION_">
+		<bitfield name="IMAGE_ORIENTATION_HORIZ_MIRROR_">
+			<long_desc>This register field is an alias of R0x3040[14] Writes are synchronized to frame boundaries.  Causes a Bad Frame if written.</long_desc>
+		</bitfield>
+		<bitfield name="IMAGE_ORIENTATION_VERT_FLIP_">
+			<long_desc>This register field is an alias of R0x3040[15] Writes are synchronized to frame boundaries.  Causes a Bad Frame if written.</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="DATA_PEDESTAL_">
+		<long_desc>Constant offset that is added to the ADC output for all visible pixels in order to set the black level to a value greater than 0. Read-only. Can be made read/write by clearing R0x301A-B[3]. Legal values:  [0, 4095].</long_desc>
+	</reg>
+	<reg name="SOFTWARE_RESET_">
+		<long_desc>This bit is an alias of R0x301A-B[0].</long_desc>
+	</reg>
+	<reg name="GROUPED_PARAMETER_HOLD_">
+		<long_desc>This bit is an alias of R0x301A-B[15].</long_desc>
+	</reg>
+	<reg name="MASK_CORRUPTED_FRAMES_">
+		<bitfield name="MASK_BAD_FRAMES">
+			<long_desc>This bit is an alias of R0x301A-B[9].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PIXEL_ORDER_">
+		<long_desc>Pixel Order 00 = First row is GreenR/Red, first pixel is GreenR, 01 = First row is GreenR/Red, first pixel is Red 02 = First row is Blue/GreenB, first pixel is Blue 03 = First row is Blue/GreenB,first pixel is GreenB The value in this register changes as a function of R0x3040[1:0]. Read-only.  Legal values:  [0, 3].</long_desc>
+	</reg>
+	<reg name="GPI_STATUS">
+		<bitfield name="GPI0">
+			<long_desc>Read-only. Return the current state of the GPI0 input pin. Invalid if R0x301A-B[8]=0. Read-only.</long_desc>
+		</bitfield>
+		<bitfield name="GPI1">
+			<long_desc>Read-only. Return the current state of the GPI1 input pin. Invalid if R0x301A-B[8]=0. Read-only.</long_desc>
+		</bitfield>
+		<bitfield name="GPI2">
+			<long_desc>Read-only. Return the current state of the GPI2 input pin. Invalid if R0x301A-B[8]=0. Read-only.</long_desc>
+		</bitfield>
+		<bitfield name="GPI3">
+			<long_desc>Read-only. Return the current state of the GPI3 input pin. Invalid if R0x301A-B[8]=0. Read-only.</long_desc>
+		</bitfield>
+		<bitfield name="SADDR_PIN_SELECT">
+			<long_desc>Associate the SADDR function with an active-high input pin 0: associate with GPI0 1: associate with GPI1 2: associate with GPI2 3: associate with GPI3 4-6: RESERVED 7: SADDR function is not controlled by any pin Must be set to 7 if R0x301A-B[8]=0. Legal values:  [0, 7].</long_desc>
+		</bitfield>
+		<bitfield name="TRIGGER_PIN_SELECT">
+			<long_desc>Associate the trigger function with an active-high input pin 0: associate with GPI0 1: associate with GPI1 2: associate with GPI2 3: associate with GPI3 4-6: RESERVED 7: trigger function is not controlled by any pin Must be set to 7 if R0x301A-B[8]=0. Legal values:  [0, 7].</long_desc>
+		</bitfield>
+		<bitfield name="STANDBY_PIN_SELECT">
+			<long_desc>Associate the standby function with an active-high input pin 0: associate with GPI0 1: associate with GPI1 2: associate with GPI2 3: associate with GPI3 4-6: RESERVED 7: standby function cannot be controlled by any pin Must be set to 7 if reset[8]=0. Legal values:  [0, 7].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="GLOBAL_ANALOG_GAIN_">
+		<long_desc>global analog gain. Available analog gains: 1.0x through 7.75x, with step of 1/16 Writes are synchronized to frame boundaries.  Legal values:  [0, 63].</long_desc>
+	</reg>
+	<reg name="DIGITAL_GAIN_GREENR_">
+		<bitfield name="DIGITAL_GAIN_FOR_GREENR_">
+			<long_desc>same as digital_gain_for_greenr_data, gain = register value/64 Writes are synchronized to frame boundaries.  Legal values:  [0, 511].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="DIGITAL_GAIN_RED_">
+		<bitfield name="DIGITAL_GAIN_FOR_RED_">
+			<long_desc>same as digital_gain_for_red_data, gain = register value/64 Writes are synchronized to frame boundaries.  Legal values:  [0, 511].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="DIGITAL_GAIN_BLUE_">
+		<bitfield name="DIGITAL_GAIN_FOR_BLUE_">
+			<long_desc>same as digital_gain_for_blue_data, gain = register value/64 Writes are synchronized to frame boundaries.  Legal values:  [0, 511].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="DIGITAL_GAIN_GREENB_">
+		<bitfield name="DIGITAL_GAIN_FOR_GREENB_">
+			<long_desc>same as digital_gain_for_greenb_data, gain = register value/64 Writes are synchronized to frame boundaries.  Legal values:  [0, 511].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="FRAME_COUNT_">
+		<long_desc>frame count In the soft standby state this counter is set to 0xFF. In streaming state this counter increments by 1 (modulo 255) at the start of each frame. The counter is incremented for both good frames and bad (corrupted) frames - its behavior is not affected by the state of R0x301A-B[9] (mask_corrupted_frames). Read-only.  Legal values:  [0, 255].</long_desc>
+	</reg>
+	<reg name="FRAME_STATUS">
+		<bitfield name="FRAME_STATUS_FRAMESYNC">
+			<long_desc>frame status frame synced Set on register write and reset on frame synchronization. Acts as debug flag to verify that register writes completed before last frame synchronization. Read-only. Read-only.</long_desc>
+		</bitfield>
+		<bitfield name="FRAME_STATUS_STANDBY">
+			<long_desc>frame status standby This bit tells you whether the sensor is in standby state. Can be polled after standby is entered to see when the real low-power state is entered; which can happen at the end of row or frame depending on bit 0x301A[4]. Read-only. Read-only.</long_desc>
+		</bitfield>
+		<bitfield name="FRAME_STATUS_BAD_FRAME">
+			<long_desc>indicates current frame is bad Read-only.</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="READ_STYLE">
+		<bitfield name="MASK_1ST_FRAME_ENABLE">
+			<long_desc>mark out 1st frame 0: disable 1: enable Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="READ_MODE">
+		<bitfield name="Y_ODD_INCREMENT">
+			<long_desc>Increment applied in Y (row) direction. Read out 1= Normal 3= 1 out of 2 pixels 7= 1 out of 4 pixels 15= 1 out of 8 pixels.  Writes are synchronized to frame boundaries.  Causes a Bad Frame if written.  Legal values:  [1, 15].</long_desc>
+		</bitfield>
+		<bitfield name="X_ODD_INCREMENT">
+			<long_desc>Increment applied in X (column) direction. Read out 1= Normal 3= 1 out of 2 pixels.  Writes are synchronized to frame boundaries.  Causes a Bad Frame if written.  Legal values:  [1, 3].</long_desc>
+		</bitfield>
+		<bitfield name="X_BIN_EN">
+			<long_desc>Enable analogue binning in X (column) direction. When set, x_odd_inc must be set to 3 for column binning along with other register changes. Writes are synchronized to frame boundaries.  Causes a Bad Frame if written.</long_desc>
+		</bitfield>
+		<bitfield name="EIS_MODE">
+			<long_desc>when eis_mode is 1, to disable the bad frame generation when y_start/_end is changed within the window</long_desc>
+		</bitfield>
+		<bitfield name="ROW_SUM">
+			<long_desc>Enable analogue summing in Y (row) direction. When set, y_odd_inc must be set to 3 for row summing along with other register changes Writes are synchronized to frame boundaries.  Causes a Bad Frame if written.</long_desc>
+		</bitfield>
+		<bitfield name="HORIZ_MIRROR">
+			<long_desc>0 = Normal readout 1 = Readout is mirrored horizontally so that the column specified by x_addr_end_ is read out of the sensor first. Setting this bit will change the bayer pixel order (see R0x3024). Writes are synchronized to frame boundaries.  Causes a Bad Frame if written.</long_desc>
+		</bitfield>
+		<bitfield name="VERT_FLIP">
+			<long_desc>0 = Normal readout 1 = Readout is flipped (mirrored) vertically so that the row specified by y_addr_end_ is read out of the sensor first. Setting this bit will change the bayer pixel order (see R0x3024). Writes are synchronized to frame boundaries.  Causes a Bad Frame if written.</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="FLASH">
+		<bitfield name="FLASH_SCALE">
+			<long_desc>scale the flash count down counter with 2^(flash_scale+1) Legal values:  [0, 15].</long_desc>
+		</bitfield>
+		<bitfield name="FLASH_TRIGGER_TIMED">
+			<long_desc>At the start of streaming, no frame delay will occur before the xenon flash pulse is triggered.</long_desc>
+		</bitfield>
+		<bitfield name="FLASH_INVERT_FLASH">
+			<long_desc>Enable LED flash. When set, the FLASH output signal will assert prior to the start of the resetting of a frame and will remain asserted until the end of the frame readout.</long_desc>
+		</bitfield>
+		<bitfield name="FLASH_LED_FLASH">
+			<long_desc>1 = Flash should be enabled every frame. 0 = Flash should be enabled for 1 frame only.</long_desc>
+		</bitfield>
+		<bitfield name="FLASH_EVERY_FRAME">
+			<long_desc>1 = In Xenon mode, the flash is triggered after resetting a frame. 0 = In Xenon mode, the flash is triggered after a frame readout.</long_desc>
+		</bitfield>
+		<bitfield name="FLASH_END_OF_RESET">
+			<long_desc>Flash pulse delay measured in frames.</long_desc>
+		</bitfield>
+		<bitfield name="FLASH_FRAME_DELAY">
+			<long_desc>Delay time of Xenon flash When set, the FLASH output signal will assert for the programmed period (bits [7:0]) during vertical blanking. This is achieved by keeping the integration time equal to one frame, and the pulse width less than the vertical blanking time. Legal values:  [0, 7].</long_desc>
+		</bitfield>
+		<bitfield name="FLASH_XENON_FLASH">
+			<long_desc>Indicates that the FLASH output signal was asserted for the current frame. Read-only.</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="FLASH_COUNT">
+		<long_desc>Length of flash pulse when Xenon flash is enabled. The value specifies the length in units of 256 x system_clock. When the Xenon count is set to its maximum value (0x3FF), the flash pulse will automatically be truncated prior to the readout of the first row, giving the longest pulse possible. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_CONTROL">
+		<bitfield name="OTPM_AUTO_WR_START">
+			<long_desc>Trigger OTPM automatic write sequence. The high voltage must be available on the high voltage pad before the write sequence is triggered. bypass_record (in otpm_expr) = 0: The OTPM address at which to start the write is determined automatically by searching the existing OTPM contents for the next free location. The record type and length is taken from the otpm_record register. The record payload (data to write) is taken from the otpm_data* registers. bypass_record=1: The OTPM address at which to start the write is taken from the otpm_manual_addr register. The length of the data to program is taken from the otpm_record register. The data to write is taken from the otpm_data* registers. Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_AUTO_WR_END">
+			<long_desc>Indicates whether the automatic write sequence has finished. Read-only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_AUTO_WR_SUCCESS">
+			<long_desc>Indicates whether the automatic write sequence was successful. Read-only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_DISABLE_AUTO_RD">
+			<long_desc>When register bit is set to 1, disable automatic OTPM read sequence. Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_AUTO_RD_START">
+			<long_desc>Trigger OTPM automatic read sequence. Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_AUTO_RD_END">
+			<long_desc>Indicates whether the automatic read sequence has finished. Read-only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_AUTO_RD_SUCCESS">
+			<long_desc>Indicates whether the automatic read sequence was successful. Read-only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_AUTO_INVALIDATE">
+			<long_desc>When register bit is set to 1, invalidates record written to OTPM address. Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_AUTO_RD_START_NEXT">
+			<long_desc>Automatic read start next. When bypass_record (in otpm_expr) = 0, and single_record_only = 1, determine the start address for an automatic read sequence triggered by auto_rd_start: 0: read first record that matches (search from start of OTPM). 1: read next record that matches (search from current location in OTPM). Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_SINGLE_RECORD_ONLY">
+			<long_desc>OTPM single record only. 1: Automatic read sequence will end after one record has been read from OTPM. 0: Automatic read sequence will end after all records (of specicied record type) have been read from OTPM. The total size of the records read must not exceed the space available; the total size of the otpm_data_* registers. Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_ENABLE_STANDBY">
+			<long_desc>OTPM standby enable. When this bit is 0, the "standby" signal will never be asserted to the HV switch. When this bit is 1, the "standby" signal will be controlled automatically to the HV switch: negated when an OTPM read or write operation is being performed, and asserted otherwise. Asserting the "standby" signal to the HV switch connects the internal vcmn signal to gndio preventing leakage though any programmed anti-fuses. Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_USER_POWERDOWN">
+			<long_desc>enable user powerdown 0: disable 1: enable Legal values:  [0,1].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="OTPM_RECORD">
+		<bitfield name="OTPM_RECORD_LENGTH">
+			<long_desc>OTPM record length. Length of record payload in 16-bit words (between 1 and 128). Legal values:  [0,128].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_RECORD_TYPE">
+			<long_desc>OTPM record type. Currently supported types are x02 - Default registers; x2n - Register sets. Legal values:  [0,255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="OTPM_STATUS">
+		<bitfield name="OTPM_OP_DONE">
+			<long_desc>Read/Write Operation complete. Internal use only.  Read-only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_ECC_CHECK_BITS">
+			<long_desc>Check bits produced by ECC. Internal use only.  Read-only.  Legal values:  [0,63].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_SEC_USED">
+			<long_desc>Set to 1 when an OTPM read results in a detected and corrected single bit error. An OTPM sequence is indicated as successful when single bit errors are corrected. This value is latched untill the next OTPM read operation. Internal use only.  Read-only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_DED_PARITY_FAILURE">
+			<long_desc>OTPM ded parity failure. This value is latched until the next OTPM read operation. Set to 1 when an OTPM read results in a detected multi-bit error. An OTPM sequence is indicated as not successful when multi-bit errors are detected. When this bit is set, data in otpm_data_manual_h, otpm_data_manual_l, otpm_manual_extra and otpm_data* is bad/corrupt. Internal use only.  Read-only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_FULL">
+			<long_desc>OTPM is full. Internal use only.  Read-only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_INSUFFICIENT">
+			<long_desc>Insufficient OTPM space to include a record. Internal use only.  Read-only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_OP_BUSY">
+			<long_desc>OTPM operation in progress. Internal use only.  Read-only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_SEC_CNT">
+			<long_desc>Indicates SEC status. Increments on each SEC attempt: &lt;RETURN&gt; 0 = programmed first time &lt;RETURN&gt; 1 = programmed successfully but two passes were needed &lt;RETURN&gt; 2 = two program passes were needed ECC correction is needed. Internal use only.  Read-only.  Legal values:  [0,15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="OTPM_MANUAL_CONTROL">
+		<bitfield name="OTPM_SINGLE_WR_START">
+			<long_desc>Trigger OTPM single write sequence. The high voltage must be available on the high voltage pad before the write sequence is triggered. The write sequence is made up of a write, followed by a read from the same address. The OTPM address at which to perform the sequence is taken from the otpm_manual_addr register. The write data is taken from the otpm_data_manual_l, otpm_data_manual_h and (if ecc_bypass=1) otpm_manual_extra registers. The read data is written into the same registers. The sequence is successful if the write data was read back correctly. Internal use only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_SINGLE_WR_END">
+			<long_desc>Indicates whether the single write sequence has finished. Internal use only.  Read-only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_SINGLE_WR_SUCCESS">
+			<long_desc>Indicates whether the single write sequence was successful. Internal use only.  Read-only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_SINGLE_RD_START">
+			<long_desc>Trigger OTPM single read sequence. The OTPM address from which to perform the read is taken from the otpm_manual_addr register. Internal use only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_SINGLE_RD_END">
+			<long_desc>Indicates whether the single read sequence has finished. Internal use only.  Read-only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_SINGLE_RD_SUCCESS">
+			<long_desc>Indicates whether the single read sequence was successful. Internal use only.  Read-only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="OTPM_MANUAL_ADDR">
+		<long_desc>Address of the OTPM used for single writes/reads as well as auto writes/reads. Internal use only.  Legal values:  [0,1023].</long_desc>
+	</reg>
+	<reg name="OTPM_EXPR">
+		<bitfield name="OTPM_BYPASS_RECORD">
+			<long_desc>OTPM bypass record 0: OTPM automatic read and write sequences will impose a record structure on data transferred between otpm_data* registers and the OTPM. 1: OTPM automatic read and write sequences will transfer data directly between the otpm_data* registers and the OTPM; the record structure will be bypassed. Internal use only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_ECC_BYPASS">
+			<long_desc>When set the ECC logic will be bypassed. Internal use only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_DISABLE_AUTO_RAM_LOAD">
+			<long_desc>Disable automatic RAM load for record types supporting RAM load. Internal use only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+		<bitfield name="OTPM_TRIGGER_AUTO_RAM_LOAD">
+			<long_desc>Interprete the current content of the otpm_data* as a register upload record and upload it to registers. Internal use only.  Legal values:  [0,1].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="GREENR_GAIN">
+		<bitfield name="DIGITAL_GAIN_FOR_GREENR_DATA">
+			<long_desc>digital gain for greenR pixel gain = register value/64 Writes are synchronized to frame boundaries.  Legal values:  [0, 511].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="BLUE_GAIN">
+		<bitfield name="DIGITAL_GAIN_FOR_BLUE_DATA">
+			<long_desc>digital gain for blue pixel gain = register value/64 Writes are synchronized to frame boundaries.  Legal values:  [0, 511].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="RED_GAIN">
+		<bitfield name="DIGITAL_GAIN_FOR_RED_DATA">
+			<long_desc>digital gain for red pixel gain = register value/64 Writes are synchronized to frame boundaries.  Legal values:  [0, 511].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="GREENB_GAIN">
+		<bitfield name="DIGITAL_GAIN_FOR_GREENB_DATA">
+			<long_desc>digital gain for greenB pixel gain = register value/64 Writes are synchronized to frame boundaries.  Legal values:  [0, 511].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="GLOBAL_GAIN">
+		<bitfield name="GLOBAL_FINE_ANALOG_GAIN">
+			<long_desc>global fine analog gain. Writes are synchronized to frame boundaries.  Legal values:  [0, 15].</long_desc>
+		</bitfield>
+		<bitfield name="GLOBAL_COARSE_ANALOG_GAIN">
+			<long_desc>global coarse analog gain. Writes are synchronized to frame boundaries.  Legal values:  [0, 2].</long_desc>
+		</bitfield>
+		<bitfield name="GLOBAL_DIGITAL_GAIN">
+			<long_desc>global digital gain, gain = register value/64. Accessing these bits will update digital gain of 0x3056 0x3058 0x305a and 0x305c. Writes are synchronized to frame boundaries.  Legal values:  [0, 511].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="I2C_CONTROL">
+		<bitfield name="I2C_AUTO_INC_DISABLE">
+			<long_desc>Disable auto increment of addresses during i2c access</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="ODP_STATUS">
+		<bitfield name="MIPI_FIFO_EMPTY">
+			<long_desc>MIPI Framer FIFO empty A fatal error occurred because the line length of the pixel data that the MIPI serialiser expected to transmit did not match the line length set by X_OUTPUT_SIZE. Read-only.</long_desc>
+		</bitfield>
+		<bitfield name="MIPI_FIFO_FULL">
+			<long_desc>MIPI Framer FIFO full A fatal error occurred because frame pixel data arrived at the MIPI data framer before the MIPI wakeup sequence and start-of-frame short packet had completed. Probable cause is that the value programmed for FRAME_PREAMBLE is too small. Read-only.</long_desc>
+		</bitfield>
+		<bitfield name="MIPI_UNDERFLOW_ERR">
+			<long_desc>MIPI Framer FIFO underflow A fatal error occurred because frame pixel data arrived at the MIPI data framer before the MIPI wakeup sequence and start-of-frame short packet had completed. Probable cause is that the value programmed for FRAME_PREAMBLE is too small. Read-only.</long_desc>
+		</bitfield>
+		<bitfield name="PACK_FIFO0_OVF">
+			<long_desc>odp_pack_raw16 FIFO overflow Read-only.</long_desc>
+		</bitfield>
+		<bitfield name="PACK_FIFO0_UNF">
+			<long_desc>odp_pack_raw16 FIFO underflow Read-only.</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="DATAPATH_SELECT">
+		<bitfield name="CONT_LV">
+			<long_desc>cont LV</long_desc>
+		</bitfield>
+		<bitfield name="TRUE_BAYER">
+			<long_desc>[4] =1 : enable True_bayer Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+		<bitfield name="TRUE_BIN">
+			<long_desc>[5] =1 : enable True_bin Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+		<bitfield name="SUM2X2">
+			<long_desc>[6] =1 : enable sum 2X2 mode Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+		<bitfield name="PROFILE12">
+			<long_desc>SMIA profile mode Read-only.  Legal values:  [1, 1].</long_desc>
+		</bitfield>
+		<bitfield name="XOR_LV">
+			<long_desc>XOR LV</long_desc>
+		</bitfield>
+		<bitfield name="HI_VCM_SEL">
+			<long_desc>hi_vcm select</long_desc>
+		</bitfield>
+		<bitfield name="SLEW_B">
+			<long_desc>slew rate control b Legal values:  [0, 7].</long_desc>
+		</bitfield>
+		<bitfield name="SLEW_A">
+			<long_desc>slew rate control a Legal values:  [0, 7].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="TEST_PATTERN_MODE_">
+		<bitfield name="TEST_PATTERN_SELECT_">
+			<long_desc>If [8]=0, select following test pattern 0: Normal operation, Generate output data from pixel array 1: Solid color test pattern. 2: 100% color bar test pattern 3: Fade to grey color bar test pattern 4: PN9 Link integrity test pattern Legal values:  [0, 4].</long_desc>
+		</bitfield>
+		<bitfield name="WALKING_ONE_PATTERN_ENABLE_">
+			<long_desc>marching one pattern 1: 256 walking 1&apos;s test pattern together with test_pattern_select[0] = 1&apos;b0 (12-bit) 1: 257 walking 1&apos;s test pattern together with test_pattern_select[0] = 1&apos;b1 (10-bit) other = Reserved. Legal values:  [0, 1].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="TEST_DATA_RED_">
+		<long_desc>red test data for solid test pattern. Legal values:  [0, 1023].</long_desc>
+	</reg>
+	<reg name="TEST_DATA_GREENR_">
+		<long_desc>greenR test data for solid test pattern. Legal values:  [0, 1023].</long_desc>
+	</reg>
+	<reg name="TEST_DATA_BLUE_">
+		<long_desc>blue test data for solid test pattern. Legal values:  [0, 1023].</long_desc>
+	</reg>
+	<reg name="TEST_DATA_GREENB_">
+		<long_desc>greenB test data for solid test pattern. Legal values:  [0, 1023].</long_desc>
+	</reg>
+	<reg name="X_EVEN_INC_">
+		<long_desc>Read-only. Read-only.</long_desc>
+	</reg>
+	<reg name="X_ODD_INC_">
+		<long_desc>This register field is an alias of R0x3040[9:6] Writes are synchronized to frame boundaries.  Causes a Bad Frame if written.  Legal values:  [1, 3].</long_desc>
+	</reg>
+	<reg name="Y_EVEN_INC_">
+		<long_desc>Read-only. Read-only.</long_desc>
+	</reg>
+	<reg name="Y_ODD_INC_">
+		<long_desc>This register field is an alias of R0x3040[5:0] Writes are synchronized to frame boundaries.  Causes a Bad Frame if written.  Legal values:  [1, 15].</long_desc>
+	</reg>
+	<reg name="Y_OUTPUT_OFFSET">
+		<long_desc>Number of rows offset to start of the displayed image ( Y output size) Legal values:  [0, 3506].</long_desc>
+	</reg>
+	<reg name="X_OUTPUT_OFFSET">
+		<long_desc>Number of columns offset to start of the displayed image ( X output size) Legal values:  [0,4094].</long_desc>
+	</reg>
+	<reg name="CTX_CONTROL_REG">
+		<bitfield name="CONTEXT_SELECT">
+			<long_desc>select context Legal values:  [0, 15].</long_desc>
+		</bitfield>
+		<bitfield name="CONTEXT_MULTI_NUM">
+			<long_desc>Set number of consecutive contexts to read out when ctx_multi is set Legal values:  [0, 7].</long_desc>
+		</bitfield>
+		<bitfield name="CONTEXT_MULTI">
+			<long_desc>Enable Multiple context to be read out</long_desc>
+		</bitfield>
+		<bitfield name="CONTEXT_MULTI_SYNC_MODE">
+			<long_desc>When set, multiple contexts are synced to the start of readout frames, else they are synced to the start of exposure frames</long_desc>
+		</bitfield>
+		<bitfield name="CONTEXT_MULTI_CYCLE_MODE">
+			<long_desc>context_multi_cycle_mode</long_desc>
+		</bitfield>
+		<bitfield name="CONTEXT_LOAD_FRAME_END">
+			<long_desc>Load context at frame end</long_desc>
+		</bitfield>
+		<bitfield name="CONTEXT_LOAD">
+			<long_desc>Load context immediately</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="CTX_WR_DATA">
+		<bitfield name="CTX_WR_ADDR_VALUE_HIGH">
+			<long_desc>Upper address value. This set the value of A15:A12 of the register address that will be stored in the ram. For 0x30E8, this will be 0x3. So the value of the first control word should be 0xF813 (not0xF823). Legal values:  [0, 15].</long_desc>
+		</bitfield>
+		<bitfield name="CTX_WR_CONTEXT_NUM">
+			<long_desc>Number of Contexts This set the number of values (contexts) to store for each register address. A value of 0 indicates 1 context. You have two contexts, so this should be 0x1. Legal values:  [0, 15].</long_desc>
+		</bitfield>
+		<bitfield name="CTX_WR_CONTROL_WORD">
+			<long_desc>First Control Word. Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="CTX_RD_DATA">
+		<long_desc>context read data Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="GPIO_CTRL">
+		<bitfield name="GPIO0_OE">
+			<long_desc>GPIO0 output enable</long_desc>
+		</bitfield>
+		<bitfield name="GPIO1_OE">
+			<long_desc>GPIO1 output enable</long_desc>
+		</bitfield>
+		<bitfield name="GPIO0_IP_PD">
+			<long_desc>GPIO0 input power down</long_desc>
+		</bitfield>
+		<bitfield name="GPIO1_IP_PD">
+			<long_desc>GPIO1 input power down</long_desc>
+		</bitfield>
+		<bitfield name="GPIO0_FSAFE">
+			<long_desc>GPIO0 disable output and disconnect from supply</long_desc>
+		</bitfield>
+		<bitfield name="GPIO1_FSAFE">
+			<long_desc>GPIO1 disable output and disconnect from supplt</long_desc>
+		</bitfield>
+		<bitfield name="GPIO0_HOLD">
+			<long_desc>GPIO0 hold</long_desc>
+		</bitfield>
+		<bitfield name="GPIO1_HOLD">
+			<long_desc>GPIO1 hold</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="GPIO_SELECT">
+		<bitfield name="GPIO0">
+			<long_desc>Read-only. Return the current state of the GPIO0 output pin. Invalid if R0x30F8[0]=0. Read-only.</long_desc>
+		</bitfield>
+		<bitfield name="GPIO1">
+			<long_desc>Read-only. Return the current state of the GPIO1 output pin. Invalid if R0x30F8[1]=0. Read-only.</long_desc>
+		</bitfield>
+		<bitfield name="GPIO2">
+			<long_desc>Not used Read-only.</long_desc>
+		</bitfield>
+		<bitfield name="GPIO3">
+			<long_desc>Not used Read-only.</long_desc>
+		</bitfield>
+		<bitfield name="GPIO0_PIN_SELECT">
+			<long_desc>default is output for Flash signal Legal values:  [0, 7].</long_desc>
+		</bitfield>
+		<bitfield name="GPIO1_PIN_SELECT">
+			<long_desc>default is output for Shutter signal Legal values:  [0, 7].</long_desc>
+		</bitfield>
+		<bitfield name="GPIO2_PIN_SELECT">
+			<long_desc>Not used Legal values:  [0, 7].</long_desc>
+		</bitfield>
+		<bitfield name="GPIO3_PIN_SELECT">
+			<long_desc>Not used Legal values:  [0, 7].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="TEMP_THRESHOLD_VALUE">
+		<long_desc>tempsens_threshold Legal values:  [0,65535].</long_desc>
+	</reg>
+	<reg name="TEMPSENS_DATA_REG">
+		<long_desc>Data from temperature sensor Read-only.  Legal values:  [0,1023].</long_desc>
+	</reg>
+	<reg name="TEMPSENS_CTRL_REG">
+		<bitfield name="TEMPSENS_POWER_ON">
+			<long_desc>tempsens power on when set.</long_desc>
+		</bitfield>
+		<bitfield name="TEMPSENS_TEST_CTRL">
+			<long_desc>tempsens test ctrl</long_desc>
+		</bitfield>
+		<bitfield name="TEMP_START_CONVERSION">
+			<long_desc>tempsens start conversion when set</long_desc>
+		</bitfield>
+		<bitfield name="TEMP_CLEAR_VALUE">
+			<long_desc>tempsens clear value when set.</long_desc>
+		</bitfield>
+		<bitfield name="TEMPSENS_BLC_TRIG_EN">
+			<long_desc>enable blc retrigger if temperature difference is more than threshold</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="TEMPSENS_CALIB1">
+		<long_desc>user calibration register 1 Legal values:  [0,65535].</long_desc>
+	</reg>
+	<reg name="TEMPSENS_CALIB2">
+		<long_desc>user calibration register 2 Legal values:  [0,65535].</long_desc>
+	</reg>
+	<reg name="TEMPSENS_CALIB3">
+		<long_desc>user calibration register 3 Legal values:  [0,65535].</long_desc>
+	</reg>
+	<reg name="TEMPSENS_CALIB4">
+		<long_desc>user calibration register 4 Legal values:  [0,65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_MANUAL_L">
+		<long_desc>OTPM data manual lower 16 bits. Data to be written to/read back from OTPM in single write/read mode. When ecc_bypass = 0 , this register corresponds to [15:0] of the 32-bit data of the OTPM address. When ecc_bypass = 1 , this register corresponds to [15:0] of the 40-bit data of the OTPM address. Internal use only.  Legal values:  [0,65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_MANUAL_H">
+		<long_desc>OTPM data manual higher 16 bits. Data to be written to/read back from OTPM in single write/read mode. When ecc_bypass = 0 , this register corresponds to [31:16] of the 32-bit data of the OTPM address. When ecc_bypass = 1 , this register corresponds to [31:16] of the 40-bit data of the OTPM address. Internal use only.  Legal values:  [0,65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_MANUAL_EXTRA">
+		<long_desc>OTPM data manual extra bits. Data to be written to/read back from OTPM in single write/read mode. When ecc_bypass = 0 , this register is not used. When ecc_bypass = 1 , this register corresponds to [39:32] of the 40-bit data of the OTPM address. Internal use only.  Legal values:  [0,65535].</long_desc>
+	</reg>
+	<reg name="GLOBAL_BOOST_RST">
+		<bitfield name="ROW_RSTG_CTRL_DONE">
+			<long_desc>defines the length of the row_rstg_ctrl off after row_rstd_ctrl is 64*global_boost_rst[7:0]+1 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="GLOBAL_BOOST">
+		<bitfield name="UTIL_PAUSE">
+			<long_desc>defines the length of the utility debug pause is 64*global_boost[7:0]+1 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="ENABLE_CNT_G_BOOST_U">
+			<long_desc>defines the time vtx hi back to VAA so that the total time is 64**global_boost[15:8]+1 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="GLOBAL_DONE">
+		<bitfield name="ENABLE_CNT_G_GO">
+			<long_desc>defines the time of tx back to ground is 64*global_done[7:0]+1 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="ENABLE_CNT_G_END">
+			<long_desc>defines time of precharge period is 64*global_done[15:8]+1 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="SLAVE_MODE_CONTROL">
+		<bitfield name="VD_NEW_FRAME_ONLY">
+			<long_desc>gate off external trigger pn</long_desc>
+		</bitfield>
+		<bitfield name="VD_TRIG_GRST">
+			<long_desc>vd triggered grst Set to enable slave mode in global reset mode</long_desc>
+		</bitfield>
+		<bitfield name="VD_TIMER">
+			<long_desc>vd timer set to limit the detection of slave mode trigger pulse around internal start of frame</long_desc>
+		</bitfield>
+		<bitfield name="VD_TRIG_NEW_FRAME">
+			<long_desc>vd trigger new frame set to enable slave mode</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="GLOBAL_FLASH_START">
+		<long_desc>Global Flash Start If global_seq_trigger[2]=1 (Global Flash enabled) and global_seq_trigger[6]=1 (Use Flash Start), when a Global Reset sequence is triggered, the FLASH output signal will be pulsed during the integration phase of the Global Reset sequence. The start of the FLASH pulse is determined by global_flash_start. If global_flash_start&lt;global_rst_end, the FLASH pulse will only be asserted at a fixed delay after global_rst_end. The FLASH output will not be asserted if global_flash_start&gt;global_read_start. Writes are synchronized to frame boundaries.  Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="GLOBAL_BULB_TRIGGER_COUNT">
+		<long_desc>Bulb Trigger Count If global_seq_trigger[1]=1 (Global Bulb enabled) when a Global Reset sequence is triggered and global_seq_trigger[10]=1 (Bulb Trigger Timer), the end of the integration phase is determined by Bulb Trigger Count and global_seq_trigger[15:12] (Bulb Trigger Scale). Writes are synchronized to frame boundaries.  Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="GLOBAL_SEQ_TRIGGER">
+		<bitfield name="GLOBAL_SEQ_TRIGGER_GLOBAL_TRIGGER">
+			<long_desc>Global Trigger When bit[1]=0, a 0-to-1 transition of this bit initiates (triggers) a global reset sequence. When bit[1]=1,a 0-to-1 transition of this bit initiates a global reset sequence, and leaves the shutter open; a 1-to-0 transition of this bit closes the shutter. These operations can also be controlled from the signal interface by enabling one of the GPI[3:0] signals as a trigger input.</long_desc>
+		</bitfield>
+		<bitfield name="GLOBAL_SEQ_TRIGGER_GLOBAL_BULB">
+			<long_desc>Global Bulb 0 = Shutter open is triggered from bit[0] and shutter close is timed from the trigger point. 1 = Shutter open and close are triggered from bit[0]. This corresponds to the shutter "B" setting on a traditional camera, where "B" originally stood for "Bulb" (the shutter setting used for synchronization with a magnesium foil flash bulb) and was later considered to stand for "Brief" (an exposure that was longer than the shutter could automatically accommodate).</long_desc>
+		</bitfield>
+		<bitfield name="GLOBAL_SEQ_TRIGGER_GLOBAL_FLASH">
+			<long_desc>Global Flash 0 = When a Global Reset sequence is triggered, the FLASH output will remain negated. 1 = When a Global Reset sequence is triggered, the FLASH output will pulse during the integration phase.</long_desc>
+		</bitfield>
+		<bitfield name="GLOBAL_SEQ_TRIGGER_GLOBAL_SCALE">
+			<long_desc>Global Scale Decoded value (lets call it global_scale_factor) of this field is used as the step size for duration of integration time/shutter starting from end of row reset phase of Global reset. The field is decoded as 0 = 512 1 = 2048 2 = 128 3 = 32 I.E. for integration time, of A value of N of the 24 bit field {global_read_start2[7:0], global_read_start[15:0]} gives an assertion time of (N - global_reset_end[15:0])* global_scale_factor / vt_pix_clk_freq_mhz timed from the end of row reset phase of Global reset. Writes are synchronized to frame boundaries.  Legal values:  [0, 3].</long_desc>
+		</bitfield>
+		<bitfield name="GLOBAL_SEQ_TRIGGER_USE_FLASH_START">
+			<long_desc>When set, the start of the FLASH pulse is determined by global_flash_start.</long_desc>
+		</bitfield>
+		<bitfield name="GLOBAL_SEQ_TRIGGER_FLASH_SYNC">
+			<long_desc>When set, the flash output in global reset bulb mode will start after the falling edge of the global reset trigger signal.</long_desc>
+		</bitfield>
+		<bitfield name="GLOBAL_SEQ_TRIGGER_BULB_TRIG_TMR">
+			<long_desc>Bulb Trigger If global_seq_trigger[1]=1 (Global Bulb enabled) when a Global Reset sequence is triggered this bits determines how the integration time is controlled: 0 = The end of the integration phase is controlled by the level of trigger (global_seq_trigger[0], or the associated GPI input). 1 = The end of the integration phase is determined by Bulb Trigger Count and global_seq_trigger[15:12] (Bulb Trigger Scale).</long_desc>
+		</bitfield>
+		<bitfield name="GLOBAL_SEQ_TRIGGER_BULB_TRIG_SCALE">
+			<long_desc>Bulb Trigger Scale If global_seq_trigger[1]=1 (Global Bulb enabled) when a Global Reset sequence is triggered and global_seq_trigger[10]=1 (Bulb Trigger Timer), the end of the integration phase is determined by Bulb Trigger Count and global_seq_trigger[15:12] (Bulb Trigger Scale). Bulb Trigger Scale determines the number of cycles per count: 00 = 256 cycles per count 01 = 1024 cycles per count 10 = 64 cycles per count 11 = 1 cycle per count Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="ANALOG_CONTROL2">
+		<bitfield name="ADC_DIFF_DATA_WIDTH">
+			<long_desc>ADC Data Format: 0 = 10-bit format 1 = 12-bit format Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="ANALOG_CONTROL6">
+		<bitfield name="CONVERSION_GAIN_OP">
+			<long_desc>enable low conversion gain 0: disable 1: enable Internal use only.  Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="SERIAL_FORMAT">
+		<bitfield name="SERIAL__FORMAT_LANES">
+			<long_desc>serial data lanes Legal values:  [0, 31].</long_desc>
+		</bitfield>
+		<bitfield name="SERIAL__FORMAT_TYPE">
+			<long_desc>serial interface type 2: MIPI 3:Hispi Legal values:  [0, 3].</long_desc>
+		</bitfield>
+		<bitfield name="SERIAL__FORMAT_LOCK">
+			<long_desc>prevent serial format from power definition</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="FRAME_PREAMBLE">
+		<long_desc>frame preamble This timing value, expressed in op_pix_clk periods, must be large enough to allow the MIPI wakeup and start-of-frame short packet to be transmitted prior to the start of a frame of pixel data. The default value should be correct for most applications. Too small a value will result in an INSUFFICIENT_FRAME_PREAMBLE error being flagged in the DATAPATH_STATUS register. Legal values:  [0, 255].</long_desc>
+	</reg>
+	<reg name="LINE_PREAMBLE">
+		<long_desc>line preamble This timing value, expressed in op_pix_clk periods, must be large enough to allow the MIPI long packet header to be transmitted prior to the start of a line of pixel data. The default value should be correct for most applications. Too small a value will result in an INSUFFICIENT_LINE_PREAMBLE error being flagged in the DATAPATH_STATUS register. Legal values:  [0, 255].</long_desc>
+	</reg>
+	<reg name="MIPI_TIMING_0">
+		<bitfield name="M_PRG_HS_TRAIL">
+			<long_desc>Time, in op_pix_clk periods, to drive flipped differential state after last payload data bit of an HS transmission burst Legal values:  [0, 63].</long_desc>
+		</bitfield>
+		<bitfield name="M_PRG_HS_ZERO">
+			<long_desc>Time, in op_pix_clk periods, to drive HS-0 before the sync sequence Legal values:  [0, 63].</long_desc>
+		</bitfield>
+		<bitfield name="M_PRG_HS_PREPARE">
+			<long_desc>Time (in clk cycles) to drive LP-00 prior to entering HS data transmission mode Legal values:  [0, 3].</long_desc>
+		</bitfield>
+		<bitfield name="MIPI_FRAMER_SLAVE">
+			<long_desc>0 = Framer in Master mode, 1 = Framer in Slave mode</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="MIPI_TIMING_1">
+		<bitfield name="MC_PRG_HS_TRAIL">
+			<long_desc>Time, in op_pix_clk periods, to drive HS differentialstate after last payload clock bit of an HS transmission burst Legal values:  [0, 31].</long_desc>
+		</bitfield>
+		<bitfield name="MC_PRG_HS_ZERO">
+			<long_desc>Minimum time, in op_pix_clk periods, to drive HS-0 on clock lane prior to starting clock Legal values:  [0, 127].</long_desc>
+		</bitfield>
+		<bitfield name="MC_PRG_HS_PREPARE">
+			<long_desc>Time, in op_pix_clk periods, to drive LP-00 prior to entering HS data transmission mode</long_desc>
+		</bitfield>
+		<bitfield name="CFG_CPHY_EN">
+			<long_desc>0 = DPHY, 1 = CPHY</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="MIPI_TIMING_2">
+		<bitfield name="CFG_T_PRE">
+			<long_desc>Sets the number of byte clock periods that the controller will wait after enabling the clock lane for HS operation before enabling the data lanes for HS operation Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="CFG_T_POST">
+			<long_desc>Sets the number of byte clock periods to wait before putting the clock lane into LP mode after the data lanes have been detected to be in Stop State Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="MIPI_TIMING_3">
+		<bitfield name="CFG_TX_GAP">
+			<long_desc>Sets the number of byte clock periods that the controller will wait after the clock lane has been put into LP mode before enabling the clock lane for HS mode again (Ths-exit). Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="CFG_TWAKEUP_LOW">
+			<long_desc>Sets the number of clk_esc clock periods to keep a clock or data in Mark-1 state after exiting ULPS. Legal values:  [0, 7].</long_desc>
+		</bitfield>
+		<bitfield name="TX_RCAL">
+			<long_desc>Termination control: 00: 10% higher than mid-range  01: mid-range impedance settings (default)  10: 10% lower than mid-range  11: 20% lower than mid-range </long_desc>
+		</bitfield>
+		<bitfield name="AUTO_PD_EN">
+			<long_desc>AUTO_PD_EN</long_desc>
+		</bitfield>
+		<bitfield name="CONT_TX_CLK">
+			<long_desc>Keep MIPI clock active between packets/ Hispi transmitted clock continues to run when Hispi is in the "inactive" operating mode</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="MIPI_TIMING_4">
+		<bitfield name="CFG_TWAKEUP_HIGH">
+			<long_desc>Sets the number of clk_esc clock periods to keep a clock or data in Mark-1 state after exiting ULPS. Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="MIPI_CONFIG">
+		<bitfield name="FRAME_CNT_EN">
+			<long_desc>mipi frame count enable</long_desc>
+		</bitfield>
+		<bitfield name="FRAME_CNT_RESET">
+			<long_desc>mipi frame count reset</long_desc>
+		</bitfield>
+		<bitfield name="TEST_MIPI_START_CHECKSUM">
+			<long_desc>start mipi checksum</long_desc>
+		</bitfield>
+		<bitfield name="MIPI_MIRROR_2LANES">
+			<long_desc>mirror mipi lanes 0,1 to lanes 2,3</long_desc>
+		</bitfield>
+		<bitfield name="PHY_INIT_STATE">
+			<long_desc>Define Phy initial state</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="MIPI_COMPRESS_8_DATA_TYPE">
+		<bitfield name="DATA_TYPE_12_8_12">
+			<long_desc>data type for 12_8_12 Legal values:  [0, 63].</long_desc>
+		</bitfield>
+		<bitfield name="DATA_TYPE_10_8_10">
+			<long_desc>data type for 10_8_10 Legal values:  [0, 63].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="MIPI_COMPRESS_7_DATA_TYPE">
+		<bitfield name="DATA_TYPE_12_7_12">
+			<long_desc>data type for 12_7_12 Legal values:  [0, 63].</long_desc>
+		</bitfield>
+		<bitfield name="DATA_TYPE_10_7_10">
+			<long_desc>data type for 10_7_10 Legal values:  [0, 63].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="MIPI_JPEG_PN9_DATA_TYPE">
+		<bitfield name="DATA_TYPE_XMIT">
+			<long_desc>data type transmitted to packet header Legal values:  [0, 63].</long_desc>
+		</bitfield>
+		<bitfield name="VIRTUAL_CHAN">
+			<long_desc>PDAF Virtual Channel Legal values:  [0, 3].</long_desc>
+		</bitfield>
+		<bitfield name="DATA_TYPE_DUMMY">
+			<long_desc>data type for dummy data Legal values:  [0, 63].</long_desc>
+		</bitfield>
+		<bitfield name="BIG_ENDIAN">
+			<long_desc>Endianness of PDAF data when transmitted in 16-bit word</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="CHAIN_CONTROL">
+		<bitfield name="VD_DEL">
+			<long_desc>tap on 16-bit shift register used for delay of internal trigger. Shift register is clocked using EXTCLK. Allows daisy chained devices to align internal trigger. Legal values:  [0, 15].</long_desc>
+		</bitfield>
+		<bitfield name="I2C_PASSIVE">
+			<long_desc>when set (1) responds Read/Write to I2C device ID and accepts Writes (without ACK) to global ID. This allows for one device to be master(give ACK) and others passive.</long_desc>
+		</bitfield>
+		<bitfield name="I2C_ALIAS">
+			<long_desc>when set (1) I2C I/F responds to both primary and secondary I2C IDs. When used in multi chip mode these are device and global IDs.</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="I2C_IDS">
+		<long_desc>Two-wire serial interface (I2C) addresses. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="CUSTOMER_REV">
+		<long_desc>Customer revision Read-only.  Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="PDAF_CONTROL">
+		<bitfield name="PDAF_EN">
+			<long_desc>enable pdaf module 0: disable 1: enable. When this bit disabled, all pdaf module functions are disabled. Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_EN">
+			<long_desc>enable spatial correction on visual path. 0: disable. 1: enable Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_PDAF_EN">
+			<long_desc>enable spatial correction on focus path. 0: disabale. 1: enable Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_PDAF_SH">
+			<long_desc>right-shift spatial correction amount1-bit on focus path. 0: no-shift. 1: right-shift 1-bit 11: left-shift 1-bit. 10: left-shift 2-bit Writes are synchronized to frame boundaries.  Legal values:  [0, 3].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_BIN_SIZE">
+			<long_desc>enable x-bin on focus data. Bin_factor = 2 ^ bin_size Writes are synchronized to frame boundaries.  Legal values:  [0, 3].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_DC_EN">
+			<long_desc>enable 1ddc on focus data. 0: disable. 1: enable Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_TAG_EXT">
+			<long_desc>enable pdaf border pixel tagging Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_DEN_W">
+			<long_desc>3-tap denoise weight on focus data. 0: turn off denoise Writes are synchronized to frame boundaries.  Legal values:  [0, 7].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_PE_EN">
+			<long_desc>enable pdaf programmable engine on focus data. 0: disable 1: enable Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SKIP_EN">
+			<long_desc>enable pdaf skip 0: disable 1: enable Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_RANDOM_DUMMY">
+			<long_desc>enable pdaf random dummy 0: disable 1: enable Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_TEST_EN">
+			<long_desc>enable pdaf test. 0: disable 1: enable. When set, extend pdaf row output columns to the same length as visual path by padding 0s to the end of valid pdaf data Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_ROW_CONTROL">
+		<bitfield name="PDAF_PAT_YD">
+			<long_desc>number of rows between two adjacent pdaf rows Writes are synchronized to frame boundaries.  Legal values:  [0, 1023].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_BIN_OP">
+			<long_desc>pdaf analog row binning option. 00: no pdaf rows in pixel array. 01: output un-binned pdaf row data. 10: output un-binned normal row data. 11: output binned pdaf/normal row data. Writes are synchronized to frame boundaries.  Legal values:  [0, 3].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_PAT_EN">
+			<long_desc>enable pdaf row pattern. 0: disable. 1: enable Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_PAT_CONTROL">
+		<bitfield name="PDAF_PAT_DASH">
+			<long_desc>dash-line pattern. 0: full pdaf line. 1: dashed 2-1 pdaf line. 2: dashed 2-2 pdaf line Legal values:  [0,2].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_PAT_SKIP">
+			<long_desc>skip pdaf line from extraction Legal values:  [0,7].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_ROW_START">
+		<long_desc>the first pdaf row address within y_addr_start/y_addr_end window Writes are synchronized to frame boundaries.  Legal values:  [0, 3508].</long_desc>
+	</reg>
+	<reg name="PDAF_ROW_END">
+		<long_desc>the last pdaf row address within y_addr_start/y_addr_end window Writes are synchronized to frame boundaries.  Legal values:  [0, 3508].</long_desc>
+	</reg>
+	<reg name="PDAF_COL_START">
+		<long_desc>the first pdaf column address Legal values:  [0, 4646].</long_desc>
+	</reg>
+	<reg name="PDAF_COL_END">
+		<long_desc>the last pdaf column address Legal values:  [1, 4647].</long_desc>
+	</reg>
+	<reg name="PDAF_PEDESTAL">
+		<long_desc>focus path data pedestal after spatial correction Writes are synchronized to frame boundaries.  Legal values:  [0, 8191].</long_desc>
+	</reg>
+	<reg name="PDAF_SAT_TH">
+		<long_desc>focus path saturation threshold Writes are synchronized to frame boundaries.  Legal values:  [0, 32767].</long_desc>
+	</reg>
+	<reg name="PDAF_SC_ORIGIN_Y">
+		<long_desc>spatial correction image center x coordinate Legal values:  [0, 3507].</long_desc>
+	</reg>
+	<reg name="PDAF_SC_ORIGIN_X">
+		<long_desc>spatial correction image center y coordinate Legal values:  [0, 4647].</long_desc>
+	</reg>
+	<reg name="PDAF_SC_F_SH_0">
+		<bitfield name="PDAF_SC_F_0">
+			<long_desc>spatial correction mantissa for channel 0 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_0">
+			<long_desc>spatial correction shift for channel 0 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_1">
+		<bitfield name="PDAF_SC_F_1">
+			<long_desc>spatial correction mantissa for channel 1 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_1">
+			<long_desc>spatial correction shift for channel 1 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_2">
+		<bitfield name="PDAF_SC_F_2">
+			<long_desc>spatial correction mantissa for channel 2 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_2">
+			<long_desc>spatial correction shift for channel 2 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_3">
+		<bitfield name="PDAF_SC_F_3">
+			<long_desc>spatial correction mantissa for channel 3 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_3">
+			<long_desc>spatial correction shift for channel 3 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_4">
+		<bitfield name="PDAF_SC_F_4">
+			<long_desc>spatial correction mantissa for channel 4 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_4">
+			<long_desc>spatial correction shift for channel 4 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_5">
+		<bitfield name="PDAF_SC_F_5">
+			<long_desc>spatial correction mantissa for channel 5 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_5">
+			<long_desc>spatial correction shift for channel 5 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_6">
+		<bitfield name="PDAF_SC_F_6">
+			<long_desc>spatial correction mantissa for channel 6 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_6">
+			<long_desc>spatial correction shift for channel 6 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_7">
+		<bitfield name="PDAF_SC_F_7">
+			<long_desc>spatial correction mantissa for channel 7 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_7">
+			<long_desc>spatial correction shift for channel 7 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_8">
+		<bitfield name="PDAF_SC_F_8">
+			<long_desc>spatial correction mantissa for channel 8 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_8">
+			<long_desc>spatial correction shift for channel 8 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_9">
+		<bitfield name="PDAF_SC_F_9">
+			<long_desc>spatial correction mantissa for channel 9 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_9">
+			<long_desc>spatial correction shift for channel 9 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_10">
+		<bitfield name="PDAF_SC_F_10">
+			<long_desc>spatial correction mantissa for channel 10 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_10">
+			<long_desc>spatial correction shift for channel 10 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_11">
+		<bitfield name="PDAF_SC_F_11">
+			<long_desc>spatial correction mantissa for channel 11 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_11">
+			<long_desc>spatial correction shift for channel 11 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_12">
+		<bitfield name="PDAF_SC_F_12">
+			<long_desc>spatial correction mantissa for channel 12 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_12">
+			<long_desc>spatial correction shift for channel 12 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_13">
+		<bitfield name="PDAF_SC_F_13">
+			<long_desc>spatial correction mantissa for channel 13 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_13">
+			<long_desc>spatial correction shift for channel 13 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_14">
+		<bitfield name="PDAF_SC_F_14">
+			<long_desc>spatial correction mantissa for channel 14 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_14">
+			<long_desc>spatial correction shift for channel 14 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_15">
+		<bitfield name="PDAF_SC_F_15">
+			<long_desc>spatial correction mantissa for channel 15 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_15">
+			<long_desc>spatial correction shift for channel 15 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_16">
+		<bitfield name="PDAF_SC_F_16">
+			<long_desc>spatial correction mantissa for channel 16 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_16">
+			<long_desc>spatial correction shift for channel 16 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_17">
+		<bitfield name="PDAF_SC_F_17">
+			<long_desc>spatial correction mantissa for channel 17 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_17">
+			<long_desc>spatial correction shift for channel 17 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_18">
+		<bitfield name="PDAF_SC_F_18">
+			<long_desc>spatial correction mantissa for channel 18 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_18">
+			<long_desc>spatial correction shift for channel 18 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_19">
+		<bitfield name="PDAF_SC_F_19">
+			<long_desc>spatial correction mantissa for channel 19 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_19">
+			<long_desc>spatial correction shift for channel 19 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_20">
+		<bitfield name="PDAF_SC_F_20">
+			<long_desc>spatial correction mantissa for channel 20 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_20">
+			<long_desc>spatial correction shift for channel 20 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_F_SH_21">
+		<bitfield name="PDAF_SC_F_21">
+			<long_desc>spatial correction mantissa for channel 21 Legal values:  [0, 4095].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SH_21">
+			<long_desc>spatial correction shift for channel 21 Legal values:  [0, 15].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_0">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_0">
+			<long_desc>spatial correction slope from center to right for channel 0 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_0">
+			<long_desc>spatial correction slope from center to left for channel 0 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_1">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_1">
+			<long_desc>spatial correction slope from center to right for channel 1 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_1">
+			<long_desc>spatial correction slope from center to left for channel 1 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_2">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_2">
+			<long_desc>spatial correction slope from center to right for channel 2 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_2">
+			<long_desc>spatial correction slope from center to left for channel 2 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_3">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_3">
+			<long_desc>spatial correction slope from center to right for channel 3 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_3">
+			<long_desc>spatial correction slope from center to left for channel 3 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_4">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_4">
+			<long_desc>spatial correction slope from center to right for channel 4 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_4">
+			<long_desc>spatial correction slope from center to left for channel 4 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_5">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_5">
+			<long_desc>spatial correction slope from center to right for channel 5 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_5">
+			<long_desc>spatial correction slope from center to left for channel 5 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_6">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_6">
+			<long_desc>spatial correction slope from center to right for channel 6 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_6">
+			<long_desc>spatial correction slope from center to left for channel 6 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_7">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_7">
+			<long_desc>spatial correction slope from center to right for channel 7 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_7">
+			<long_desc>spatial correction slope from center to left for channel 7 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_8">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_8">
+			<long_desc>spatial correction slope from center to right for channel 8 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_8">
+			<long_desc>spatial correction slope from center to left for channel 8 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_9">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_9">
+			<long_desc>spatial correction slope from center to right for channel 9 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_9">
+			<long_desc>spatial correction slope from center to left for channel 9 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_10">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_10">
+			<long_desc>spatial correction slope from center to right for channel 10 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_10">
+			<long_desc>spatial correction slope from center to left for channel 10 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_11">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_11">
+			<long_desc>spatial correction slope from center to right for channel 11 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_11">
+			<long_desc>spatial correction slope from center to left for channel 11 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_12">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_12">
+			<long_desc>spatial correction slope from center to right for channel 12 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_12">
+			<long_desc>spatial correction slope from center to left for channel 12 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_13">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_13">
+			<long_desc>spatial correction slope from center to right for channel 13 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_13">
+			<long_desc>spatial correction slope from center to left for channel 13 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_14">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_14">
+			<long_desc>spatial correction slope from center to right for channel 14 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_14">
+			<long_desc>spatial correction slope from center to left for channel 14 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_15">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_15">
+			<long_desc>spatial correction slope from center to right for channel 15 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_15">
+			<long_desc>spatial correction slope from center to left for channel 15 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_16">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_16">
+			<long_desc>spatial correction slope from center to right for channel 16 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_16">
+			<long_desc>spatial correction slope from center to left for channel 16 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_17">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_17">
+			<long_desc>spatial correction slope from center to right for channel 17 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_17">
+			<long_desc>spatial correction slope from center to left for channel 17 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_18">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_18">
+			<long_desc>spatial correction slope from center to right for channel 18 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_18">
+			<long_desc>spatial correction slope from center to left for channel 18 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_19">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_19">
+			<long_desc>spatial correction slope from center to right for channel 19 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_19">
+			<long_desc>spatial correction slope from center to left for channel 19 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_20">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_20">
+			<long_desc>spatial correction slope from center to right for channel 20 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_20">
+			<long_desc>spatial correction slope from center to left for channel 20 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_X_21">
+		<bitfield name="PDAF_SC_SLOPE_X_RIGHT_21">
+			<long_desc>spatial correction slope from center to right for channel 21 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_LEFT_21">
+			<long_desc>spatial correction slope from center to left for channel 21 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_0">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_0">
+			<long_desc>spatial correction slope from center upwards 0 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_0">
+			<long_desc>spatial correction slope from center downwards 0 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_1">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_1">
+			<long_desc>spatial correction slope from center upwards 1 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_1">
+			<long_desc>spatial correction slope from center downwards 1 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_2">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_2">
+			<long_desc>spatial correction slope from center upwards 2 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_2">
+			<long_desc>spatial correction slope from center downwards 2 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_3">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_3">
+			<long_desc>spatial correction slope from center upwards 3 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_3">
+			<long_desc>spatial correction slope from center downwards 3 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_4">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_4">
+			<long_desc>spatial correction slope from center upwards 4 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_4">
+			<long_desc>spatial correction slope from center downwards 4 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_5">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_5">
+			<long_desc>spatial correction slope from center upwards 5 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_5">
+			<long_desc>spatial correction slope from center downwards 5 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_6">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_6">
+			<long_desc>spatial correction slope from center upwards 6 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_6">
+			<long_desc>spatial correction slope from center downwards 6 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_7">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_7">
+			<long_desc>spatial correction slope from center upwards 7 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_7">
+			<long_desc>spatial correction slope from center downwards 7 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_8">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_8">
+			<long_desc>spatial correction slope from center upwards 8 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_8">
+			<long_desc>spatial correction slope from center downwards 8 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_9">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_9">
+			<long_desc>spatial correction slope from center upwards 9 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_9">
+			<long_desc>spatial correction slope from center downwards 9 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_10">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_10">
+			<long_desc>spatial correction slope from center upwards 10 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_10">
+			<long_desc>spatial correction slope from center downwards 10 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_11">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_11">
+			<long_desc>spatial correction slope from center upwards 11 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_11">
+			<long_desc>spatial correction slope from center downwards 11 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_12">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_12">
+			<long_desc>spatial correction slope from center upwards 12 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_12">
+			<long_desc>spatial correction slope from center downwards 12 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_13">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_13">
+			<long_desc>spatial correction slope from center upwards 13 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_13">
+			<long_desc>spatial correction slope from center downwards 13 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_14">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_14">
+			<long_desc>spatial correction slope from center upwards 14 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_14">
+			<long_desc>spatial correction slope from center downwards 14 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_15">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_15">
+			<long_desc>spatial correction slope from center upwards 15 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_15">
+			<long_desc>spatial correction slope from center downwards 15 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_16">
+		<bitfield name="PDAF_SC_SLOPE_X_UP_16">
+			<long_desc>spatial correction slope from center upwards 16 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_X_DOWN_16">
+			<long_desc>spatial correction slope from center downwards 16 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_17">
+		<bitfield name="PDAF_SC_SLOPE_Y_UP_17">
+			<long_desc>spatial correction slope from center upwards 17 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_Y_DOWN_17">
+			<long_desc>spatial correction slope from center downwards 17 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_18">
+		<bitfield name="PDAF_SC_SLOPE_Y_UP_18">
+			<long_desc>spatial correction slope from center upwards 18 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_Y_DOWN_18">
+			<long_desc>spatial correction slope from center downwards 18 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_19">
+		<bitfield name="PDAF_SC_SLOPE_Y_UP_19">
+			<long_desc>spatial correction slope from center upwards 19 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_Y_DOWN_19">
+			<long_desc>spatial correction slope from center downwards 19 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_20">
+		<bitfield name="PDAF_SC_SLOPE_Y_UP_20">
+			<long_desc>spatial correction slope from center upwards 20 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_Y_DOWN_20">
+			<long_desc>spatial correction slope from center downwards 20 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_SC_SLOPE_Y_21">
+		<bitfield name="PDAF_SC_SLOPE_Y_UP_21">
+			<long_desc>spatial correction slope from center upwards 21 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_SC_SLOPE_Y_DOWN_21">
+			<long_desc>spatial correction slope from center downwards 21 Legal values:  [0, 255].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PDAF_DMA_START_0">
+		<long_desc>index of pdaf memory start address Legal values:  [0, 8191].</long_desc>
+	</reg>
+	<reg name="PDAF_DMA_SIZE_0">
+		<long_desc>number of pdaf data being sent out Legal values:  [0, 3888].</long_desc>
+	</reg>
+	<reg name="PDAF_DMA_START_1">
+		<long_desc>index of pdaf memory start address Legal values:  [0, 8191].</long_desc>
+	</reg>
+	<reg name="PDAF_DMA_SIZE_1">
+		<long_desc>number of pdaf data being sent out Legal values:  [0, 3888].</long_desc>
+	</reg>
+	<reg name="PDAF_DMA_Y">
+		<bitfield name="PDAF_DMA_Y0">
+			<long_desc>index to the first pdaf row being sent out Legal values:  [0, 127].</long_desc>
+		</bitfield>
+		<bitfield name="PDAF_DMA_NY">
+			<long_desc>number of pdaf rows being sent out Legal values:  [0, 127].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="PE_PARAM_ADDR">
+		<long_desc>pdaf PE parameter address Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="PE_PARAM_VALUE">
+		<long_desc>pdaf PE parameter value Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="PDAF_DMA_PACKET_SIZE">
+		<long_desc>pdaf dma packet size Legal values:  [0, 8191].</long_desc>
+	</reg>
+	<reg name="PDAF_DMA_DUMMY_VALUE">
+		<long_desc>pdaf dma packet size Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="PDAF_BORDER_START">
+		<long_desc>X coordinate of the first non-border PDAF pixel in the line  Legal values:  [0, 8190].</long_desc>
+	</reg>
+	<reg name="PDAF_BORDER_END">
+		<long_desc>X coordinate of the last non-border PDAF pixel in the line  Legal values:  [0, 8191].</long_desc>
+	</reg>
+	<reg name="PDAF_BORDER_GAIN_G">
+		<long_desc>pdaf row border pixel green gain  Legal values:  [0, 4095].</long_desc>
+	</reg>
+	<reg name="PDAF_BORDER_GAIN_R">
+		<long_desc>pdaf row border pixel red gain  Legal values:  [0, 4095].</long_desc>
+	</reg>
+	<reg name="GAIN_3D_RED">
+		<bitfield name="GAIN_MWB_RED">
+			<long_desc>mwb gain for red Legal values:  [0, 2047].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="GAIN_3D_GREENR">
+		<bitfield name="GAIN_MWB_GR">
+			<long_desc>mwb gain for GreenR Legal values:  [0, 2047].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="GAIN_3D_GREENB">
+		<bitfield name="GAIN_MWB_GB">
+			<long_desc>mwb gain for GreenB Legal values:  [0, 2047].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="GAIN_3D_BLUE">
+		<bitfield name="GAIN_MWB_BLUE">
+			<long_desc>mwb gain for blue Legal values:  [0, 2047].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="READ_MODE2">
+		<bitfield name="DIG_BIN2">
+			<long_desc>set to 1 to enable digital binning before data processing block to save power Writes are synchronized to frame boundaries.</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="LP_CTX_CTRL">
+		<bitfield name="LOW_POWER_CTX">
+			<long_desc>low power control. When set, chip goes to standby mode after sending 1 frame and goes to streaming mode after low_power_cnt * EXTCLK time.</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="LP_CTX_CNTH">
+		<bitfield name="LOW_POWER_CNTH">
+			<long_desc>High-byte of the count. When low_power_ctx bit is enabled, the chip goes to standby mode after sending 1frame and goes to streaming mode after low_power_cnt * EXTCLK time. Legal values:  [0, 65535].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="LP_CTX_CNTL">
+		<bitfield name="LOW_POWER_CNTL">
+			<long_desc>Low-byte of the count. When low_power_ctx bit is enabled, the chip goes to standby mode after sending 1frame and goes to streaming mode after low_power_cnt * EXTCLK time. Legal values:  [0, 65535].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="MIPI_T_INIT_LSB">
+		<long_desc>mipi t_init [15:0]. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="MIPI_T_INIT_MSB">
+		<long_desc>mipi t_init [18:16]. Legal values:  [0, 7].</long_desc>
+	</reg>
+	<reg name="PHY_PLL_DELAY">
+		<long_desc>phy delay counter. PHY PLL LOCK will be latched only when the counter reaches programmable value.  Legal values:  [0, 16383].</long_desc>
+	</reg>
+	<reg name="P_GR_P0Q0">
+		<long_desc>P0 coefficient for Q0 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P0Q1">
+		<long_desc>P0 coefficient for Q1 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P0Q2">
+		<long_desc>P0 coefficient for Q2 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P0Q3">
+		<long_desc>P0 coefficient for Q3 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P0Q4">
+		<long_desc>P0 coefficient for Q4 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P0Q0">
+		<long_desc>P0 coefficient for Q0 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P0Q1">
+		<long_desc>P0 coefficient for Q1 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P0Q2">
+		<long_desc>P0 coefficient for Q2 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P0Q3">
+		<long_desc>P0 coefficient for Q3 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P0Q4">
+		<long_desc>P0 coefficient for Q4 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P0Q0">
+		<long_desc>P0 coefficient for Q0 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P0Q1">
+		<long_desc>P0 coefficient for Q1 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P0Q2">
+		<long_desc>P0 coefficient for Q2 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P0Q3">
+		<long_desc>P0 coefficient for Q3 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P0Q4">
+		<long_desc>P0 coefficient for Q4 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P0Q0">
+		<long_desc>P0 coefficient for Q0 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P0Q1">
+		<long_desc>P0 coefficient for Q1 for Gb. P_GB_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P0Q2">
+		<long_desc>P0 coefficient for Q2 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P0Q3">
+		<long_desc>P0 coefficient for Q3 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P0Q4">
+		<long_desc>P0 coefficient for Q4 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P1Q0">
+		<long_desc>P1 coefficient for Q0 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P1Q1">
+		<long_desc>P1 coefficient for Q1 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P1Q2">
+		<long_desc>P1 coefficient for Q2 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P1Q3">
+		<long_desc>P1 coefficient for Q3 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P1Q4">
+		<long_desc>P1 coefficient for Q4 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P1Q0">
+		<long_desc>P1 coefficient for Q0 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P1Q1">
+		<long_desc>P1 coefficient for Q1 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P1Q2">
+		<long_desc>P1 coefficient for Q2 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P1Q3">
+		<long_desc>P1 coefficient for Q3 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P1Q4">
+		<long_desc>P1 coefficient for Q4 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P1Q0">
+		<long_desc>P1 coefficient for Q0 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P1Q1">
+		<long_desc>P1 coefficient for Q1 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P1Q2">
+		<long_desc>P1 coefficient for Q2 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P1Q3">
+		<long_desc>P1 coefficient for Q3 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P1Q4">
+		<long_desc>P1 coefficient for Q4 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P1Q0">
+		<long_desc>P1 coefficient for Q0 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P1Q1">
+		<long_desc>P1 coefficient for Q1 for Gb. P_GB_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P1Q2">
+		<long_desc>P1 coefficient for Q2 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P1Q3">
+		<long_desc>P1 coefficient for Q3 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P1Q4">
+		<long_desc>P1 coefficient for Q4 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P2Q0">
+		<long_desc>P2 coefficient for Q0 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P2Q1">
+		<long_desc>P2 coefficient for Q1 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P2Q2">
+		<long_desc>P2 coefficient for Q2 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P2Q3">
+		<long_desc>P2 coefficient for Q3 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P2Q4">
+		<long_desc>P2 coefficient for Q4 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P2Q0">
+		<long_desc>P2 coefficient for Q0 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P2Q1">
+		<long_desc>P2 coefficient for Q1 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P2Q2">
+		<long_desc>P2 coefficient for Q2 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P2Q3">
+		<long_desc>P2 coefficient for Q3 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P2Q4">
+		<long_desc>P2 coefficient for Q4 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P2Q0">
+		<long_desc>P2 coefficient for Q0 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P2Q1">
+		<long_desc>P2 coefficient for Q1 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P2Q2">
+		<long_desc>P2 coefficient for Q2 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P2Q3">
+		<long_desc>P2 coefficient for Q3 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P2Q4">
+		<long_desc>P2 coefficient for Q4 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P2Q0">
+		<long_desc>P2 coefficient for Q0 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P2Q1">
+		<long_desc>P2 coefficient for Q1 for Gb. P_GB_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P2Q2">
+		<long_desc>P2 coefficient for Q2 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P2Q3">
+		<long_desc>P2 coefficient for Q3 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P2Q4">
+		<long_desc>P2 coefficient for Q4 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P3Q0">
+		<long_desc>P3 coefficient for Q0 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P3Q1">
+		<long_desc>P3 coefficient for Q1 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P3Q2">
+		<long_desc>P3 coefficient for Q2 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P3Q3">
+		<long_desc>P3 coefficient for Q3 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P3Q4">
+		<long_desc>P3 coefficient for Q4 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P3Q0">
+		<long_desc>P3 coefficient for Q0 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P3Q1">
+		<long_desc>P3 coefficient for Q1 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P3Q2">
+		<long_desc>P3 coefficient for Q2 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P3Q3">
+		<long_desc>P3 coefficient for Q3 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P3Q4">
+		<long_desc>P3 coefficient for Q4 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P3Q0">
+		<long_desc>P3 coefficient for Q0 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P3Q1">
+		<long_desc>P3 coefficient for Q1 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P3Q2">
+		<long_desc>P3 coefficient for Q2 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P3Q3">
+		<long_desc>P3 coefficient for Q3 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P3Q4">
+		<long_desc>P3 coefficient for Q4 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P3Q0">
+		<long_desc>P3 coefficient for Q0 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P3Q1">
+		<long_desc>P3 coefficient for Q1 for Gb. P_GB_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P3Q2">
+		<long_desc>P3 coefficient for Q2 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P3Q3">
+		<long_desc>P3 coefficient for Q3 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P3Q4">
+		<long_desc>P3 coefficient for Q4 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P4Q0">
+		<long_desc>P4 coefficient for Q0 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P4Q1">
+		<long_desc>P4 coefficient for Q1 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P4Q2">
+		<long_desc>P4 coefficient for Q2 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P4Q3">
+		<long_desc>P4 coefficient for Q3 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GR_P4Q4">
+		<long_desc>P4 coefficient for Q4 for Gr. P_GR_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gr pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P4Q0">
+		<long_desc>P4 coefficient for Q0 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P4Q1">
+		<long_desc>P4 coefficient for Q1 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P4Q2">
+		<long_desc>P4 coefficient for Q2 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P4Q3">
+		<long_desc>P4 coefficient for Q3 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_P4Q4">
+		<long_desc>P4 coefficient for Q4 for Rd. P_RD_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Rd pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P4Q0">
+		<long_desc>P4 coefficient for Q0 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P4Q1">
+		<long_desc>P4 coefficient for Q1 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P4Q2">
+		<long_desc>P4 coefficient for Q2 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P4Q3">
+		<long_desc>P4 coefficient for Q3 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_P4Q4">
+		<long_desc>P4 coefficient for Q4 for Bl. P_BL_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Bl pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P4Q0">
+		<long_desc>P4 coefficient for Q0 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P4Q1">
+		<long_desc>P4 coefficient for Q1 for Gb. P_GB_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P4Q2">
+		<long_desc>P4 coefficient for Q2 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P4Q3">
+		<long_desc>P4 coefficient for Q3 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_P4Q4">
+		<long_desc>P4 coefficient for Q4 for Gb. P_Gb_PpQq registers are read successively when the row polynomial (Q) coefficients are calculated during the horizontal blanking period before a row containing Gb pixels. Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="POLY_SC_ENABLE">
+		<long_desc>When is set, len shading correction will generate polynomial function and correct stream of pixels. When not set, the function will bypass data.</long_desc>
+	</reg>
+	<reg name="POLY_ORIGIN_C">
+		<bitfield name="ORIGIN_C">
+			<long_desc>center column of the image for polynomial function Legal values:  [0, 4647].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="POLY_ORIGIN_R">
+		<bitfield name="ORIGIN_R">
+			<long_desc>center row of the image for polynomial function Legal values:  [0, 3507].</long_desc>
+		</bitfield>
+	</reg>
+	<reg name="P_GR_Q5">
+		<long_desc>Parameter for parabolic roll-off algorithm for greenR pixels. Writes are synchronized to frame boundaries.  Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_RD_Q5">
+		<long_desc>Parameter for parabolic roll-off algorithm for red pixels. Writes are synchronized to frame boundaries.  Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_BL_Q5">
+		<long_desc>Parameter for parabolic roll-off algorithm for blue pixels. Writes are synchronized to frame boundaries.  Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="P_GB_Q5">
+		<long_desc>Parameter for parabolic roll-off algorithm for greenB pixels. Writes are synchronized to frame boundaries.  Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_000">
+		<long_desc>OTPM_DATA_000 Data for OTPM automatic read and write sequences. After an OTPM automatic read sequence, read data is presented in the OTPM_DATA_* registers. Before performing an OTPM automatic write (programming) sequence, the data to be written is presented in the OTPM_DATA_* registers. These registers cannot be accessed when the system is in soft standby (writes will be ignored and reads will return 0). Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_001">
+		<long_desc>OTPM_DATA_001 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_002">
+		<long_desc>OTPM_DATA_002 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_003">
+		<long_desc>OTPM_DATA_003 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_004">
+		<long_desc>OTPM_DATA_004 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_005">
+		<long_desc>OTPM_DATA_005 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_006">
+		<long_desc>OTPM_DATA_006 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_007">
+		<long_desc>OTPM_DATA_007 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_008">
+		<long_desc>OTPM_DATA_008 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_009">
+		<long_desc>OTPM_DATA_009 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_010">
+		<long_desc>OTPM_DATA_010 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_011">
+		<long_desc>OTPM_DATA_011 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_012">
+		<long_desc>OTPM_DATA_012 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_013">
+		<long_desc>OTPM_DATA_013 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_014">
+		<long_desc>OTPM_DATA_014 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_015">
+		<long_desc>OTPM_DATA_015 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_016">
+		<long_desc>OTPM_DATA_016 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_017">
+		<long_desc>OTPM_DATA_017 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_018">
+		<long_desc>OTPM_DATA_018 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_019">
+		<long_desc>OTPM_DATA_019 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_020">
+		<long_desc>OTPM_DATA_020 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_021">
+		<long_desc>OTPM_DATA_021 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_022">
+		<long_desc>OTPM_DATA_022 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_023">
+		<long_desc>OTPM_DATA_023 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_024">
+		<long_desc>OTPM_DATA_024 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_025">
+		<long_desc>OTPM_DATA_025 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_026">
+		<long_desc>OTPM_DATA_026 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_027">
+		<long_desc>OTPM_DATA_027 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_028">
+		<long_desc>OTPM_DATA_028 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_029">
+		<long_desc>OTPM_DATA_029 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_030">
+		<long_desc>OTPM_DATA_030 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_031">
+		<long_desc>OTPM_DATA_031 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_032">
+		<long_desc>OTPM_DATA_032 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_033">
+		<long_desc>OTPM_DATA_033 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_034">
+		<long_desc>OTPM_DATA_034 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_035">
+		<long_desc>OTPM_DATA_035 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_036">
+		<long_desc>OTPM_DATA_036 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_037">
+		<long_desc>OTPM_DATA_037 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_038">
+		<long_desc>OTPM_DATA_038 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_039">
+		<long_desc>OTPM_DATA_039 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_040">
+		<long_desc>OTPM_DATA_040 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_041">
+		<long_desc>OTPM_DATA_041 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_042">
+		<long_desc>OTPM_DATA_042 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_043">
+		<long_desc>OTPM_DATA_043 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_044">
+		<long_desc>OTPM_DATA_044 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_045">
+		<long_desc>OTPM_DATA_045 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_046">
+		<long_desc>OTPM_DATA_046 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_047">
+		<long_desc>OTPM_DATA_047 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_048">
+		<long_desc>OTPM_DATA_048 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_049">
+		<long_desc>OTPM_DATA_049 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_050">
+		<long_desc>OTPM_DATA_050 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_051">
+		<long_desc>OTPM_DATA_051 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_052">
+		<long_desc>OTPM_DATA_052 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_053">
+		<long_desc>OTPM_DATA_053 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_054">
+		<long_desc>OTPM_DATA_054 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_055">
+		<long_desc>OTPM_DATA_055 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_056">
+		<long_desc>OTPM_DATA_056 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_057">
+		<long_desc>OTPM_DATA_057 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_058">
+		<long_desc>OTPM_DATA_058 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_059">
+		<long_desc>OTPM_DATA_059 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_060">
+		<long_desc>OTPM_DATA_060 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_061">
+		<long_desc>OTPM_DATA_061 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_062">
+		<long_desc>OTPM_DATA_062 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_063">
+		<long_desc>OTPM_DATA_063 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_064">
+		<long_desc>OTPM_DATA_064 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_065">
+		<long_desc>OTPM_DATA_065 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_066">
+		<long_desc>OTPM_DATA_066 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_067">
+		<long_desc>OTPM_DATA_067 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_068">
+		<long_desc>OTPM_DATA_068 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_069">
+		<long_desc>OTPM_DATA_069 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_070">
+		<long_desc>OTPM_DATA_070 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_071">
+		<long_desc>OTPM_DATA_071 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_072">
+		<long_desc>OTPM_DATA_072 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_073">
+		<long_desc>OTPM_DATA_073 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_074">
+		<long_desc>OTPM_DATA_074 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_075">
+		<long_desc>OTPM_DATA_075 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_076">
+		<long_desc>OTPM_DATA_076 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_077">
+		<long_desc>OTPM_DATA_077 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_078">
+		<long_desc>OTPM_DATA_078 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_079">
+		<long_desc>OTPM_DATA_079 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_080">
+		<long_desc>OTPM_DATA_080 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_081">
+		<long_desc>OTPM_DATA_081 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_082">
+		<long_desc>OTPM_DATA_082 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_083">
+		<long_desc>OTPM_DATA_083 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_084">
+		<long_desc>OTPM_DATA_084 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_085">
+		<long_desc>OTPM_DATA_085 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_086">
+		<long_desc>OTPM_DATA_086 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_087">
+		<long_desc>OTPM_DATA_087 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_088">
+		<long_desc>OTPM_DATA_088 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_089">
+		<long_desc>OTPM_DATA_089 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_090">
+		<long_desc>OTPM_DATA_090 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_091">
+		<long_desc>OTPM_DATA_091 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_092">
+		<long_desc>OTPM_DATA_092 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_093">
+		<long_desc>OTPM_DATA_093 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_094">
+		<long_desc>OTPM_DATA_094 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_095">
+		<long_desc>OTPM_DATA_095 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_096">
+		<long_desc>OTPM_DATA_096 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_097">
+		<long_desc>OTPM_DATA_097 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_098">
+		<long_desc>OTPM_DATA_098 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_099">
+		<long_desc>OTPM_DATA_099 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_100">
+		<long_desc>OTPM_DATA_100 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_101">
+		<long_desc>OTPM_DATA_101 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_102">
+		<long_desc>OTPM_DATA_102 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_103">
+		<long_desc>OTPM_DATA_103 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_104">
+		<long_desc>OTPM_DATA_104 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_105">
+		<long_desc>OTPM_DATA_105 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_106">
+		<long_desc>OTPM_DATA_106 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_107">
+		<long_desc>OTPM_DATA_107 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_108">
+		<long_desc>OTPM_DATA_108 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_109">
+		<long_desc>OTPM_DATA_109 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_110">
+		<long_desc>OTPM_DATA_110 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_111">
+		<long_desc>OTPM_DATA_111 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_112">
+		<long_desc>OTPM_DATA_112 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_113">
+		<long_desc>OTPM_DATA_113 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_114">
+		<long_desc>OTPM_DATA_114 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_115">
+		<long_desc>OTPM_DATA_115 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_116">
+		<long_desc>OTPM_DATA_116 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_117">
+		<long_desc>OTPM_DATA_117 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_118">
+		<long_desc>OTPM_DATA_118 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_119">
+		<long_desc>OTPM_DATA_119 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_120">
+		<long_desc>OTPM_DATA_120 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_121">
+		<long_desc>OTPM_DATA_121 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_122">
+		<long_desc>OTPM_DATA_122 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_123">
+		<long_desc>OTPM_DATA_123 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_124">
+		<long_desc>OTPM_DATA_124 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_125">
+		<long_desc>OTPM_DATA_125 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_126">
+		<long_desc>OTPM_DATA_126 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_127">
+		<long_desc>OTPM_DATA_127 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_128">
+		<long_desc>OTPM_DATA_128 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_129">
+		<long_desc>OTPM_DATA_129 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_130">
+		<long_desc>OTPM_DATA_130 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_131">
+		<long_desc>OTPM_DATA_131 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_132">
+		<long_desc>OTPM_DATA_132 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_133">
+		<long_desc>OTPM_DATA_133 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_134">
+		<long_desc>OTPM_DATA_134 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_135">
+		<long_desc>OTPM_DATA_135 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_136">
+		<long_desc>OTPM_DATA_136 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_137">
+		<long_desc>OTPM_DATA_137 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_138">
+		<long_desc>OTPM_DATA_138 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_139">
+		<long_desc>OTPM_DATA_139 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_140">
+		<long_desc>OTPM_DATA_140 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_141">
+		<long_desc>OTPM_DATA_141 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_142">
+		<long_desc>OTPM_DATA_142 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_143">
+		<long_desc>OTPM_DATA_143 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_144">
+		<long_desc>OTPM_DATA_144 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_145">
+		<long_desc>OTPM_DATA_145 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_146">
+		<long_desc>OTPM_DATA_146 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_147">
+		<long_desc>OTPM_DATA_147 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_148">
+		<long_desc>OTPM_DATA_148 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_149">
+		<long_desc>OTPM_DATA_149 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_150">
+		<long_desc>OTPM_DATA_150 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_151">
+		<long_desc>OTPM_DATA_151 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_152">
+		<long_desc>OTPM_DATA_152 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_153">
+		<long_desc>OTPM_DATA_153 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_154">
+		<long_desc>OTPM_DATA_154 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_155">
+		<long_desc>OTPM_DATA_155 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_156">
+		<long_desc>OTPM_DATA_156 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_157">
+		<long_desc>OTPM_DATA_157 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_158">
+		<long_desc>OTPM_DATA_158 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_159">
+		<long_desc>OTPM_DATA_159 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_160">
+		<long_desc>OTPM_DATA_160 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_161">
+		<long_desc>OTPM_DATA_161 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_162">
+		<long_desc>OTPM_DATA_162 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_163">
+		<long_desc>OTPM_DATA_163 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_164">
+		<long_desc>OTPM_DATA_164 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_165">
+		<long_desc>OTPM_DATA_165 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_166">
+		<long_desc>OTPM_DATA_166 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_167">
+		<long_desc>OTPM_DATA_167 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_168">
+		<long_desc>OTPM_DATA_168 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_169">
+		<long_desc>OTPM_DATA_169 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_170">
+		<long_desc>OTPM_DATA_170 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_171">
+		<long_desc>OTPM_DATA_171 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_172">
+		<long_desc>OTPM_DATA_172 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_173">
+		<long_desc>OTPM_DATA_173 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_174">
+		<long_desc>OTPM_DATA_174 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_175">
+		<long_desc>OTPM_DATA_175 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_176">
+		<long_desc>OTPM_DATA_176 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_177">
+		<long_desc>OTPM_DATA_177 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_178">
+		<long_desc>OTPM_DATA_178 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_179">
+		<long_desc>OTPM_DATA_179 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_180">
+		<long_desc>OTPM_DATA_180 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_181">
+		<long_desc>OTPM_DATA_181 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_182">
+		<long_desc>OTPM_DATA_182 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_183">
+		<long_desc>OTPM_DATA_183 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_184">
+		<long_desc>OTPM_DATA_184 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_185">
+		<long_desc>OTPM_DATA_185 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_186">
+		<long_desc>OTPM_DATA_186 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_187">
+		<long_desc>OTPM_DATA_187 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_188">
+		<long_desc>OTPM_DATA_188 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_189">
+		<long_desc>OTPM_DATA_189 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_190">
+		<long_desc>OTPM_DATA_190 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_191">
+		<long_desc>OTPM_DATA_191 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_192">
+		<long_desc>OTPM_DATA_192 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_193">
+		<long_desc>OTPM_DATA_193 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_194">
+		<long_desc>OTPM_DATA_194 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_195">
+		<long_desc>OTPM_DATA_195 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_196">
+		<long_desc>OTPM_DATA_196 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_197">
+		<long_desc>OTPM_DATA_197 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_198">
+		<long_desc>OTPM_DATA_198 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_199">
+		<long_desc>OTPM_DATA_199 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_200">
+		<long_desc>OTPM_DATA_200 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_201">
+		<long_desc>OTPM_DATA_201 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_202">
+		<long_desc>OTPM_DATA_202 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_203">
+		<long_desc>OTPM_DATA_203 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_204">
+		<long_desc>OTPM_DATA_204 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_205">
+		<long_desc>OTPM_DATA_205 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_206">
+		<long_desc>OTPM_DATA_206 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_207">
+		<long_desc>OTPM_DATA_207 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_208">
+		<long_desc>OTPM_DATA_208 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_209">
+		<long_desc>OTPM_DATA_209 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_210">
+		<long_desc>OTPM_DATA_210 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_211">
+		<long_desc>OTPM_DATA_211 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_212">
+		<long_desc>OTPM_DATA_212 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_213">
+		<long_desc>OTPM_DATA_213 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_214">
+		<long_desc>OTPM_DATA_214 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_215">
+		<long_desc>OTPM_DATA_215 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_216">
+		<long_desc>OTPM_DATA_216 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_217">
+		<long_desc>OTPM_DATA_217 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_218">
+		<long_desc>OTPM_DATA_218 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_219">
+		<long_desc>OTPM_DATA_219 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_220">
+		<long_desc>OTPM_DATA_220 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_221">
+		<long_desc>OTPM_DATA_221 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_222">
+		<long_desc>OTPM_DATA_222 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_223">
+		<long_desc>OTPM_DATA_223 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_224">
+		<long_desc>OTPM_DATA_224 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_225">
+		<long_desc>OTPM_DATA_225 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_226">
+		<long_desc>OTPM_DATA_226 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_227">
+		<long_desc>OTPM_DATA_227 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_228">
+		<long_desc>OTPM_DATA_228 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_229">
+		<long_desc>OTPM_DATA_229 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_230">
+		<long_desc>OTPM_DATA_230 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_231">
+		<long_desc>OTPM_DATA_231 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_232">
+		<long_desc>OTPM_DATA_232 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_233">
+		<long_desc>OTPM_DATA_233 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_234">
+		<long_desc>OTPM_DATA_234 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_235">
+		<long_desc>OTPM_DATA_235 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_236">
+		<long_desc>OTPM_DATA_236 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_237">
+		<long_desc>OTPM_DATA_237 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_238">
+		<long_desc>OTPM_DATA_238 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_239">
+		<long_desc>OTPM_DATA_239 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_240">
+		<long_desc>OTPM_DATA_240 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_241">
+		<long_desc>OTPM_DATA_241 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_242">
+		<long_desc>OTPM_DATA_242 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_243">
+		<long_desc>OTPM_DATA_243 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_244">
+		<long_desc>OTPM_DATA_244 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_245">
+		<long_desc>OTPM_DATA_245 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_246">
+		<long_desc>OTPM_DATA_246 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_247">
+		<long_desc>OTPM_DATA_247 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_248">
+		<long_desc>OTPM_DATA_248 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_249">
+		<long_desc>OTPM_DATA_249 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_250">
+		<long_desc>OTPM_DATA_250 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_251">
+		<long_desc>OTPM_DATA_251 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_252">
+		<long_desc>OTPM_DATA_252 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_253">
+		<long_desc>OTPM_DATA_253 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_254">
+		<long_desc>OTPM_DATA_254 Legal values:  [0, 65535].</long_desc>
+	</reg>
+	<reg name="OTPM_DATA_255">
+		<long_desc>OTPM_DATA_255 Legal values:  [0, 65535].</long_desc>
+	</reg>
+</registers>
+</sensor>
