@@ -1,2 +1,0 @@
-LensCalib.exe -input 1.raw -falloff 65 -outini lsc_and_pdaf.ini -outiniformat INI -whitepoint wp.ini -for AR1630 -rev 2
-pause
